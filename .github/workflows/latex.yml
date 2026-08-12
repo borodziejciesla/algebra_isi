@@ -1,0 +1,37 @@
+name: Build LaTeX to PDF and Commit
+
+on:
+  push:
+    branches: [ "main" ]
+
+permissions:
+  contents: write # Wymagane, aby workflow miał uprawnienia do robienia commitów
+
+jobs:
+  build_and_commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Install TeX live (latexmk)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y latexmk texlive-latex-extra texlive-latex-recommended texlive-fonts-recommended texlive-lang-polish
+
+      - name: Ensure build script is executable
+        run: chmod +x scripts/build_pdfs.sh
+
+      - name: Run build script
+        run: ./scripts/build_pdfs.sh
+
+      - name: Commit generated PDFs
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "docs: auto-build PDFs from LaTeX [skip ci]"
+          file_pattern: |
+            teoria/*.pdf
+            zadania/*.pdf

@@ -1,0 +1,104 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[polish]{babel}
+
+\usepackage{listings}
+\lstset{
+    language=SQL,
+    inputencoding=utf8x,
+    extendedchars=\true,
+    literate={ą}{{\k{a}}}1
+             {Ą}{{\k{A}}}1
+             {ę}{{\k{e}}}1
+             {Ę}{{\k{E}}}1
+             {ó}{{\'o}}1
+             {Ó}{{\'O}}1
+             {ś}{{\'s}}1
+             {Ś}{{\'S}}1
+             {ł}{{\l{}}}1
+             {Ł}{{\L{}}}1
+             {ż}{{\.z}}1
+             {Ż}{{\.Z}}1
+             {ź}{{\'z}}1
+             {Ź}{{\'Z}}1
+             {ć}{{\'c}}1
+             {Ć}{{\'C}}1
+             {ń}{{\'n}}1
+             {Ń}{{\'N}}1
+}
+
+\title{Czym jest $e^{i\phi}$?}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Intuicja geometryczna}
+Mnożenie przez liczbę zespoloną $1 + i\frac{\phi}{n}$, gdzie $n \rightarrow \infty$,
+jest interpretowane jako obrót wektora o nieskończenie mały kąt $\frac{\phi}{n}$.
+
+Jeśli wykonamy $n \rightarrow \infty$ takich obrotów, to ostatecznie
+obrócimy wektor o kąt $\phi$, czyli przemnożymy przez liczbę
+zespoloną $\cos{\phi} + i \sin{\phi}$.
+
+Wiemy zatem, że granica ciągu $\left( 1 + i\frac{\phi}{n} \right)^{n}$
+jest równa $\cos{\phi} + i \sin{\phi}$. A więc liczymy granicę:
+\[
+    \lim_{n \rightarrow \infty} \left( 1 + i\frac{\phi}{n} \right)^{n} = a_{n}
+    \implies
+    \log a_{n} = n\log \left( 1 + i\frac{\phi}{n} \right)
+\]
+Korzystamy z własności:
+\[
+    \log(1 + i\frac{\phi}{n}) = \frac{i\phi}{n} - \frac{(i\phi)^2}{2n^2} + \frac{(i\phi)^3}{3n^3} + \cdots
+\]
+Wówczas:
+\[
+    \lim_{n \rightarrow \infty}\log a_{n} = \lim_{n \rightarrow \infty} n\left( \frac{i\phi}{n} - \frac{(i\phi)^2}{2n^2} + \frac{(i\phi)^3}{3n^3} + \cdots \right) = i\phi
+\]
+Pozbywając się logarytmu otrzymujemy:
+\[
+    \lim_{n \rightarrow \infty} a_{n} = \lim_{n \rightarrow \infty} \left( 1 + i\frac{\phi}{n} \right)^{n}  = e^{i\phi}
+\]
+
+Zatem mamy równość:
+\[
+    e^{i\phi} = \cos{\phi} + i \sin{\phi}
+\]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Rozwinięcie w szereg Taylora}
+Rozwinięcie eksponenty w szereg Taylora ma postać:
+\[
+    e^{t} = \sum_{k=0}^{\infty}{\frac{t^k}{k!}}.
+\]
+W przypadku $e^{i\phi}$ mamy:
+\[
+    \begin{array}{l}
+    e^{i\phi} = \sum_{k=0}^{\infty}{\frac{(i\phi)^n}{k!}} 
+    =
+    1 + i\phi - \frac{\phi^2}{2!} - \frac{i\phi^3}{3!} + \frac{\phi^4}{4!} + \cdots =
+    \\
+    \underbrace{1 - \frac{\phi^2}{2!} + \frac{\phi^4}{4!} + \cdots}_{\cos{\phi}}
+    + i \left( \underbrace{\phi - \frac{\phi^3}{3!} + \frac{\phi^5}{5!}}_{\sin{\phi} + \cdots} \right) =
+    \cos{\phi} + i\sin{\phi}
+    \end{array}
+\]
+Można zauważyć, że części rzeczywiste i urojone grupują się w
+szeregi Taylora odpowiednio dla $\cos{\phi}$ i $\sin{\phi}$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{Równanie różniczkowe}
+
+
+\end{document}
