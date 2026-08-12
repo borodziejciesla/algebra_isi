@@ -1,0 +1,191 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% \usepackage[polish]{babel}
+
+\usepackage{listings}
+\lstset{
+    language=SQL,
+    inputencoding=utf8x,
+    extendedchars=\true,
+    literate={ą}{{\k{a}}}1
+             {Ą}{{\k{A}}}1
+             {ę}{{\k{e}}}1
+             {Ę}{{\k{E}}}1
+             {ó}{{\'o}}1
+             {Ó}{{\'O}}1
+             {ś}{{\'s}}1
+             {Ś}{{\'S}}1
+             {ł}{{\l{}}}1
+             {Ł}{{\L{}}}1
+             {ż}{{\.z}}1
+             {Ż}{{\.Z}}1
+             {ź}{{\'z}}1
+             {Ź}{{\'Z}}1
+             {ć}{{\'c}}1
+             {Ć}{{\'C}}1
+             {ń}{{\'n}}1
+             {Ń}{{\'N}}1
+}
+
+\title{Postać kanoniczna Jordana - przykład}
+%\author{You}
+
+\begin{document}
+\maketitle
+
+Znaleźć postać kanoniczną Jordana macierzy $A$:
+$$
+    A
+    =
+    \begin{bmatrix}\begin{array}{rrrr}
+        2   &   0   &   0   &   0\\
+        0   &   1   &   1   &   0\\
+        0   &   0   &   1   &   0\\
+        0   &   2   &  -1   &   2
+    \end{array}\end{bmatrix}
+$$
+
+Wyznaczamy wielomian charakterystyczny:
+$$
+    W(\lambda) = |\lambda I - A| = (\lambda - 2)^{2}(\lambda - 1)^{2}
+$$
+
+Szukamy wielomianu minimalnego, można to zrobić dzieląc wielomian charakterystyczny, dzieląc go przez największy wspólny dzielnik macierzy dołączonej $adj(\lambda I - A)$:
+$$
+    adj(\lambda I - A)
+    =
+    \begin{bmatrix}\begin{array}{cccc}
+        (\lambda - 1)^{2}(\lambda - 2)  &   0                               &   0                               &   0\\
+        0                               &   (\lambda - 2)^{2}(\lambda - 1)  &   (\lambda - 2)^{2}               &   0\\
+        0                               &   0                               &   (\lambda - 2)^{2}(\lambda - 1)  &   0\\
+        0                               &   2(\lambda - 1)(\lambda - 2)     &  -1(\lambda - 2)(\lambda - 3)     &   (\lambda - 1)^{2}(\lambda - 2)
+    \end{array}\end{bmatrix}
+$$
+Łatwo zauważyć, że $NWD(adj(\lambda I - A)) = \lambda - 2$.
+
+Zatem wielomian minimalny ma postać:
+$$
+    M(\lambda) = (\lambda - 2)(\lambda - 1)^{2}
+$$
+Czyli dzielniki elementarne to: $(\lambda - 2)$, $(\lambda - 2)$, $(\lambda - 1)^{2}$.
+
+Z czego wynika, iż postać kanoniczna Jordana złożona jest z 3 klatek Jordana: 2 - wymiaru $1 \times 1$ związane z dzielnikiem elementarnym $(\lambda - 2)$ - $\begin{bmatrix}\begin{array}{c} 2 \end{array}\end{bmatrix}$, oraz 1 związaną z dzielnikiem elementarnym $(\lambda - 1)^{2}$ wymiaru $1 \times 1$ - $\begin{bmatrix}\begin{array}{cc} 1 & 1\\ 0 & 1 \end{array}\end{bmatrix}$.
+
+Zatem postać kanoniczna Jordana ma ostatecznie postać:
+$$
+    J
+    =
+    \begin{bmatrix}\begin{array}{rrrr}
+        1   &   1   &   0   &   0\\
+        0   &   1   &   0   &   0\\
+        0   &   0   &   2   &   0\\
+        0   &   0   &   0   &   2
+    \end{array}\end{bmatrix}
+$$
+
+Dodatkowo można wyznaczyć macierz modalną:
+\begin{itemize}
+    \item Wektory związane z $\lambda_{1} = 1$:
+    \begin{itemize}
+        \item
+        $$
+        \begin{array}{rrrr|r}
+           -1   &   0   &   0   &   0   &   0\\
+            0   &   0   &  -1   &   0   &   0\\
+            0   &   0   &   0   &   0   &   0\\
+            0   &  -2   &   1   &  -1   &   0
+        \end{array}
+        \rightarrow
+        h_{1}^{1}
+        =
+        \begin{bmatrix}\begin{array}{c}
+            0\\
+            a\\
+            0\\
+            -2a
+        \end{array}\end{bmatrix}
+        \rightarrow
+        h_{1}^{1}
+        =
+        \begin{bmatrix}\begin{array}{c}
+            0\\
+            1\\
+            0\\
+            -2
+        \end{array}\end{bmatrix}
+        $$
+        \item
+        $$
+        \begin{array}{rrrr|c}
+           -1   &   0   &   0   &   0   &   0\\
+            0   &   0   &  -1   &   0   &   a\\
+            0   &   0   &   0   &   0   &   0\\
+            0   &  -2   &   1   &  -1   &   -2a
+        \end{array}
+        \rightarrow
+        h_{1}^{2}
+        =
+        \begin{bmatrix}\begin{array}{c}
+            0\\
+            a\\
+            b\\
+            -b -2a
+        \end{array}\end{bmatrix}
+        \rightarrow
+        h_{1}^{2}
+        =
+        \begin{bmatrix}\begin{array}{c}
+            0\\
+            0\\
+            1\\
+            -1
+        \end{array}\end{bmatrix}
+        $$
+    \end{itemize}
+
+    \item Wektory związane z $\lambda_{2} = 2$:
+        $$
+        \begin{array}{rrrr|r}
+            0   &   0   &   0   &   0   &   0\\
+            0   &   1   &  -1   &   0   &   0\\
+            0   &   0   &   1   &   0   &   0\\
+            0   &  -2   &   1   &   2   &   0
+        \end{array}
+        \rightarrow
+        h_{2}
+        =
+        \begin{bmatrix}\begin{array}{c}
+            b\\
+            0\\
+            0\\
+            c
+        \end{array}\end{bmatrix}
+        \rightarrow
+        h_{2}^{1}
+        =
+        \begin{bmatrix}\begin{array}{c}
+            1\\
+            0\\
+            0\\
+            0
+        \end{array}\end{bmatrix}
+        ,\,
+        h_{2}^{2}
+        =
+        \begin{bmatrix}\begin{array}{c}
+            0\\
+            0\\
+            0\\
+            1
+        \end{array}\end{bmatrix}
+        $$
+\end{itemize}
+\end{document}

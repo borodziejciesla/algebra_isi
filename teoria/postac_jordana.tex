@@ -1,0 +1,474 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% \usepackage[polish]{babel}
+
+\usepackage{listings}
+\lstset{
+    language=SQL,
+    inputencoding=utf8x,
+    extendedchars=\true,
+    literate={ą}{{\k{a}}}1
+             {Ą}{{\k{A}}}1
+             {ę}{{\k{e}}}1
+             {Ę}{{\k{E}}}1
+             {ó}{{\'o}}1
+             {Ó}{{\'O}}1
+             {ś}{{\'s}}1
+             {Ś}{{\'S}}1
+             {ł}{{\l{}}}1
+             {Ł}{{\L{}}}1
+             {ż}{{\.z}}1
+             {Ż}{{\.Z}}1
+             {ź}{{\'z}}1
+             {Ź}{{\'Z}}1
+             {ć}{{\'c}}1
+             {Ć}{{\'C}}1
+             {ń}{{\'n}}1
+             {Ń}{{\'N}}1
+}
+
+\title{Postać kanoniczna Jordana}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+Rozważamy przestrzeń $(\mathbb{K}^{n}, \mathbb{K}, +, \dot)$.% gdzie $\mathbb{X} = \mathbb{K}^{n}$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Podprzestrzeń niezmiennicza względem macierzy $A$}
+Podprzestrzeń $\mathbf{X} \subset \mathbb{X}^{n}$ nazywamy podprzestrzenią niezmienniczą względem danej macierzy $A$ (ogólniej względem przekształcenia) jeśli zachodzi warunek:
+$$
+    A\mathbf{X} \subseteq \mathbf{X},\, \text{tzn. } \forall_{x \in \mathbf{X}}{Ax \in \mathbf{X}}.
+$$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Najprostsza przestrzeń niezmiennicza}
+Najprostszą podprzestrzenią niezmienniczą ze względu na macierz $A$ może być prosta.
+Czyli podprzestrzeń, której baza składa się tylko z jednego wektora, który spełnia warunek:
+$$
+    A\mathbf{h} = \lambda\mathbf{w}
+$$
+Można zapisać go w postaci:
+$$
+    \left[ \lambda I -A \right]\mathbf{h} = \mathbf{0}
+$$
+Równanie to ma rozwiązanie $\mathbf{h} \neq \mathbf{0}$ wtedy i tylko wtedy gdy wyznacznik macierzy $\lambda I -A$ jest równy zeru:
+$$
+    |\lambda I -A| = 0,
+$$
+jest to tak zwane równanie charakterystyczne macierzy $A$.
+Natomiast wielomian $W(\lambda) = |\lambda I -A|$ nazywamy wielomianem charakterystycznym macierzy $A$, a pierwiastki wielomianu charakterystycznego $\lambda_{i}$ nazywamy wartościami własnymi.
+Ponadto zbiór wartości własnych macierzy $A$, oznaczany jako $\lambda(A) = \left\{ \lambda_{1}, \lambda_{2}, \cdots, \lambda_{k} \right\}$, nazywamy widmem macierzy.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Diagonalizacja macierzy}
+Można zauważyć, że jeśli macierz $A$ posiada $n$ wektorów własnych $\mathbf{w}_{1}, \mathbf{w}_{2}, \cdots, \mathbf{w}_{n}$ to można utworzyć z nich nieosobliwą macierz $P = \begin{bmatrix} \mathbf{w}_{1} & \mathbf{w}_{2} & \cdots & \mathbf{w}_{n} \end{bmatrix}$, wówczas:
+$$
+    \begin{array}{c}
+        AP =
+        A \begin{bmatrix} \mathbf{h}_{1} & \mathbf{h}_{2} & \cdots & \mathbf{h}_{n} \end{bmatrix}
+        = \\
+        \begin{bmatrix} \lambda_{1}\mathbf{h}_{1} & \lambda_{2}\mathbf{h}_{2} & \cdots & \lambda_{n}\mathbf{h}_{n} \end{bmatrix}
+        =
+        \begin{bmatrix} \mathbf{h}_{1} & \mathbf{h}_{2} & \cdots & \mathbf{h}_{n} \end{bmatrix}
+        \begin{bmatrix}
+            \lambda_{1} & 0             & 0 & \cdots & 0\\
+            0           & \lambda_{2}   & 0 & \cdots & 0\\
+            \vdots      & \vdots        & 0 & \cdots & \vdots\\
+            0           & 0             & 0 & \cdots & \lambda_{n}
+        \end{bmatrix}
+        = P\Lambda.
+    \end{array}
+$$
+A zatem:
+$$
+    AP = P\Lambda \implies \Lambda = P^{-1}AP.
+$$
+Oznacza to, że jeśli macierz posiada $n$ wektorów własnych, to jest podobna do macierzy diagonalnej.
+Zatem istnieje baza, a dokładniej zestaw wektorów bazowych macierzy $A$, w której przekształcenie ma reprezentację w postaci macierzy diagonalnej.
+Czyli najprostszą z możliwych reprezentacji.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Co gdy nie istnieje $n$ wektorów własnych?}
+W przypadku gdy macierz nie posiada $n$ wektorów własnych, nie można zbudować z nich macierzy przejścia między bazami i dokonać diagonalizacji.
+Można jednak "dobrać" tzw. wektory główne.
+
+Wektorem głównym, rzędu $m$ nazywamy wektor $\mathbf{h}^{m} \neq \mathbf{0}$ spełniający warunek:
+$$
+    (\lambda I - A)^{m}\mathbf{h}^{m} = \mathbf{0}, \, \text{oraz } (\lambda I - A)^{m-1}\mathbf{h}^{m} \neq \mathbf{0}.
+$$
+Na podstawie tej definicji można powiedzieć, że wektory własne są wektorami głównymi rzędu $1$.
+
+Można wówczas zapisać, że zachodzi równość:
+$$
+    \begin{array}{c}
+        (\lambda I - A)^{m} \mathbf{h}^{m} = \mathbf{0} = (\lambda I - A)^{m-1} \mathbf{h}^{m-1}\\
+        (\lambda I - A) \mathbf{h}^{m} = \mathbf{h}^{m-1}\\
+    \end{array}
+$$
+Na tej podstawie można  zapisać serię równości:
+$$
+    \begin{array}{l}
+         A\mathbf{h}^{1} = \lambda\mathbf{h}^{1}\\
+         A\mathbf{h}^{2} = \lambda\mathbf{h}^{2} + \mathbf{h}^{1}\\
+         A\mathbf{h}^{3} = \lambda\mathbf{h}^{3} + \mathbf{h}^{2}\\
+         \vdots \\
+         A\mathbf{h}^{k} = \lambda\mathbf{h}^{k} + \mathbf{h}^{k-1}\\
+    \end{array}
+$$
+
+Oznacza to, że możemy macierz $P$ utworzyć z wektorów własnych i wektorów głównych:
+$$
+    P
+    =
+    \begin{bmatrix}
+        \mathbf{h}_{1}^{1} & \mathbf{h}_{1}^{2} & \cdots & \mathbf{h}_{1}^{m_{1}} &
+        \mathbf{h}_{2}^{1} & \mathbf{h}_{2}^{2} & \cdots & \mathbf{h}_{2}^{m_{2}} &
+        \cdots &
+        \mathbf{h}_{k}^{m_{k}}
+    \end{bmatrix}
+$$
+
+Wówczas można zapisać analogicznie jak w przypadku poprzednim:
+$$
+    \begin{array}{c}
+         AP
+         =
+         A
+        \begin{bmatrix}
+            \mathbf{h}_{1}^{1} & \mathbf{h}_{1}^{2} & \cdots & \mathbf{h}_{1}^{m_{1}} &
+            \mathbf{h}_{2}^{1} & \mathbf{h}_{2}^{2} & \cdots & \mathbf{h}_{2}^{m_{2}} &
+            \cdots &
+            \mathbf{h}_{k}^{m_{k}}
+        \end{bmatrix} = \\
+        \begin{bmatrix}
+            A\mathbf{h}_{1}^{1} & A\mathbf{h}_{1}^{2} & \cdots & A\mathbf{h}_{1}^{m_{1}} &
+            A\mathbf{h}_{2}^{1} & A\mathbf{h}_{2}^{2} & \cdots & A\mathbf{h}_{2}^{m_{2}} &
+            \cdots &
+            A\mathbf{h}_{k}^{m_{k}}
+        \end{bmatrix}
+        =\\
+        \begin{bmatrix}
+            \lambda_{1}\mathbf{h}_{1}^{1} \\(\mathbf{h}_{1}^{1} + \lambda_{1}\mathbf{h}_{1}^{2}) \\ \vdots \\ (\mathbf{h}_{1}^{m_{1}} + \lambda_{1}\mathbf{h}_{1}^{m_{1}-1}) \\
+            \lambda_{2}\mathbf{h}_{2}^{1} \\ (\mathbf{h}_{2}^{1} + \lambda_{2}\mathbf{h}_{2}^{2}) \\ \vdots \\ (\mathbf{h}_{2}^{m_{2}} + \lambda_{2}\mathbf{h}_{2}^{m_{2}-1}) \\
+            \vdots \\
+            (\mathbf{h}_{k}^{m_{k}} + \lambda_{k}\mathbf{h}_{k}^{m_{k}-1})
+        \end{bmatrix}^{T}
+        =
+        \\
+        \begin{bmatrix}
+            \mathbf{h}_{1}^{1} & \mathbf{h}_{1}^{2} & \cdots & \mathbf{h}_{1}^{m_{1}} &
+            \mathbf{h}_{2}^{1} & \mathbf{h}_{2}^{2} & \cdots & \mathbf{h}_{2}^{m_{2}} &
+            \cdots &
+            \mathbf{h}_{k}^{m_{k}}
+        \end{bmatrix} 
+        \cdot\\
+        \cdot
+        \begin{bmatrix}
+            \lambda_{1} &  1            & \cdots & 0        & 0         & \cdots & 0\\
+            0           &  \lambda_{1}  & \cdots & 0        & 0         & \cdots & 0\\
+            \vdots      &  \vdots       & \vdots & \vdots   & \vdots    & \vdots & \vdots\\
+            0      &  0      & \cdots & 0   & 0    & \cdots & \lambda_{k}\\
+        \end{bmatrix}=\\
+        = PJ \implies J  = P^{-1}AP
+    \end{array}
+$$
+Macierz $J$ nazywana jest macierzą Jordana, a jej struktura wygląda następująco:
+$$
+    J = 
+    \left[
+    \begin{array}{ccccc}
+        J_{n_1}(\lambda_{1})    &   \mathbf{0}              &   \cdots  &   \mathbf{0}\\
+        \mathbf{0}              &   J_{n_2}(\lambda_{2})    &   \cdots  &   \mathbf{0}\\
+        \vdots                  &   \vdots                  &   \ddots  &   \vdots\\
+        \mathbf{0}              &   \mathbf{0}              &   \cdots  &   J_{n_k}(\lambda_{k})
+    \end{array}
+    \right],
+$$
+gdzie macierz $J_{l}(\lambda)$, nazywana klatką Jordana związaną z wektorem własnym, jest macierzą wymiaru $n \times n$ o postaci;
+$$
+    J_{k}(\lambda)
+    =
+    \begin{bmatrix}
+        \lambda & 1         & 0       &  \cdots & \cdots    & 0\\
+        0       & \lambda   & 1       &  \cdots & \cdots    & 0\\
+        \vdots  & \vdots    & \ddots  &  \ddots & \ddots    & \vdots\\
+        0       & 0         & 0       &  \cdots & \lambda   & 1\\
+        0       & 0         & 0       &  \cdots & 0         & \lambda
+    \end{bmatrix}.
+$$
+
+%========================================================================================
+\subsection{Własności macierzy Jordana}
+\begin{itemize}
+    \item Liczba $k$ klatek Jordana tworzących macierz $J$ jest równa liczbie liniowo niezależnych wektorów własnych macierzy $A$.
+    \item Liczba klatek Jordana odpowiadających wartości własnej $\lambda$ jest równa liczbie odpowiadających jej liniowo niezależnych wektorów własnych.
+    Suma stopni wszystkich tych klatek równa jest krotności wartości własnej $\lambda$ jako pierwiastka wielomianu charakterystycznego macierzy $A$.
+    \item Liczba wektorów własnych związanych z wartością własną $\lambda$ jest równa wymiarowi jądra przekształcenia $(\lambda I - A)x$.
+\end{itemize}
+
+%========================================================================================
+\subsection{Przykład}
+Rozważmy macierz:
+$$
+    A 
+    =
+    \begin{bmatrix}
+        2 & 0 &  0 & 0\\
+        0 & 1 &  1 & 0\\
+        0 & 0 &  1 & 0\\
+        0 & 2 & -1 & 2
+    \end{bmatrix}.
+$$
+Jej wielomian charakterystyczny wynosi:
+$$
+    W(\lambda) = |\lambda I  - A| = \lambda^{4} - 6\lambda^{3} + 13\lambda^{2} - 12\lambda + 4
+    = (\lambda - 2)^{2}(\lambda - 1)^{2}.
+$$
+Ma ona zatem dwie podwójne wartości własne $\lambda_{1} = 1$ i $\lambda_{2}=2$.
+Dla każdej z nich mamy:
+\begin{itemize}
+    \item Dla $\lambda_{1} = 1$ otrzymujemy $dim\{ Ker(1\cdot I-A)\} = 1$ a więc jeden wektor własny - konieczność wyznaczenia wektora głównego:
+    \textit{Wektor własny}
+    $$
+        (1\cdot I-A)\mathbf{h}_{1}^{1} = \mathbf{0} \rightarrow
+        \left[
+        \begin{array}{cccc|c}
+           -1 & 0 &  0 & 0 & 0\\
+            0 & 0 & -1 & 0 & 0\\
+            0 & 0 &  1 & 0 & 0\\
+            0 &-2 &  1 &-1 & 0
+        \end{array}
+        \right]
+        \rightarrow
+        \mathbf{h}_{1}^{1}
+        =
+        \begin{bmatrix}
+            0 \\ 1 \\ 0 \\ -2
+        \end{bmatrix}
+    $$
+    \textit{Wektor główny}
+    $$
+        (1\cdot I-A)\mathbf{h}_{1}^{2} = \mathbf{h}_{1}^{1} \rightarrow
+        \left[
+        \begin{array}{cccc|c}
+           -1 & 0 &  0 & 0 & 0\\
+            0 & 0 & -1 & 0 & 1\\
+            0 & 0 &  1 & 0 & 0\\
+            0 &-2 &  1 &-1 &-2
+        \end{array}
+        \right]
+        \rightarrow
+        \mathbf{h}_{1}^{2}
+        =
+        a
+        \begin{bmatrix}
+            0 \\ 1 \\ 0 \\ -2
+        \end{bmatrix}
+        +
+        \begin{bmatrix}
+            0 \\ 0 \\ 1 \\ -11
+        \end{bmatrix}
+        \rightarrow
+        \mathbf{h}_{1}^{2}
+        =
+        \begin{bmatrix}
+            0 \\ 0 \\ 1 \\ -1
+        \end{bmatrix}
+    $$
+
+    \item Dla $\lambda_{2} = 2$ otrzymujemy $dim\{ Ker(2\cdot I-A)\} = 2$ a więc dwa wektory własne:
+    $$
+        (2\cdot I-A)\mathbf{h} = \mathbf{0} \rightarrow
+        \left[
+        \begin{array}{cccc|c}
+            0 & 0 &  0 & 0 & 0\\
+            0 & 1 & -1 & 0 & 0\\
+            0 & 0 &  1 & 0 & 0\\
+            0 &-2 &  1 & 0 & 0
+        \end{array}
+        \right]
+        \rightarrow
+        \mathbf{h}
+        =
+        a
+        \begin{bmatrix}
+            1 \\ 0 \\ 0 \\ 0
+        \end{bmatrix}
+        +
+        b
+        \begin{bmatrix}
+            0 \\ 0 \\ 0 \\ 1
+        \end{bmatrix}
+        \rightarrow
+        \mathbf{h}_{2}
+        =
+        \begin{bmatrix}
+            1 \\ 0 \\ 0 \\ 0
+        \end{bmatrix},
+        \mathbf{h}_{3}
+        =
+        \begin{bmatrix}
+            0 \\ 0 \\ 0 \\ 1
+        \end{bmatrix}
+    $$
+\end{itemize}
+Mamy więc:
+\begin{itemize}
+    \item wektor własny $\mathbf{h}_{1}^{1}$ powiązany z klatką Jordana $J_{2}(1) = \begin{bmatrix} 1 & 1\\ 0 & 1 \end{bmatrix}$,
+    \item wektor własny $\mathbf{h}_{2}^{1}$ powiązany z klatką Jordana $J_{1}(2) = \begin{bmatrix} 2 \end{bmatrix}$,
+    \item wektor własny $\mathbf{h}_{2}^{2}$ powiązany z klatką Jordana $J_{1}(2) = \begin{bmatrix} 2 \end{bmatrix}$.
+\end{itemize}
+
+Zatem ostatecznie mamy:
+\begin{itemize}
+    \item 
+    $
+        P
+        =
+        \begin{bmatrix}
+            0 & 0 & 1 & 0\\
+            1 & 0 & 0 & 0\\
+            0 & 1 & 0 & 0\\
+           -2 &-1 & 0 & 1
+        \end{bmatrix},
+    $
+    \item 
+    $
+        J
+        =
+        \begin{bmatrix}
+            1 & 1 & 0 & 0\\
+            0 & 1 & 0 & 0\\
+            0 & 0 & 2 & 0\\
+            0 & 0 & 0 & 2
+        \end{bmatrix}.
+    $
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Funkcje o argumentach macierzowych}
+\subsection{Własności}
+\begin{itemize}
+    \item jeżeli $B = P^{-1}AP$, to zachodzi $f(B) = P^{-1}f(A)P$,
+    \item jeżeli $A = diag(A_{1}, A_{2}, \cdots, A_{n})$, to zachodzi $f(A) = diag(f(A_{1}), f(A_{2}), \cdots, f(A_{n}))$,
+\end{itemize}
+
+%========================================================================================
+\subsubsection{Wniosek}
+Aby w prosty sposób wyznaczyć wartość funkcji $f(A)$ można znaleźć postać Jordana macierzy $A$, wyznaczyć $f(J)$ korzystając z drugiej własności i powrócić do oryginalnej bazy na podstawie własności pierwszej.
+
+%========================================================================================
+\subsubsection{Eksponenta macierzowa $e^{At}$}
+Szczególnie ważną funkcją, ze względów praktycznych jest eksponenta macierzowa $e^{At}$.
+Algorytm jej wyznaczania jest następujący:
+\begin{enumerate}
+    \item Wyznaczyć postać Jordana macierzy - $J$, oraz macierz modalną - $P$.
+    \item Wyznaczyć eksponentę dla każdej z klatek Jordana $J_{n_{k}}(\lambda_{k})$:
+    \begin{itemize}
+        \item jeżeli wymiar klatki Jordana $n_{k} = 1$, to jest to przypadek skalarny: $e^{J_{n_{k}}t} = e^{\lambda_{k}t}$,
+        \item jeżeli wymiar klatki Jordana $n_{k} > 1$, to postępujemy na podstawie następującego rozumowania:
+            \begin{itemize}
+                \item eksponentę rozwijamy w szereg Taylora: $e^{a} = \sum_{i=0}^{\infty}{\frac{a^n}{n!}}$,
+                \item podstawiamy za $a$ macierz $J_{n_k}(\lambda_k)t$,
+                \item rozkładamy $J_{n_k}(\lambda_k)t$ na sumę macierzy $I_{n_k}$ i $C_{n_k}(\lambda_k) = \begin{bmatrix} 0 & 1 & 0 & \cdots & 0\\ 0 & 0 & 1 & \cdots & 0\\ \vdots & \vdots & \vdots & \ddots & \vdots\\ 0 & 0 & 0 & \cdots & 0 \end{bmatrix}$,
+                \item otrzymujemy wówczas $e^{J_{n_k}(\lambda_{k})t}  = e^{\lambda_{k}I_{n_k}t + C_{n_k}(\lambda_k)t} = e^{\lambda_{n_k}I_{n_k}t} \cdot e^{C_{n_k}(\lambda_k)t}$
+                \item $e^{\lambda_{n_k}I_{n_k}t} =  \begin{bmatrix} e^{\lambda_{k}t} & 0 & 0 & \cdots & 0\\ 0 & e^{\lambda_{k}t} & 0 & \cdots & 0\\ \vdots & \vdots & \vdots & \ddots & \vdots\\ 0 & 0 & 0 & \cdots & e^{\lambda_{k}t} \end{bmatrix}$ - ponieważ jest to macierz diagonalna,
+                \item zatem $e^{C_{n_k}(\lambda_{k})t}  = e^{C_{n_k}(\lambda_k)t} = I_{n_k} + C_{n_k}(\lambda_k)t + C_{n_k}(\lambda_k)^{2}t^2 + \cdots + C_{n_k}(\lambda_k)^{n_k -1}t^{n_k -1}$ - ponieważ macierz ściśle trójkątna w $n$-tej potędze się "zeruje",
+                \item ostatecznie otrzymujemy $e^{J_{n_k}(\lambda_{k})t} = 
+                \begin{bmatrix}
+                    e^{\lambda_{k}} & \frac{te^{\lambda_{k}}}{1!} & \frac{t^2e^{\lambda_{k}}}{2!} & \cdots & \frac{t^{n-1}e^{\lambda_{k}}}{(n-1)!}\\
+                    0                 & e^{\lambda_{k}} & \frac{te^{\lambda_{k}}}{1!} & \cdots & \frac{t^{n-2}e^{\lambda_{k}}}{(n-2)!}\\
+                    \vdots & \vdots & \vdots & \ddots & \vdots\\
+                    0 & 0 & 0 & \cdots & e^{\lambda_{k}}
+                \end{bmatrix}
+                $
+            \end{itemize}
+        \item eksponenta macierzy Jordana ma więc postać:
+        $
+            e^{J}
+            =
+            \begin{bmatrix}
+                e^{J_{1}(\lambda_{1})} & \mathbf{0} & \cdots & \mathbf{0}\\
+                \mathbf{0} & e^{J_{2}(\lambda_{2})} & \cdots & \mathbf{0}\\
+                \vdots & \vdots & \ddots & \vdots\\
+                \mathbf{0} & \mathbf{0} & \cdots & e^{J_{k}(\lambda_{k})}
+            \end{bmatrix}
+        $
+    \end{itemize}
+    \item wyznaczamy $e^{At} = P e^{J} P^{-1}$.
+\end{enumerate}
+
+%========================================================================================
+\subsubsection{Przykład wyznaczania $e^{At}$}
+Rozważmy macierz:
+$$
+    A 
+    =
+    \begin{bmatrix}
+        2 & 0 &  0 & 0\\
+        0 & 1 &  1 & 0\\
+        0 & 0 &  1 & 0\\
+        0 & 2 & -1 & 2
+    \end{bmatrix}.
+$$
+
+\begin{itemize}
+    \item 
+    $
+        P = 
+        \begin{bmatrix}
+            1 & 0 &  0 & 0\\
+            0 & 0 &  1 & \frac{1}{2}\\
+            0 & 0 &  0 & 1\\
+            0 & 1 & -1 &-2
+        \end{bmatrix}
+    $,
+    $
+        J = 
+        \begin{bmatrix}
+            2 & 0 &  0 & 0\\
+            0 & 2 &  0 & 0\\
+            0 & 0 &  1 & 1\\
+            0 & 0 &  0 & 1
+        \end{bmatrix}
+    $,
+    \item
+    $
+        \mathbf{h}_{2} \rightarrow e^{2t}
+    $,
+    $
+        \mathbf{h}_{3} \rightarrow e^{2t}
+    $,
+    $
+        \mathbf{h}_{1}^{2} \rightarrow
+        e^{J_{2}(1)}
+        =
+        \left[\begin{array}{cc} {\mathrm{e}}^t & t\,{\mathrm{e}}^t\\ 0 & {\mathrm{e}}^t \end{array}\right]
+    $
+    \item 
+    $
+        e^{Jt}
+        =
+        \left[\begin{array}{cccc} {\mathrm{e}}^{2\,t} & 0 & 0 & 0\\ 0 & {\mathrm{e}}^{2\,t} & 0 & 0\\ 0 & 0 & {\mathrm{e}}^t & t\,{\mathrm{e}}^t\\ 0 & 0 & 0 & {\mathrm{e}}^t \end{array}\right]
+    $
+    \item
+    $
+        e^{At}
+        =
+        P e^{Jt} P^{-1}
+        =
+        \left[\begin{array}{cccc} {\mathrm{e}}^{2\,t} & 0 & 0 & 0\\ 0 & {\mathrm{e}}^t & t\,{\mathrm{e}}^t & 0\\ 0 & 0 & {\mathrm{e}}^t & 0\\ 0 & 2\,{\mathrm{e}}^{2\,t}-2\,{\mathrm{e}}^t & {\mathrm{e}}^{2\,t}-{\mathrm{e}}^t-2\,t\,{\mathrm{e}}^t & {\mathrm{e}}^{2\,t} \end{array}\right]
+    $
+\end{itemize}
+
+\end{document}

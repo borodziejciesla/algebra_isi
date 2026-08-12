@@ -1,0 +1,155 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{polski}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{tikz}
+
+\usepackage{listings}
+\lstset{
+    language=SQL,
+    inputencoding=utf8x,
+    extendedchars=\true,
+    literate={ą}{{\k{a}}}1
+             {Ą}{{\k{A}}}1
+             {ę}{{\k{e}}}1
+             {Ę}{{\k{E}}}1
+             {ó}{{\'o}}1
+             {Ó}{{\'O}}1
+             {ś}{{\'s}}1
+             {Ś}{{\'S}}1
+             {ł}{{\l{}}}1
+             {Ł}{{\L{}}}1
+             {ż}{{\.z}}1
+             {Ż}{{\.Z}}1
+             {ź}{{\'z}}1
+             {Ź}{{\'Z}}1
+             {ć}{{\'c}}1
+             {Ć}{{\'C}}1
+             {ń}{{\'n}}1
+             {Ń}{{\'N}}1
+}
+
+\newcommand\tikzmark[1]{%
+\tikz[remember picture,baseline] \node[inner sep=0,outer sep=0] (#1){\rule{0em}{1.75em}};%
+}
+
+\newcommand\Overline[3][line width=1pt]{%
+    \begin{tikzpicture}[remember picture,overlay]
+      \draw[#1] (#2.north east) -- (#3.north west);
+    \end{tikzpicture}
+    }
+
+\title{Zmiana bazy w przestrzeni $\mathbb{K}^{n}$}
+\date{\today}
+% \author{Maciej Różewicz}
+
+\begin{document}
+\maketitle
+Dana przestrzeń $\mathbf{X} = (\mathbb{K}^{n}, \mathbb{K}, +, \dot)$.
+
+W przestrzeni tej dane są dwie bazy:
+\begin{itemize}
+    \item $B_{1} = \{ \mathbf{e}_{1}, \mathbf{e}_{2}, \cdots, \mathbf{e}_{n} \}$ ("stara" baza) - wówczas wektor należący do przestrzeni $\mathbf{x} \in \mathbf{X}$ ma składowe $x_{1}, x_{2}, \cdots, x_{n}$ i może być przedstawiony jako suma $\mathbf{x} = \sum_{i=1}^{n}{x_{i}\mathbf{e}_{i}}$,
+    \item $B_{2} = \{ \mathbf{e}'_{1}, \mathbf{e}'_{2}, \cdots, \mathbf{e}'_{n} \}$ ("nowa" baza) - wówczas wektor należący do przestrzeni $\mathbf{x}' \in \mathbf{X}$ ma składowe $x_{1}', x_{2}', \cdots, x_{n}'$ i może być przedstawiony jako suma $\mathbf{x}' = \sum_{i=1}^{n}{x_{i}'\mathbf{e}'_{i}}$.
+\end{itemize}
+
+Każdy wektor "nowej" może być przedstawiony jako kombinacja liniowa wektorów "starej" bazy
+$$\mathbf{v}_{j} = \sum_{i=1}^{n}{p_{ji}\mathbf{e}_{i}} = \begin{bmatrix} \mathbf{e}_{1} & \mathbf{e}_{2} & \cdots & \mathbf{e}_{n} \end{bmatrix} \begin{bmatrix} p_{11} \\ p_{21} \\ \vdots \\ p_{n1} \end{bmatrix}$$.
+
+Dowolny wektor $v = \sum_{i=1}^{n}{x_{i}\mathbf{e}_{i}} = \sum_{j=1}^{n}{x'_{j}\mathbf{e}'_{j}} = \sum_{j=1}^{n}{x'_{j} \left\{ \sum_{i=1}^{n}{p_{ij}\mathbf{e}_{i}}\right\}} = \sum_{i=1}^{n} \left\{ \sum_{j=1}^{n}{p_{ij}x'_{j}} \right\} \mathbf{e}_{i}$.
+Co oznacza, że współrzędna wektora "starej" bazy jest kombinacją liniową współrzędnych wektora "nowej" bazy: $x_{i} = \sum_{j=1}^{n}{p_{ij}x'_{j}}$.
+
+
+Podobne rozumowanie można przedstawić w postaci wektorowo macierzowej:
+$$
+\begin{array}{c}
+\mathbf{v}
+=
+\begin{bmatrix} \mathbf{e}_{1} & \mathbf{e}_{2} & \cdots & \mathbf{e}_{n} \end{bmatrix}
+\begin{bmatrix} x_{1} \\ x_{2} \\ \vdots \\ x_{n} \end{bmatrix} 
+=
+\begin{bmatrix} \mathbf{e}'_{1} & \mathbf{e}'_{2} & \cdots & \mathbf{e}'_{n} \end{bmatrix}
+\begin{bmatrix} x'_{1} \\ x'_{2} \\ \vdots \\ x'_{n} \end{bmatrix} 
+=
+\\
+\begin{bmatrix} \mathbf{e}_{1} & \mathbf{e}_{2} & \cdots & \mathbf{e}_{n} \end{bmatrix}
+\begin{bmatrix}
+    p_{11} & p_{12} & \cdots & p_{1n}\\
+    \vdots & \vdots & \cdots & \vdots\\
+    p_{n1} & p_{n2} & \cdots & p_{nn}
+\end{bmatrix}
+\begin{bmatrix} x'_{1} \\ x'_{2} \\ \vdots \\ x'_{n} \end{bmatrix}.
+\end{array}
+$$
+Otrzymujemy więc równość:
+$$
+\begin{array}{c}
+\begin{bmatrix} \mathbf{e}_{1} & \mathbf{e}_{2} & \cdots & \mathbf{e}_{n} \end{bmatrix}
+\begin{bmatrix} x_{1} \\ x_{2} \\ \vdots \\ x_{n} \end{bmatrix} 
+=
+\begin{bmatrix} \mathbf{e}_{1} & \mathbf{e}_{2} & \cdots & \mathbf{e}_{n} \end{bmatrix}
+\begin{bmatrix}
+    p_{11} & p_{12} & \cdots & p_{1n}\\
+    \vdots & \vdots & \cdots & \vdots\\
+    p_{n1} & p_{n2} & \cdots & p_{nn}
+\end{bmatrix}
+\begin{bmatrix} x'_{1} \\ x'_{2} \\ \vdots \\ x'_{n} \end{bmatrix} 
+\end{array}.
+$$
+A po przez lewostronne przemnożenie przez macierz $\begin{bmatrix} \mathbf{e}_{1} & \mathbf{e}_{2} & \cdots & \mathbf{e}_{n} \end{bmatrix}^{-1}$ otrzymujemy równość:
+$$
+\begin{array}{l}
+\begin{bmatrix} x_{1} \\ x_{2} \\ \vdots \\ x_{n} \end{bmatrix} 
+=
+\begin{bmatrix}
+    p_{11} & p_{12} & \cdots & p_{1n}\\
+    \vdots & \vdots & \cdots & \vdots\\
+    p_{n1} & p_{n2} & \cdots & p_{nn}
+\end{bmatrix}
+\begin{bmatrix} x'_{1} \\ x'_{2} \\ \vdots \\ x'_{n} \end{bmatrix} 
+\end{array}.
+$$
+W skróconej notacji:
+$$
+\mathbf{x} = P\mathbf{x}',
+$$
+gdzie 
+$$
+P
+=
+\begin{bmatrix}
+    p_{11} & p_{12} & \cdots & p_{1n}\\
+    \vdots & \vdots & \cdots & \vdots\\
+    p_{n1} & p_{n2} & \cdots & p_{nn}
+\end{bmatrix}
+=
+\begin{bmatrix}
+    \mathbf{e}'_{1} & \mathbf{e}'_{2} & \cdots & \mathbf{e}'_{n}
+\end{bmatrix}
+$$
+jest tzw. macierzą przejścia ze "starej" do "nowej" bazy.
+
+\subsection*{Jak wygląda macierz przekształcenia w innej bazie?}
+Przekształcenie $\mathbf{A}$ z przestrzeni $\mathbb{X}$ o bazie $\mathcal{X}$ do przestrzeni $\mathbb{Y}$ o bazie $\mathcal{Y}$ - $y = \mathbf{A}x: \mathbb{X} \rightarrow \mathbb{Y}$.
+
+Zmieniając bazy, odpowiednio na $\mathcal{X}'$ poprzez macierz $\mathbf{P}$ i $\mathcal{Y}'$ macierzą $\mathbf{Q}$, tak że:
+$$
+    x = \mathbf{P}x',\,y = \mathbf{Q}y'
+$$
+Wówczas przekształcenie zapisujemy jako:
+$$
+    y' = \mathbf{Q}^{-1}y = \mathbf{Q}^{-1}\mathbf{A}x = \mathbf{Q}^{-1}\mathbf{A}\mathbf{P}x' \Rightarrow y'= \underbrace{\mathbf{Q}^{-1}\mathbf{A}\mathbf{P}}_{\tilde{\mathbf{A}}}x'
+$$
+Macierz $\tilde{A} = \mathbf{Q}^{-1}\mathbf{A}\mathbf{P}$ jest macierzą przekształcenia $\mathbf{A}$ w nowych bazach.
+
+Szczególnym przypadkiem jest gdy przekształcamy z $\mathbb{X}$ w $\mathbb{X}$, wtedy w nowych bazach mamy:
+$$
+    \tilde{\mathbf{A}} = \mathbf{P}^{-1}\mathbf{A}\mathbf{P}
+$$
+a macierze $\tilde{\mathbf{A}}$ i $\mathbf{A}$ nazywamy macierzami podobnymi.
+\end{document}
