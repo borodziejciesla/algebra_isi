@@ -1,0 +1,126 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[polish]{babel}
+
+\usepackage{listings}
+\lstset{
+    language=SQL,
+    inputencoding=utf8x,
+    extendedchars=\true,
+    literate={ą}{{\k{a}}}1
+             {Ą}{{\k{A}}}1
+             {ę}{{\k{e}}}1
+             {Ę}{{\k{E}}}1
+             {ó}{{\'o}}1
+             {Ó}{{\'O}}1
+             {ś}{{\'s}}1
+             {Ś}{{\'S}}1
+             {ł}{{\l{}}}1
+             {Ł}{{\L{}}}1
+             {ż}{{\.z}}1
+             {Ż}{{\.Z}}1
+             {ź}{{\'z}}1
+             {Ź}{{\'Z}}1
+             {ć}{{\'c}}1
+             {Ć}{{\'C}}1
+             {ń}{{\'n}}1
+             {Ń}{{\'N}}1
+}
+
+\title{Równania Liniowe}
+%\author{You}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+    \item Wyznaczyć rząd macierzy:
+        \begin{enumerate}
+            \item $\begin{bmatrix}\begin{array}{rrr} 2 & 1 & 1\\ 2 & 1 & -1\\ 2 & -2 & 1 \end{array}\end{bmatrix}$,
+            \item $\begin{bmatrix}\begin{array}{rrrr} 0 & 2 & -2 & 4\\ 2 & 3 & -4 & 6\\ -4 & 0 & 2 & 0 \end{array}\end{bmatrix}$,
+            \item $\begin{bmatrix}\begin{array}{rrr} 3 & 2 & 1\\ 2 & 1 & 1 \end{array}\end{bmatrix}$,
+            \item $\begin{bmatrix}\begin{array}{rrr} 2 & -4 & 3\\ 1 & -2 & \frac{3}{2} \end{array}\end{bmatrix}$,
+            \item $\begin{bmatrix}\begin{array}{rrrr} 2 & 1 & 1 & 1\\ -3 & 2 & 0 & 1\\ 1 & 4 & 2 & 3\\ 2 & 1 & 1 & 4 \end{array}\end{bmatrix}$.
+        \end{enumerate}
+
+    \item Dla jakiej wartości parametru $a$ rząd macierzy jest największy i najmniejszy:
+        \begin{enumerate}
+            \item $\begin{bmatrix}\begin{array}{ccc} -2 & -1-a & 1\\ a & 0 & -a\\ -1 & a+a^2 & 1 \end{array}\end{bmatrix}$,
+            \item $\begin{bmatrix}\begin{array}{cccc} a & 1 & 1 & 1\\ 1 & a & 1 & 1\\ 1 & 1 & a & 1\\ 1 & 1 & 1 & a \end{array}\end{bmatrix}$.
+        \end{enumerate}
+        
+    \item Rozwiązać układ równań metodą Cramera:
+        \begin{enumerate}
+            \item $\begin{bmatrix}\begin{array}{rr} 1 & 5\\ -3 & 6 \end{array}\end{bmatrix} \begin{bmatrix}\begin{array}{r} x\\ y \end{array}\end{bmatrix} = \begin{bmatrix}\begin{array}{r} 2\\ 15 \end{array}\end{bmatrix}$,
+
+            \item $\begin{bmatrix}\begin{array}{rrr} 1 & -1 & -1\\ 3 & 4 & -2\\ 3 & -2 & -2 \end{array}\end{bmatrix} \begin{bmatrix}\begin{array}{r} x\\ y\\ z \end{array}\end{bmatrix} = \begin{bmatrix}\begin{array}{r} 1\\ -1\\ 1 \end{array}\end{bmatrix}$,
+
+            \item $\begin{bmatrix}\begin{array}{rrrr} 0 & 1 & -3 & 4\\ 1 & 0 & -2 & 0\\ 3 & 2 & 0 & -5\\ 4 & 0 & -5 & 0 \end{array}\end{bmatrix} \begin{bmatrix}\begin{array}{r} x\\ y\\ z\\ v \end{array}\end{bmatrix} = \begin{bmatrix}\begin{array}{r} 0\\ 0\\ -2\\ 0 \end{array}\end{bmatrix}$,
+
+            \item $\begin{bmatrix}\begin{array}{rrr} 1 & 1 & 2\\ 2 & -1 & 2\\ 4 & 1 & 4 \end{array}\end{bmatrix} \begin{bmatrix}\begin{array}{r} x\\ y\\ z \end{array}\end{bmatrix} = \begin{bmatrix}\begin{array}{r} -1\\ -3\\ 2 \end{array}\end{bmatrix}$,
+
+            \item $\begin{bmatrix}\begin{array}{rrr} 2 & 2 & 1\\ 3 & 3 & 1\\ 2 & 1 & 3 \end{array}\end{bmatrix} \begin{bmatrix}\begin{array}{r} x\\ y\\ z \end{array}\end{bmatrix} = \begin{bmatrix}\begin{array}{r} 4\\ 1\\ 5 \end{array}\end{bmatrix}$,
+
+            \item $\begin{bmatrix}\begin{array}{rrr} 0 & 2 & 3\\ 3 & 0 & 2\\ -2 & 4 & 0 \end{array}\end{bmatrix} \begin{bmatrix}\begin{array}{r} x\\ y\\ z \end{array}\end{bmatrix} = \begin{bmatrix}\begin{array}{r} 2\\ 5\\ 2 \end{array}\end{bmatrix}$.
+        \end{enumerate}
+
+    \item Rozwiązać układ równań metodą eliminacji Gaussa:
+        \begin{enumerate}
+            \item $\begin{bmatrix}\begin{array}{rr} 3 & -2\\ 5 & 4 \end{array}\end{bmatrix} \begin{bmatrix}\begin{array}{r} x\\ y \end{array}\end{bmatrix} = \begin{bmatrix}\begin{array}{r} 6\\ 3 \end{array}\end{bmatrix}$,
+
+            \item $\begin{bmatrix}\begin{array}{rrr} 1 & 1 & -2\\ 0 & 2 & 3\\ -1 & 1 & -5 \end{array}\end{bmatrix} \begin{bmatrix}\begin{array}{r} x\\ y\\ z \end{array}\end{bmatrix} = \begin{bmatrix}\begin{array}{r} 5\\ 6\\ -3 \end{array}\end{bmatrix}$,
+
+            \item $\begin{bmatrix}\begin{array}{rrr} 3 & 2 & 1\\ 7 & 6 & 5\\ 3 & 5 & 6 \end{array}\end{bmatrix} \begin{bmatrix}\begin{array}{r} x\\ y\\ z \end{array}\end{bmatrix} = \begin{bmatrix}\begin{array}{r} -1\\ 0\\ 2 \end{array}\end{bmatrix}$,
+
+            %\item $\begin{bmatrix}\begin{array}{rrr} 2 & 1 & -1\\ 1 & -1 & 2\\ 4 & 5 & -7 \end{array}\end{bmatrix} \begin{bmatrix}\begin{array}{r} x\\ y\\ z \end{array}\end{bmatrix} = \begin{bmatrix}\begin{array}{r} 1\\ -1\\ 5 \end{array}\end{bmatrix}$,
+
+            \item $\begin{bmatrix}\begin{array}{rrrrr} 1 & 4 & 2 & -1 & 0\\ 2 & 9 & 6 & -2 & -3\\ 1 & 2 & -1 & -1 & 5\\ -2 & -7 & 1 & 3 & -4\\ -1 & -5 & -1 & 3 & 6 \end{array}\end{bmatrix} \begin{bmatrix}\begin{array}{r} x\\ y\\ z\\ t\\ u \end{array}\end{bmatrix} = \begin{bmatrix}\begin{array}{r} 3\\ 5\\ 5\\ -5\\ 4 \end{array}\end{bmatrix}$,
+
+            \item $\begin{bmatrix}\begin{array}{rrrr} 1 & -2 & 1 & 1\\ 1 & -2 & 1 & -1\\ 1 & -2 & 7 & 5 \end{array}\end{bmatrix} \begin{bmatrix}\begin{array}{r} x\\ y\\ z\\ t \end{array}\end{bmatrix} = \begin{bmatrix}\begin{array}{r} 1\\ -1\\ 5 \end{array}\end{bmatrix}$,
+
+            \item $\begin{bmatrix}\begin{array}{rrr} 1 & 1 & -3\\ 2 & 1 & -2\\ 1 & 2 & -3\\ 1 & 1 & 1 \end{array}\end{bmatrix} \begin{bmatrix}\begin{array}{r} x\\ y\\ z \end{array}\end{bmatrix} = \begin{bmatrix}\begin{array}{r} -1\\ 1\\ 1\\ 3 \end{array}\end{bmatrix}$,
+
+             \item $\begin{bmatrix}\begin{array}{rrrr} 3 & -5 & 2 & 4\\ 7 & -4 & 1 & 3\\ 5 & 7 & -4 & -6 \end{array}\end{bmatrix} \begin{bmatrix}\begin{array}{r} x\\ y\\ z\\ t \end{array}\end{bmatrix} = \begin{bmatrix}\begin{array}{r} 2\\ 5\\ 3 \end{array}\end{bmatrix}$,
+
+              \item $\begin{bmatrix}\begin{array}{rrrr} 1 & 2 & 3 & -1\\ 3 & 6 & 7 & 1\\ 2 & 4 & 7 & -4 \end{array}\end{bmatrix} \begin{bmatrix}\begin{array}{r} x\\ y\\ z\\ t \end{array}\end{bmatrix} = \begin{bmatrix}\begin{array}{r} -1\\ 5\\ 6 \end{array}\end{bmatrix}$.
+        \end{enumerate}
+
+        \item Okreśłić ilość rozwiązań układu w zależności od parametru $\alpha \in R$:
+            \begin{enumerate} 
+                \item $\begin{bmatrix}\begin{array}{rrr} (5-\alpha) & -2 & -1\\ -2 & (2-\alpha) & -2\\ -1 & -2 & (5-\alpha) \end{array}\end{bmatrix} \begin{bmatrix}\begin{array}{r} x\\ y\\ z \end{array}\end{bmatrix} = \begin{bmatrix}\begin{array}{r} 1\\ 2\\ 1 \end{array}\end{bmatrix}$,
+
+                \item $\begin{bmatrix}\begin{array}{rrr} \alpha & 1 & 0\\ 2 & -1 & 0\\ 2 & -1 & 0 \end{array}\end{bmatrix} \begin{bmatrix}\begin{array}{r} x\\ y\\ z \end{array}\end{bmatrix} = \begin{bmatrix}\begin{array}{r} 2\\ \alpha \\ 1 \end{array}\end{bmatrix}$.
+            \end{enumerate}
+
+        %\item Dla jakich wartości parametru $\alpha \in R$ układ:
+        %$$
+        %    \begin{bmatrix}\begin{array}{rrr} \alpha & -3 & 5\\ 1 & -\alpha & 3\\ 9 & -7 & 8\alpha \end{array}\end{bmatrix} \begin{bmatrix}\begin{array}{r} x\\ %y\\ z \end{array}\end{bmatrix} = \begin{bmatrix}\begin{array}{r} 4\\ 2\\ 0 \end{array}\end{bmatrix}
+        %$$
+        %ma:
+        %begin{enumerate}
+        %    \item dokładnie jedno rozwiązanie,
+        %    \item nieskończenie wiele rozwiązań,
+        %    \item brak rozwiązań.
+        %\end{enumerate}
+\end{enumerate}
+
+
+\newpage
+\textbf{Odpowiedzi:}
+\begin{description}
+    \item [1:] a) $3$, b) $2$, c) $2$, d) $1$, e) $3$
+    \item [2:] a) dla $a \neq 0 \wedge a \neq -1$ rzą wynosi 3, dla $a=0 \vee a=-1$ rząd wynosi 2, b) dla $a \neq 1 \wedge a \neq -3$ rząd wynosi 5, dla $a=1$ rząd wynosi 1
+    \item [3:] a) $x=-3, y=1$, b) $x=-1, y=-\frac{1}{3},z=-\frac{5}{3}$, c) $x=0,y=\frac{8}{13}, z=0, v=-\frac{2}{13}$, d) $x=\frac{2}{3}, y=\frac{4}{3},z=-\frac{3}{2}$, e) $x=-22, y = 19, z = 10$, f) $x=\frac{13}{7}, y=\frac{10}{7},z=-\frac{2}{7}$
+    \item [4:] a) $x=\frac{15}{11}, y=-\frac{21}{22}$, b) $x=\frac{17}{5}, y=\frac{12}{5},z=\frac{2}{5}$, c) $x=-\frac{5}{4},y=\frac{5}{4}, z=\frac{1}{4}$, d) $x=1,y=0,z=1,t=0,u=1, t\in R $, e) $x = 2u - v, y = u, z = v, t = 1$, e) brak rozwiązań, g) brak rozwiązań, h) $x = -11 -5u -2v, y = v, z = -4 + 2v, t = v, u, v \in R$
+    \item [5:] a) 0: $\alpha = 0$, 1: $\alpha \neq 0 \wedge \alpha \neq 6 $, $\infty$: $a=6$, b) 0: $\alpha \neq 1$, 1: $\alpha = 1$, $\infty$: $\alpha \in \emptyset $
+\end{description}
+
+\end{document}

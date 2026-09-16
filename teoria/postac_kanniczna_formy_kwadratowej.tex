@@ -1,0 +1,210 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% \usepackage[polish]{babel}
+
+\usepackage{listings}
+\lstset{
+    language=SQL,
+    inputencoding=utf8x,
+    extendedchars=\true,
+    literate={ą}{{\k{a}}}1
+             {Ą}{{\k{A}}}1
+             {ę}{{\k{e}}}1
+             {Ę}{{\k{E}}}1
+             {ó}{{\'o}}1
+             {Ó}{{\'O}}1
+             {ś}{{\'s}}1
+             {Ś}{{\'S}}1
+             {ł}{{\l{}}}1
+             {Ł}{{\L{}}}1
+             {ż}{{\.z}}1
+             {Ż}{{\.Z}}1
+             {ź}{{\'z}}1
+             {Ź}{{\'Z}}1
+             {ć}{{\'c}}1
+             {Ć}{{\'C}}1
+             {ń}{{\'n}}1
+             {Ń}{{\'N}}1
+}
+
+\title{Postać kanoniczna formy kwadratowej}
+\date{2025}
+
+\begin{document}
+\maketitle
+
+Postacią kanoniczną formy kwadratowej nazywamy formę w postaci:
+$$
+    F(x)
+    =
+    x^{T}
+    \begin{bmatrix} 
+        \alpha_{1} & 0 & \cdots & 0\\
+        0 & \alpha_{2} & \cdots & 0\\
+        \vdots & \vdots & \ddots & \vdots\\
+        0 & 0 & \cdots & \alpha_{n}
+    \end{bmatrix}
+    x
+    =
+    \sum_{i = 1}^{n}{\alpha_{i}x_{i}^{2}},\, x \in \mathbb{R}^{n}
+$$
+Każdą formę kwadratową można sprowadzić do postaci kanonicznej, ponieważ macierz symetryczna $A = A^{T}$ jest podobna do macierzy diagonalnej.
+
+\section{Sprowadzenie do postaci kanonicznej za pomocą wartości własnych}
+Ponieważ macierz $A$ jest symetryczna zachodzi zależność:
+$$
+    Z^{-1}AZ = Z^{T}AZ = diag(
+    \begin{bmatrix}
+        \lambda_{1} & \lambda_{2} & \dots & \lambda_{n}
+    \end{bmatrix})
+$$
+gdzie:
+\begin{itemize}
+    \item $\lambda_{1}, \lambda_{2}, \dots, \lambda_{n}$ - wartości własne macierzy $A$ (niekoniecznie różne),
+    \item $Z = \begin{bmatrix}
+        z_{1} & z_{2} & \dots & z_{n}
+    \end{bmatrix}$ - a wektory $z_{1}, z_{2}, \dots, z_{n}$ są wektorami własnymi przy czym są znormalizowane, tzn. $||z_{i}|| = 1$.
+\end{itemize}
+Podstawiając:
+$$
+    x = Zy
+$$
+forma kwadratowa $x^{T}Ax$ przyjmuje postać:
+$$
+    x^{T}Ax = y^{T}Z^{T}AZy = 
+    y^{T}
+    \begin{bmatrix} 
+        \lambda_{1} & 0 & \cdots & 0\\
+        0 & \lambda_{2} & \cdots & 0\\
+        \vdots & \vdots & \ddots & \vdots\\
+        0 & 0 & \cdots & \lambda_{n}
+    \end{bmatrix}
+    y
+    =
+    \sum_{i = 1}^{n}{\lambda_{i}y_{i}^{2}}
+$$
+
+\section{Sprowadzenie do postaci kanonicznej za pomocą metody Lagrange'a}
+Formę kwadratową możemy zapisać jako:
+$$
+   F(x) = x^{T}Ax = \sum_{i=1}^{n} \sum_{j=1}^{n}{a_{ij}x_{i}x_{j}} = \sum_{i,j=1}^{n}{a_{ij}x_{i}x_{j}}
+$$
+Wówczas postępujemy następująco:
+\begin{enumerate}
+    \item Jeżeli $a_{11} \neq 0$ (jeśli nie, to zmieniamy kolejność zmiennych - patrz punkt 2), to można zapisać:
+    $$
+        \begin{array}{l}
+        F(x) = \sum_{j=1}^{n}{a_{ij}x_{i}x_{j}} = a_{11}x_{1}^{2} + 2x_{1}\sum_{j=2}^{n}{a_{1j}x_{j}} + \sum_{i,j=2}^{n}{a_{ij}x_{i}x_{j}} =\\
+        = a_{11} \left( x_{1} + \sum_{j=2}^{n}{\frac{a_{1j}}{a_{11}}x_{j}} \right)^{2} - a_{11} \left( \sum_{j=2}^{n} {\frac{a_{1j}}{a_{11}}x_{j}} \right)^{2} + \sum_{i,j=2}^{n}{a_{ij}x_{i}x_{j}} = \\
+        = a_{11} \left( x_{1} + \sum_{j=2}^{n}{\frac{a_{1j}}{a_{11}}x_{j}} \right)^{2} + \sum_{i,j = 2}^{n}{b_{ij}x_{i}x_{j}}
+        \end{array}
+    $$
+    gdzie:
+    \begin{itemize}
+        \item $b_{ii} = a_{ii} - \frac{a_{1i}^{2}}{a_{11}}$,
+        \item $b_{ij} = a_{ij} - \frac{a_{1j}a_{1i}}{a_{11}}$
+    \end{itemize}
+    dla $i,j = 1, 2, \dots, n$.
+    Podstawiając
+    $$
+        y_{1} = x_{1} + \sum_{j=2}^{2}{\frac{a_{1j}}{a_{11}}x_{j}}
+    $$
+    oraz
+    $$
+        y_{i} = x_{i},\, \text{dla}\,i=1,2,3,\dots,n
+    $$
+    otrzymamy 
+    $$
+        F(x) = a_{11}y_{1}^{2} + \sum_{i,j = 2}^{n}{b_{ij}y_{i}y_{j}} = a_{11}y_{1}^{2} + G(y).
+    $$
+    Następnie powtarzamy całą powyższą procedurę dla formy kwadratowej $G(y)$ aż otrzymamy postać kanoniczną.
+
+    \item Jeżeli $a_{11} = 0$ , lecz dla pewnego $i$ istnieje $a_{ii} \neq 0$, to wykonujemy najpierw przekształcenie zmieniające kolejność zmiennych:
+    $$
+        \begin{array}{l}
+             x_{1} = y_{i}\\
+             x_{i} = y_{1}\\
+             x_{j} = y_{j}\,\text{dla}\, j = 2,3,\dots, n,\,\text{oraz}\, j\neq i.
+        \end{array}
+    $$
+    Następujemy zgodnie z punktem 1.
+
+    \item Jeżeli $a_{ii} = 0$ dla $i = 1, 2, 3, \dots, n$ lecz $a_{12} \neq 0$, t dokonujemy przekształcenia:
+    $$
+        \begin{array}{l}
+             x_{1} = y_{1} + y_{2}\\
+             x_{2} = y_{1} - y_{2}\\
+             x_{i} = y_{i},\, \text{dla}\, i = 3, 4, \dots, n
+        \end{array}
+    $$
+
+    $$
+        \begin{array}{l}
+             F(x) = \sum_{i,j=1}^{n}{a_{ij}x_{i}x_{j}} = 2a_{12}x_{1}x_{2} + 2x_{1}\sum_{j=3}^{n}{a_{1j}x_{j}} + \\
+             +2x_{2}\sum_{j=3}^{n}{a_{2j}x_{j}} + \sum_{i,j}^{n}{a_{ij}x_{i}x_{j}} = \\
+             = 2a_{12}y_{1}^{2} - 2a_{12}y_{2}^{2} + 2y_{1}\sum_{j=3}^{n}{(a_{1j}+a_{2j})y_{j}} + \\
+             + 2y_{2}\sum_{j=3}^{n}{(a_{1j}-a_{2j})y_{j}} + \sum_{i,j=3}^{n}{a_{ij}y_{i}y_{j}}
+        \end{array}
+    $$
+    A następnie zgodnie z punktem 1.
+
+    \item Jeżeli $a_{12} = 0$, ale istnieje $a_{pq} \neq 0$ (inaczej wszystkie elementy macierzy byłyby zerowe) dokonujemy przekształcenia:
+    $$
+        \begin{array}{l}
+             x_{1} = y_{p}\\
+             x_{2} = y_{q}\\
+             x_{p} = y_{1}\\
+             x_{q} = y_{2}\\
+             x_{i} = y_{i}\,\text{dla}\, j = 2,3,\dots, n,\,\text{oraz}\, i\neq p, i \neq q.
+        \end{array}
+    $$
+    Następnie postępujemy zgodnie z 3.
+\end{enumerate}
+
+
+\section{Przykład}
+Rozważmy formę kwadratową:
+$$
+    F(x) = x_{1}^{2} + 2x_{1}x_{2} + x_{2}^{2} + 2x_{3}^{2}.
+$$
+
+\subsection{Metoda związana z wartościami własnymi}
+Szukamy wielomianu charakterystycznego:
+$$
+    \left| \begin{array}{ccc} \lambda - 1 & -1 & 0\\ -1 & \lambda -1 & 0\\ 0 & 0 & \lambda -2 \end{array} \right| = \lambda^3 - 3*\lambda^2 + 2*\lambda = \lambda(\lambda - 1)(\lambda - 2)
+$$
+Zatem trzy wartości własne $\lambda_1 = 0$, $\lambda_1 = 1$, $\lambda_1 = 2$.
+
+Więc postać kanoniczna ma postać:
+$$
+    F_{k}(y) = y_{2}^{2} + 2y_{3}^{2} 
+$$
+
+\subsection{Metoda Lagrange'a}
+Pierwsza zmiana zmiennych:
+$$
+    \begin{array}{l}
+         y_{1} = x_{1} + \frac{1}{1}x_{2} + \frac{0}{1}x_{3} = x_{1} + x_{2}\\
+         y_{2} = x_{2}\\
+         y_{3} = x_{3}
+    \end{array}
+$$
+
+Wówczas:
+$$
+    G(y) = b_{22}y_{2}^{2} + 2b_{23}y_{1}y_{2} + b_{33}y_{3}^{2} = (1 - \frac{1}{1})y_{2}^{2} + 2(0 - \frac{0 \cdot 0}{1})y_{1}y_{2} + (2 - \frac{0}{1})y_{3}^{2} = 2y_{3}^{2}
+$$
+
+Zatem od razu mamy:
+$$
+    F_{k}(y) = y_{1}^{2} + 2y_{3}^{2} 
+$$
+\end{document}

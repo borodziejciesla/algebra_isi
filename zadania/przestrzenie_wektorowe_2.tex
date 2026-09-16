@@ -1,0 +1,127 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{accents}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[polish]{babel}
+
+\usepackage{listings}
+\lstset{
+    language=SQL,
+    inputencoding=utf8x,
+    extendedchars=\true,
+    literate={ą}{{\k{a}}}1
+             {Ą}{{\k{A}}}1
+             {ę}{{\k{e}}}1
+             {Ę}{{\k{E}}}1
+             {ó}{{\'o}}1
+             {Ó}{{\'O}}1
+             {ś}{{\'s}}1
+             {Ś}{{\'S}}1
+             {ł}{{\l{}}}1
+             {Ł}{{\L{}}}1
+             {ż}{{\.z}}1
+             {Ż}{{\.Z}}1
+             {ź}{{\'z}}1
+             {Ź}{{\'Z}}1
+             {ć}{{\'c}}1
+             {Ć}{{\'C}}1
+             {ń}{{\'n}}1
+             {Ń}{{\'N}}1
+}
+
+\title{Przestrzenie Wektorowe 2}
+%\author{You}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+    \item Sprawdzić czy podany zestaw wektorów tworzy bazę w $\mathbb{R}^{3}$, jeśli tak, to przedstawić w tej bazie wektor $\begin{bmatrix}\begin{array}{rrr} 4 & 2 & 3 \end{array}\end{bmatrix}^{T}$:
+        \begin{enumerate}
+            \item $\left\{ \begin{bmatrix}\begin{array}{c} 1\\ 2\\ 3 \end{array}\end{bmatrix},          \begin{bmatrix}\begin{array}{c} 3\\ 2\\ 1 \end{array}\end{bmatrix}, 
+            \begin{bmatrix}\begin{array}{c} 4\\ 4\\ 5 \end{array}\end{bmatrix}\right\}$,
+            
+            \item $\left\{ \begin{bmatrix}\begin{array}{c} 1\\ 1\\ 1 \end{array}\end{bmatrix},          \begin{bmatrix}\begin{array}{c} 1\\ 1\\ 0 \end{array}\end{bmatrix}, 
+            \begin{bmatrix}\begin{array}{c} 1\\ 0\\ 0 \end{array}\end{bmatrix}\right\}$,
+
+            \item $\left\{ \begin{bmatrix}\begin{array}{r} 1\\ 2\\ 3 \end{array}\end{bmatrix},          \begin{bmatrix}\begin{array}{r} 0\\ -1\\ 2 \end{array}\end{bmatrix}, 
+            \begin{bmatrix}\begin{array}{r} 4\\ 2\\ 1 \end{array}\end{bmatrix}\right\}$,
+
+            \item $\left\{ \begin{bmatrix}\begin{array}{r} 3\\ 0\\ 0 \end{array}\end{bmatrix},          \begin{bmatrix}\begin{array}{r} 1\\ -1\\ 0 \end{array}\end{bmatrix}, 
+            \begin{bmatrix}\begin{array}{r} 4\\ 2\\ 1 \end{array}\end{bmatrix}\right\}$,
+
+            \item $\left\{ \begin{bmatrix}\begin{array}{r} 0\\ -1\\ -1 \end{array}\end{bmatrix},          \begin{bmatrix}\begin{array}{r} 0\\ -1\\ 0 \end{array}\end{bmatrix}, 
+            \begin{bmatrix}\begin{array}{r} -1\\ -1\\ 0 \end{array}\end{bmatrix}\right\}$.
+        \end{enumerate}
+        
+    \item Dla jakich wartości parametru $k$ dany zestaw wektorów tworzy bazę w $\mathbb{R}^{3}$:
+        \begin{enumerate}
+            \item $\left\{ \begin{bmatrix}\begin{array}{r} 1\\ 3\\ 1 \end{array}\end{bmatrix},          \begin{bmatrix}\begin{array}{r} k\\ 0\\ -1 \end{array}\end{bmatrix}, 
+            \begin{bmatrix}\begin{array}{r} 2\\ k\\ 0 \end{array}\end{bmatrix}\right\}$,
+
+            \item $\left\{ \begin{bmatrix}\begin{array}{r} 0\\ k\\ 1 \end{array}\end{bmatrix},          \begin{bmatrix}\begin{array}{r} k\\ 0\\ 1 \end{array}\end{bmatrix}, 
+            \begin{bmatrix}\begin{array}{r} 2\\ 1\\ 0 \end{array}\end{bmatrix}\right\}$,
+
+            \item $\left\{ \begin{bmatrix}\begin{array}{r} 0\\ 1\\ k \end{array}\end{bmatrix},          \begin{bmatrix}\begin{array}{r} k\\ 0\\ 1 \end{array}\end{bmatrix}, 
+            \begin{bmatrix}\begin{array}{c} k\\ 1\\ k+1 \end{array}\end{bmatrix}\right\}$.
+        \end{enumerate}
+
+    \item Pokazać, że zestaw funkcji:
+        $$ f_{1} = 2,\,f_{2}=t+3,\,f_{3} = 2t^{2}+1$$
+        tworzy bazę przestrzeni $W_{2}$ (wielomianów stopnia co najwyżej drugiego). Jeśli tak, to podać reprezentację w tej bazie wielomianów:
+        \begin{enumerate}
+            \item $f = t^2-3t$,
+            \item $f = 3t-1$,
+            \item $f = 4t^2$,
+            \item $f = -2t^{2}-2t+1$.
+        \end{enumerate}
+
+    \item Wyznaczyć $Ker\,f$:
+        \begin{enumerate}
+            \item $f: \mathbb{R}^{2} \ni (x, y) \rightarrow (y, -y) \in \mathbb{R}^{2}$,
+            \item $f: \mathbb{R}^{2} \ni (x, y) \rightarrow (x + 2y, 2x + y) \in \mathbb{R}^{2}$,
+            \item $f: \mathbb{R}^{3} \ni (x, y, z) \rightarrow (x - y, x + y) \in \mathbb{R}^{2}$,
+            \item $f: \mathbb{R}^{4} \ni (x, y, z, v) \rightarrow (x+2y+3z-v,3x+6y+7z+v,2x+4y+7z-4v) \in \mathbb{R}^{3}$,
+        \end{enumerate}
+
+    \item Znaleźć wektory i wartości własne macierzy:
+        \begin{enumerate}
+            \item $\begin{bmatrix}\begin{array}{rr} 1 & 2\\ 2 & 1 \end{array}\end{bmatrix}$,
+            \item $\begin{bmatrix}\begin{array}{rrr} -1 & 1 & 1\\ 1 & -1 & 1\\ 1 & 1 & -1 \end{array}\end{bmatrix}$,
+            \item $\begin{bmatrix}\begin{array}{rrr} 1 & 0 & 0\\ 0 & 1 & -4\\ 0 & -1 & 1 \end{array}\end{bmatrix}$.
+        \end{enumerate}
+
+    \item Pokazać, że gdy macierz rzeczywista $A \in \mathbb{R}^{n \times n}$ ma wartości własne $\lambda$ i odpowiadające im wektory własne $h$ to:
+        \begin{enumerate}
+            \item wartości własne i wektory własne macierzy $A^{-1}$ (gdy $|A| \neq 0$) wynoszą odpowiednio $\frac{1}{\lambda}$ i $h$,
+            \item jeżeli wartość własna jest $\lambda \in \mathbb{C}$ to wartości własnej $\bar{\lambda}$ (uzasadnić, że $\bar{\lambda}$ jest wartością własną) odpowiada wektor własny $\bar{h}$,
+            \item wartości własne i wektory własne macierzy $A^{m}$ wynoszą odpowiednio $\lambda^{m}$ i $h$.
+        \end{enumerate}
+    
+\end{enumerate}
+
+
+\newpage
+\textbf{Odpowiedzi:}
+\begin{description}
+    \item [1:] a) tak: $[-3\frac{1}{2}, -1\frac{1}{2}, 3]^{T}$, b) tak: $[3,-1,2]^{T}$,  c) tak: $[\frac{21}{23},-\frac{12}{23},\frac{8}{23}]^{T}$, d) tak: $[-12,4,3]^{T}$, e) tak: $[-3,5,-4]^{T}$,
+    
+    \item [2:] a) $k \neq -3 \wedge k \neq 2$ , b) $k \neq 0 \wedge k \neq 2$, c) $k = \emptyset$
+    
+    \item [3:] Jest bazą: a) $[4\frac{1}{4},-3,\frac{1}{2}]^{T}$, b) $[-4,3,0]^{T}$, c) $[-1,0,2]^{T}$, d) $[4,-2,-1]^{T}$
+    
+    \item [4:] a) $Ker\,f = \begin{bmatrix}\begin{array}{r} 0\\ 0 \end{array}\end{bmatrix}$, b) $Ker\,f=span\left\{ \begin{bmatrix}\begin{array}{r} 1\\ 0 \end{array}\end{bmatrix}  \right\}$, c) $Ker\,f=span\left\{ \begin{bmatrix}\begin{array}{r} 0\\ 0\\ 1 \end{array}\end{bmatrix}  \right\}$, d) $Ker\,f=span\left\{ \begin{bmatrix}\begin{array}{r} -2\\ 1\\ 0\\ 0 \end{array}\end{bmatrix}, \begin{bmatrix}\begin{array}{r} 5\\ 0\\ 2\\ 1 \end{array}\end{bmatrix}  \right\}$
+    
+    \item [5:] a) $\left\{ \lambda_{1} = -1, h_{1}=\begin{bmatrix}\begin{array}{r} 1\\ -1 \end{array}\end{bmatrix} \right\}$, $\left\{ \lambda_{2} = 3, h_{2}=\begin{bmatrix}\begin{array}{r} 1\\ 1 \end{array}\end{bmatrix} \right\}$,
+    b)  $\left\{ \lambda_{1} = 1, h_{1}=\begin{bmatrix}\begin{array}{r} 1\\ 1\\ 1 \end{array}\end{bmatrix} \right\}$, $\left\{ \lambda_{2} = -2, h_{2}\in \left\{ \begin{bmatrix}\begin{array}{r} -1\\ 1\\ 0 \end{array}\end{bmatrix}, \begin{bmatrix}\begin{array}{r} -1\\ 0\\ 1 \end{array}\end{bmatrix} \right\} \right\}$, 
+    c)  $\left\{ \lambda_{1} = 1, h_{1}=\begin{bmatrix}\begin{array}{r} 1\\ 0\\ 0 \end{array}\end{bmatrix} \right\}$, $\left\{ \lambda_{2} = -1, h_{2}=\begin{bmatrix}\begin{array}{r} 0\\ 2\\ 1 \end{array}\end{bmatrix} \right\}$, $\left\{ \lambda_{3} = 3, h_{3}=\begin{bmatrix}\begin{array}{r} 0\\ -2\\ 1 \end{array}\end{bmatrix} \right\}$
+\end{description}
+
+\end{document}
