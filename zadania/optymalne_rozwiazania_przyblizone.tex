@@ -1,0 +1,101 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% \usepackage[polish]{babel}
+
+\usepackage{listings}
+\lstset{
+    language=SQL,
+    inputencoding=utf8x,
+    extendedchars=\true,
+    literate={ą}{{\k{a}}}1
+             {Ą}{{\k{A}}}1
+             {ę}{{\k{e}}}1
+             {Ę}{{\k{E}}}1
+             {ó}{{\'o}}1
+             {Ó}{{\'O}}1
+             {ś}{{\'s}}1
+             {Ś}{{\'S}}1
+             {ł}{{\l{}}}1
+             {Ł}{{\L{}}}1
+             {ż}{{\.z}}1
+             {Ż}{{\.Z}}1
+             {ź}{{\'z}}1
+             {Ź}{{\'Z}}1
+             {ć}{{\'c}}1
+             {Ć}{{\'C}}1
+             {ń}{{\'n}}1
+             {Ń}{{\'N}}1
+}
+
+\title{Optymalne rozwiązanie przybliżone}
+%\author{You}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+    \item Znaleźć rzut wektora $x \in \mathbb{R}^{n}$ - $\Pi_{b}(x)$ - na prostą wyznaczaną przez wektor $b\in \mathbb{R}^{n}$, oraz macierz projekcji $P_{\pi} \in \mathbb{R}^{n \times n}$ na tę prostą gdy:
+        \begin{enumerate}
+            \item $x = \begin{bmatrix}\begin{array}{rr} 2 & 2 \end{array}\end{bmatrix}^{T}$, $b = \begin{bmatrix}\begin{array}{rr} 4 & 2 \end{array}\end{bmatrix}^{T}$,
+            \item $x = \begin{bmatrix}\begin{array}{rrr} 1 & 1 & 1 \end{array}\end{bmatrix}^{T}$, $b = \begin{bmatrix}\begin{array}{rrr} 1 & 2 & 2 \end{array}\end{bmatrix}^{T}$,
+            \item $x = \begin{bmatrix}\begin{array}{rrr} 1 & 3 & 2 \end{array}\end{bmatrix}^{T}$, $b = \begin{bmatrix}\begin{array}{rrr} 4 & 6 & 1 \end{array}\end{bmatrix}^{T}$.
+        \end{enumerate}
+
+    \item Znaleźć rzut wektora $x \in \mathbb{R}^{n}$ - $\Pi_{U}(x)$ -  na płlaszczyznę $U$ rozpinaną przez wektory $b_{1},\,\cdots,\,b_{m}  \in \mathbb{R}^{n}$, oraz macierz projekcji $P_{\pi} \in \mathbb{R}^{m \times n}$ na tę płaszczyznę gdy:
+        \begin{enumerate}
+            \item $x = \begin{bmatrix}\begin{array}{r} 6 \\ 7 \\ 9 \end{array}\end{bmatrix}$, $U = span \left\{ \begin{bmatrix}\begin{array}{r} 1 \\ 1\\ 0\end{array}\end{bmatrix},\, \begin{bmatrix}\begin{array}{r} 2 \\ 1\\ 0\end{array}\end{bmatrix} \right\}$,
+            \item $x = \begin{bmatrix}\begin{array}{r} 2 \\ -2 \\ 9 \end{array}\end{bmatrix}$, $U = span \left\{ \begin{bmatrix}\begin{array}{r} 1 \\ 1\\ 1\end{array}\end{bmatrix},\, \begin{bmatrix}\begin{array}{r} -1 \\ 1\\ 1\end{array}\end{bmatrix} \right\}$,
+            \item $x = \begin{bmatrix}\begin{array}{r} 6 \\ 0 \\ 0 \end{array}\end{bmatrix}$, $U = span \left\{ \begin{bmatrix}\begin{array}{r} 1 \\ 1\\ 1\end{array}\end{bmatrix},\, \begin{bmatrix}\begin{array}{r} 0 \\ 1\\ 2\end{array}\end{bmatrix} \right\}$,
+            \item $x = \begin{bmatrix}\begin{array}{rrr} 1 & 1 & 1 \end{array}\end{bmatrix}^{T}$, $b = \begin{bmatrix}\begin{array}{rrr} 1 & 2 & 2 \end{array}\end{bmatrix}^{T}$,         
+        \end{enumerate}
+
+    \item Znaleźć optymalne rozwiązanie przybliżone $\hat{x}$ układu równań $Ax = y$:
+        \begin{enumerate}
+            \item $A = \begin{bmatrix}\begin{array}{rrr} 1 & 0 & 1\\ 0 & 1 & 0\\ 0 & 0 & 1\\ 1 & 1 & 1 \end{array}\end{bmatrix}$, $y = \begin{bmatrix}\begin{array}{r} 1\\ 1\\ 1\\ 1 \end{array}\end{bmatrix}$,
+            \item $A = \begin{bmatrix}\begin{array}{rr} 1 & 3\\ 1 & 5\\ 1 & 4 \end{array}\end{bmatrix}$, $y = \begin{bmatrix}\begin{array}{r} 1\\ 2\\ 1 \end{array}\end{bmatrix}$,
+            \item $A = \begin{bmatrix}\begin{array}{rrr} 1 & 1 & 1\\ 1 & 0 & 0\\ 0 & 0 & 1\\ 1 & 0 & 1 \end{array}\end{bmatrix}$, $y = \begin{bmatrix}\begin{array}{r} 1\\ 1\\ 1\\ 1 \end{array}\end{bmatrix}$.
+        \end{enumerate}
+
+    \item Znaleźć optymalne rozwiązanie przybliżone $\hat{x}$ układu równań $Ax = y$:
+        \begin{enumerate}
+            \item $A = \begin{bmatrix}\begin{array}{rr} 2 & 1 \end{array}\end{bmatrix}$, $y = \begin{bmatrix}\begin{array}{r} 1 \end{array}\end{bmatrix}$,
+            \item $A = \begin{bmatrix}\begin{array}{rrr} 1 & 1 & 1\\ 1 & 0 & 1 \end{array}\end{bmatrix}$, $y = \begin{bmatrix}\begin{array}{r} 1 \\ 1 \end{array}\end{bmatrix}$,
+            \item $A = \begin{bmatrix}\begin{array}{rrrr} 1 & 0 & 0 & 1\\ 0 & 1 & 0 & 0\\ 0 & 0 & 0 & 1 \end{array}\end{bmatrix}$, $y = \begin{bmatrix}\begin{array}{r} 1\\ 1\\ 1 \end{array}\end{bmatrix}$.
+        \end{enumerate}
+\end{enumerate}
+
+
+\newpage
+\textbf{Odpowiedzi:}
+\begin{description}
+    \item [1:]
+        a) $\Pi_{b}(x) = \frac{1}{5}\begin{bmatrix}\begin{array}{r} 12\\6 \end{array}\end{bmatrix}$, $P_{\pi} = \frac{1}{5}\begin{bmatrix}\begin{array}{rr} 4 & 2\\  2 & 1 \end{array}\end{bmatrix}$,
+        b) $\Pi_{b}(x) = \frac{1}{9}\begin{bmatrix}\begin{array}{r} 5\\10\\10 \end{array}\end{bmatrix}$, $P_{\pi} = \frac{1}{9}\begin{bmatrix}\begin{array}{rrr} 1 & 2 & 2\\  2 & 4 & 4\\ 2 & 4 & 4 \end{array}\end{bmatrix}$,
+        b) $\Pi_{b}(x) = \frac{1}{7}\begin{bmatrix}\begin{array}{r} 12\\ 36\\ 24 \end{array}\end{bmatrix}$, $P_{\pi} = \frac{1}{14}\begin{bmatrix}\begin{array}{rrr} 1 & 3 & 2\\  3 & 9 & 6\\ 2 & 6 & 4 \end{array}\end{bmatrix}$.
+
+    \item [2:]
+        a) $\Pi_{U}(x) = \begin{bmatrix}\begin{array}{r} 6 \\ 7 \\ 0 \end{array}\end{bmatrix}$, $P_{\pi} = \frac{1}{6} \begin{bmatrix}\begin{array}{rrr} 1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 0 \end{array}\end{bmatrix}$,
+        b) $\Pi_{U}(x) = \begin{bmatrix}\begin{array}{r} 2 \\ \frac{7}{2} \\ \frac{7}{2} \end{array}\end{bmatrix}$, $P_{\pi} = \begin{bmatrix}\begin{array}{rrr} 1 & 0 & 0\\ 0 & \frac{1}{2} & \frac{1}{2}\\ 0 & \frac{1}{2} & \frac{1}{2} \end{array}\end{bmatrix}$
+        c) $\Pi_{U}(x) = \begin{bmatrix}\begin{array}{r} 5 \\ 2 \\ 1 \end{array}\end{bmatrix}$, $P_{\pi} = \frac{1}{6} \begin{bmatrix}\begin{array}{rrr} 5 & 2 & -1\\ 2 & 2 & 2\\ -1 & 2 & 5 \end{array}\end{bmatrix}$.
+
+    \item [3:]
+        a) $\hat{x} = \begin{bmatrix}\begin{array}{r} -\frac{1}{3} \\ \frac{2}{3} \\ 1 \end{array}\end{bmatrix}$,
+        b) $\hat{x} = \begin{bmatrix}\begin{array}{r} -\frac{2}{3} \\ \frac{1}{2} \end{array}\end{bmatrix}$,
+        c) $\hat{x} = \begin{bmatrix}\begin{array}{r} \frac{2}{3} \\ -\frac{1}{3}\\ \frac{2}{3} \end{array}\end{bmatrix}$.
+
+    \item [4:]
+        a) $\hat{x} = \begin{bmatrix}\begin{array}{r} \frac{1}{5} \\ \frac{2}{5} \end{array}\end{bmatrix}$,
+        b) $\hat{x} = \begin{bmatrix}\begin{array}{r} \frac{1}{2} \\ 0\\ \frac{1}{2} \end{array}\end{bmatrix}$,
+        c) $\hat{x} = \begin{bmatrix}\begin{array}{r} \frac{1}{2} \\ 1\\ 0 \\ \frac{1}{2} \end{array}\end{bmatrix}$.
+    
+\end{description}
+
+\end{document}
