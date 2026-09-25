@@ -1,0 +1,131 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[polish]{babel}
+
+\usepackage{listings}
+\lstset{
+    language=SQL,
+    inputencoding=utf8x,
+    extendedchars=\true,
+    literate={ą}{{\k{a}}}1
+             {Ą}{{\k{A}}}1
+             {ę}{{\k{e}}}1
+             {Ę}{{\k{E}}}1
+             {ó}{{\'o}}1
+             {Ó}{{\'O}}1
+             {ś}{{\'s}}1
+             {Ś}{{\'S}}1
+             {ł}{{\l{}}}1
+             {Ł}{{\L{}}}1
+             {ż}{{\.z}}1
+             {Ż}{{\.Z}}1
+             {ź}{{\'z}}1
+             {Ź}{{\'Z}}1
+             {ć}{{\'c}}1
+             {Ć}{{\'C}}1
+             {ń}{{\'n}}1
+             {Ń}{{\'N}}1
+}
+
+\title{Przestrzenie wektorowe - zestaw I}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+    \item Sprawdzić czy struktura algebraiczna $(X, F, +, \cdot)$ jest przestrzenią wektorową ($X \neq \emptyset$, $F$ - ciało), jeżeli:
+        \begin{enumerate}
+            \item $X = F^{n}$ oraz:
+                \begin{itemize}
+                    \item $+ : X \times X \ni ( (x_{1}, \cdots, x_{n}), (y_{1}, \cdots, y_{n}) ) \rightarrow (x_{1}+y_{1}, \cdots, x_{n}+y_{n}) \in X  $,
+                    \item $\cdot : F \times X \ni (\alpha, x_{1}, \cdots, x_{n}) \rightarrow (\alpha x_{1}, \cdots, \alpha x_{n}) \in X  $
+                \end{itemize}
+            \item $X = F^{n}$ oraz:
+                \begin{itemize}
+                    \item $+ : X \times X \ni ( (x_{1}, \cdots, x_{n}), (y_{1}, \cdots, y_{n}) ) \rightarrow (x_{1}+y_{1}, \cdots, x_{n}+y_{n}) \in X  $,
+                    \item $\cdot : F \times X \ni (\alpha, x_{1}, \cdots, x_{n}) \rightarrow (\alpha x_{1}, 0, \cdots, 0) \in X  $
+                \end{itemize}
+            \item $X = F^{A} = \{ f : A \rightarrow F \}$ oraz:
+                \begin{itemize}
+                    \item $+ : X \times X \ni ( x, y) \rightarrow ( x + y) \in X  $,
+                    \item $\cdot : F \times X \ni (\alpha, x) \rightarrow \alpha x \in X  $
+                \end{itemize}
+            \item $F = \mathbb{R}$, $X = W_{n} = \{ x \rightarrow a_{0} + a_{1}x + \cdots + a_{n}x^{n}: a_{i} \in \mathbb{R}, i = 0, \cdots, n \}$ oraz:
+                \begin{itemize}
+                    \item $+$ - naturalne dodawanie wielomianów,
+                    \item $\cdot$ - naturalne mnożenie wielomianu przez skalar
+                \end{itemize}
+             \item $X = \mathbb{R}$, $F = \mathbb{C}$ oraz:
+                \begin{itemize}
+                    \item $+ : X \times X \ni ( x, y) \rightarrow ( x + y) \in X  $,
+                    \item $\cdot : F \times X \ni (\alpha, x) \rightarrow \alpha x \in F  $
+                \end{itemize}
+            \item $F = \mathbb{R}$, $X = \{ f: \mathbb{R} \rightarrow \mathbb{R}: f(-x) = f(x) \} $ oraz:
+                \begin{itemize}
+                    \item $+$ - naturalne dodawanie funkcji,
+                    \item $\cdot$ - naturalne mnożenie funkcji przez skalar.
+                \end{itemize}
+        \end{enumerate}
+        
+    \item  Sprawdzić czy:
+        \begin{enumerate}
+            \item $Y = \{ (x_{1}, \cdots, x_{n}) \in \mathbb{R}^{n}: \sum_{i=1}^{n}x_{i} = a \}$ dla pewnego $a \in \mathbb{R}$ jest podprzestrzenią wektorową przestrzeni $(\mathbb{R}^{n}, \mathbb{R}, +, \cdot)$,
+            \item $Y = \{ f: \mathbb{R} \rightarrow \mathbb{R}: f(-x) = f(x) \}$ jest podprzestrzenią wektorową przestrzeni prowadzących z $\mathbb{R}$ w $\mathbb{R}$ z naturalnymi działaniami dodawania i mnożenia funkcji przez skalar: $+$, $\cdot$.
+        \end{enumerate}
+
+    \item  Pokazać, ze jeżeli $Y_{1}, \cdots, Y_{n}$ są podprzestrzeniami wektorowymi przestrzeni $\chi$, to $\cap_{i=1}^{n} Y_{i}$ jest podprzestrzenią wektorową przestrzeni $\chi$.
+
+    \item Uzasadnić, że
+    $$
+        Y = \{ (x, y, z) \in \mathbb{R}^{n}: x + 2y -z = 0, x = 2z \}
+    $$
+    jest podprzestrzenią wektorową przestrzeni $(\mathbb{R}^{3}, \mathbb{R}, +, \cdot)$.
+
+    \item Wyznaczyć bazy danych przestrzeni z naturalnymi działaniami $+$ i $\cdot$:
+        \begin{enumerate}
+            \item $(W_{n}, \mathbb{R}, +, \cdot)$,
+            \item $(W_{n}(a), \mathbb{R}, +, \cdot)$, gdzie $W_{n}(a) = {w \in W_{n}: w(a) = 0}$,
+            \item $(W, \mathbb{R}, +, \cdot)$, gdzie $W$ - zbiór wielomianów rzeczywistych,
+            \item $(\mathbb{C}^{n}, \mathbb{C}, +, \cdot)$,
+            \item $(\mathbb{C}^{n}, \mathbb{R}, +, \cdot)$.
+        \end{enumerate}
+
+    \item Sprawdzić liniową niezależność wektorów:
+        \begin{enumerate}
+            \item $[1, 1]^T$, $[0, 1]^T$, $[1, 0]^T$ w $(\mathbb{R}^{n}, \mathbb{R}, +, \cdot)$,
+            \item $2$ i $\sqrt{2}$ w $(\mathbb{R}, \mathbb{R}, +, \cdot)$,
+            \item $1, x, x^{2}, \cdots, x^{n}$ w $(W_{n}, \mathbb{R}, +, \cdot)$,
+            \item $1, x, x(1 + x), x^{2} \cdots, x^{n}$ w $(W_{n}, \mathbb{R}, +, \cdot)$.
+        \end{enumerate}
+
+    \item Pokazać, że funkcja jest normą w podanej przestrzeni:
+        \begin{enumerate}
+            \item $\| x \|_{2} = \sqrt{\sum_{i=1}^{n}{x_{i}^{2}}}$ dla $(\mathbb{R}^{n}, \mathbb{R}, +, \cdot)$,
+            \item $\| x \|_{\infty} = \max_{1 \leq i \leq n} |x_{i}|$ dla $(\mathbb{R}^{n}, \mathbb{R}, +, \cdot)$,
+            \item $\| f \| = \max_{1 \leq i \leq n} |f|$ dla $(\mathbb{C}_{[a,b]}, \mathbb{R}, +, \cdot)$.
+        \end{enumerate}
+    
+\end{enumerate}
+
+
+\newpage
+\textbf{Odpowiedzi:}
+\begin{description}
+    \item [1:] a) tak, b) nie, c) tak, d) tak, e) nie, f) tak
+    \item [2:] a) tak - dla $a = 0$, b) tak
+    \item [3:]
+    \item [4:] wskazówka: pokazać, że $Y = \{ (x, y, z) \in \mathbb{R}^{n}: x + 2y -z = 0 \}$ oraz $Y = \{ (x, y, z) \in \mathbb{R}^{n}: x = 2z \}$ są podprzestrzeniami wektorowymi.
+    \item [5:] a) $1, x, x^{2}, \cdots , x^{n}$, b) $(x-a), (x-a)^{2}, \cdots, (x-a)^{n}$, c) $1, x, x^{2}, \cdots $ - baza nieskończona, d) $(e_{1}, \cdots, e_{n})$ gdzie $e_{i} = [ 0, \cdots, 0, \underset{i\text{-ty element}}{1}, 0, \cdots, 0 ]^{T}$ - baza $n$-elementowa, e) $(e_{1}, \tilde{e}_{1},\cdots, e_{n}, \tilde{e}_{n})$ gdzie $e_{i} = [ 0, \cdots, 0, \underset{i\text{-ty element}}{1}, 0, \cdots, 0 ]^{T}$, $\tilde{e}_{i} = [ 0, \cdots, 0, \underset{i\text{-ty element}}{i}, 0, \cdots, 0 ]^{T}$ - baza $2n$-elementowa
+    \item [6:] a) nie, b) nie, c) tak, d) nie
+\end{description}
+
+\end{document}

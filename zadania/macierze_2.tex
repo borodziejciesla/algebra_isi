@@ -1,0 +1,80 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% \usepackage[polish]{babel}
+
+\usepackage{listings}
+\lstset{
+    language=SQL,
+    inputencoding=utf8x,
+    extendedchars=\true,
+    literate={ą}{{\k{a}}}1
+             {Ą}{{\k{A}}}1
+             {ę}{{\k{e}}}1
+             {Ę}{{\k{E}}}1
+             {ó}{{\'o}}1
+             {Ó}{{\'O}}1
+             {ś}{{\'s}}1
+             {Ś}{{\'S}}1
+             {ł}{{\l{}}}1
+             {Ł}{{\L{}}}1
+             {ż}{{\.z}}1
+             {Ż}{{\.Z}}1
+             {ź}{{\'z}}1
+             {Ź}{{\'Z}}1
+             {ć}{{\'c}}1
+             {Ć}{{\'C}}1
+             {ń}{{\'n}}1
+             {Ń}{{\'N}}1
+}
+
+\title{Macierze - zestaw II}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+    \item Obliczyć wyznacznik stosując algorytm Gaussa:
+        \begin{enumerate}
+            \item $\begin{vmatrix}\begin{array}{rrr} 1 & 4 & 2\\ 3 & 5 & 7\\ -4 & 2 & 1 \end{array}\end{vmatrix}$,
+            \item $\begin{vmatrix}\begin{array}{rrrr} 5 & 0 & -3 & 1\\ 5 & 2 & -2 & 0\\ -5 & 1 & 4 & 2\\ 0 & 7 & 6 & 1 \end{array}\end{vmatrix}$,
+            \item $\begin{vmatrix}\begin{array}{rrrrr} 1 & -2 & 1 & 2 & 2\\ -1 & 2 & -1 & 2 & 2\\ 1 & -1 & 1 & -1 & 2\\ 1 & -2 & -1 & -1 & 2\\ 1 & -1 & 1 & -1 & 1 \end{array} \end{vmatrix}$,
+            \item $\begin{vmatrix}\begin{array}{rrrrr} 1 & 2 & 3 & \dots & n\\ -1 & 0 & 3 & \dots & n\\ -1 & -2 & 0 & \dots & n\\ \vdots & \vdots & \vdots & \ddots & \vdots\\ -1 & -2 & -3 & \dots & 0 \end{array} \end{vmatrix}$.
+        \end{enumerate}
+
+    \item Wyznaczyć macierz odwrotną:
+        \begin{enumerate}
+            \item $\begin{vmatrix}\begin{array}{rrr} 2 & 5 & 7\\ 6 & 3 & 4\\ 5 & -2 & -3 \end{array}\end{vmatrix}$,
+            \item $\begin{vmatrix}\begin{array}{rrr} 1 & 2 & 0\\ 2 & 3 & 0\\ 1 & -1 & 1 \end{array}\end{vmatrix}$,
+            \item $\begin{vmatrix}\begin{array}{rrr} 1 & 6 & 4\\ 1 & 9 & 4\\ 1 & -9 & 4 \end{array}\end{vmatrix}$,
+            \item $\begin{vmatrix}\begin{array}{rrrr} 1 & 2 & 0 & 0\\ 3 & 5 & 0 & 0\\ 0 & 0 & 6 & 5\\ 0 & 0 & 1 & 1 \end{array} \end{vmatrix}$,
+            \item $\begin{vmatrix}\begin{array}{rrrr} \cos{\alpha} & 0 & \sin{\alpha} & 0\\ 0 & 1 & 0 & 0\\ -\sin{\alpha} & 0 & \cos{\alpha} & 0\\ 0 & 0 & 0 & 1 \end{array} \end{vmatrix}$.
+        \end{enumerate}
+
+    \item Uzasadnić równości (dla $A \in R^{n \times n}$, $\alpha \in R$):
+        \begin{enumerate}
+            \item $|A^{-1}| = |A|^{-1}$,
+            \item $(AB)^{-1} = B^{-1}A^{-1}$,
+            \item $(\alpha A)^{-1} = \frac{1}{\alpha}( A^{-1} )$,
+            \item $(A^{n})^{-1} = (A^{-1})^{n}$,
+            \item $(A^{T})^{-1}=(A^{-1})^{T}$.
+        \end{enumerate}
+\end{enumerate}
+
+
+\newpage
+\textbf{Odpowiedzi:}
+\begin{description}
+    \item [1:] a) $-81$, b) $-65$, c) $8$, d) $n!$
+    \item [2:] a) $\begin{vmatrix}\begin{array}{rrr} 1 & -1 & 1\\ -38 & 41 & -34\\ 27 & -29 & 24 \end{array}\end{vmatrix}$, b) $\begin{vmatrix}\begin{array}{rrr} -3 & 2 & 0\\ 2 & -1 & 0\\ 5 & -3 & 1 \end{array}\end{vmatrix}$, c) nie istnieje, d) $\begin{vmatrix}\begin{array}{rrrr} -5 & 2 & 0 & 0\\ 3 & -1 & 0 & 0\\ 0 & 0 & 1 & -5\\ 0 & 0 & -1 & 6 \end{array}\end{vmatrix}$, e) $\begin{vmatrix}\begin{array}{rrrr} \cos{-\alpha} & 0 & \sin{-\alpha} & 0\\ 0 & 1 & 0 & 0\\ -\sin{-\alpha} & 0 & \cos{-\alpha} & 0\\ 0 & 0 & 0 & 1 \end{array} \end{vmatrix}$
+\end{description}
+
+\end{document}

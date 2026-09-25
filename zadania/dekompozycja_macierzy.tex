@@ -1,0 +1,135 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage[shortlabels]{enumitem}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[polish]{babel}
+
+\usepackage{listings}
+\lstset{
+    language=SQL,
+    inputencoding=utf8x,
+    extendedchars=\true,
+    literate={ą}{{\k{a}}}1
+             {Ą}{{\k{A}}}1
+             {ę}{{\k{e}}}1
+             {Ę}{{\k{E}}}1
+             {ó}{{\'o}}1
+             {Ó}{{\'O}}1
+             {ś}{{\'s}}1
+             {Ś}{{\'S}}1
+             {ł}{{\l{}}}1
+             {Ł}{{\L{}}}1
+             {ż}{{\.z}}1
+             {Ż}{{\.Z}}1
+             {ź}{{\'z}}1
+             {Ź}{{\'Z}}1
+             {ć}{{\'c}}1
+             {Ć}{{\'C}}1
+             {ń}{{\'n}}1
+             {Ń}{{\'N}}1
+}
+
+\title{Dekompozycja macierzy}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+
+\item Znaleźć rozkład SVD dla macierzy:
+    \begin{enumerate}[a)]
+        \item $A = \begin{bmatrix}\begin{array}{rrr} 1 & 2 & 0\\ 2 & 1 & 0\\ 0 & 0 & 1 \end{array}\end{bmatrix}$,
+        \item $A = \begin{bmatrix}\begin{array}{rrr} 1 & 2 & 0\\ 2 & 0 & 2 \end{array}\end{bmatrix}$,
+    \end{enumerate}
+
+    Rozkład SVD (rozkład według wartości osobliwych - \textit{Singular Value Decomposition}) jset to rozkład macierzy $A \in \mathbb{R}^{m \times n}$ na trzy specyficzne macierze: $U \in \mathbb{R}^{m \times m}$ - ortogonalna, $\Sigma \in \mathbb{R}^{m \times n}$ - o postaci bliskiej do ortogonalnej, $V \in \mathbb{R}^{n \times n}$ - ortogonalna.
+    $$
+        A = U \Sigma V^{T}
+    $$
+
+\item Wyznaczyć rozkład Cholsekiego macierzy:
+    \begin{enumerate}[a)]
+        \item $A = \begin{bmatrix}\begin{array}{rr} 2 & 1 \\ 1 & 1 \end{array}\end{bmatrix}$,
+        \item $A = \begin{bmatrix}\begin{array}{rrr} 2 & 1 & 0\\ 1 & 1 & 0\\ 0 & 0 & 1 \end{array}\end{bmatrix}$,
+        \item $A = \begin{bmatrix}\begin{array}{rrr} 9 & 0 & 0\\ 0 & 4 & 2\\ 0 & 2 & 2 \end{array}\end{bmatrix}$.
+    \end{enumerate}
+
+    Rozkład Choleskiego jest procedurą rozkładu symetrycznej, dodatnio określonej macierzy $A \in \mathbb{R}^{n \times n}$ do iloczynu:
+    $$
+        A = LL^{T}
+    $$
+    gdzie macierz $L$ jest macierzą trójkątną dolną, zatem:
+    $$
+        \begin{bmatrix}\begin{array}{rrr} a_{11} & \cdots & a_{1n}\\ \vdots & \cdots & \vdots \\ a_{n1} & \cdots & a_{nn} \end{array}\end{bmatrix}
+        =
+        \begin{bmatrix}\begin{array}{rrrr} l_{11} & 0 & \cdots & 0\\ l_{21} & l_{22} & \vdots \\ \vdots & \cdots & \cdots & \vdots \\ l_{n1} & l_{n2} & \cdots & l_{nn} \end{array}\end{bmatrix}
+        \begin{bmatrix}\begin{array}{rrrr} l_{11} & l_{21} & \cdots & l_{n1}\\ 0 & l_{22} & \vdots & l_{n2}\\ \vdots & \cdots & \cdots & \vdots \\ 0 & \cdots & 0 & l_{nn} \end{array}\end{bmatrix}
+    $$
+    Przy takiej notacji łatwo zuważyć, że:
+    \begin{itemize}
+        \item $a_{11} = l_{11}^{2} \rightarrow l_{11}=\sqrt{a_{11}}$,
+        \item $a_{21} = l_{21}l_{11} \rightarrow l_{21} = \frac{a_{21}}{l_{11}}$,
+        \item $\cdots$
+    \end{itemize}
+    A w ogólności:
+    \begin{itemize}
+        \item $l_{ii} = \sqrt{a_{ii} - \sum_{k=0}^{i-1}{l_{ik}^{2}}}$,
+        \item $l_{ji} = \frac{a_{ji} - \sum_{k=0}^{i-1}{l_{jk}l_{ik}}}{l_{ii}}$
+    \end{itemize}
+
+\item Wyznaczyć rozkład $LU$ macierzy:
+    \begin{enumerate}[a)]
+        \item $A = \begin{bmatrix}\begin{array}{rr} 2 & 1 \\ 1 & 1 \end{array}\end{bmatrix}$,
+        \item $A = \begin{bmatrix}\begin{array}{rrr} 1 & 2 & 0\\ 2 & 1 & 0\\ 0 & 0 & 1 \end{array}\end{bmatrix}$,
+        \item $A = \begin{bmatrix}\begin{array}{rrr} 5 & 3 & 1\\ 1 & 2 & 0\\ 3 & 0 & 4 \end{array}\end{bmatrix}$,
+        \item $A = \begin{bmatrix}\begin{array}{rrr} 2 & 1 & 1\\ 1 & 1 & 1\\ 0 & 0 & 4 \end{array}\end{bmatrix}$.
+    \end{enumerate}
+
+    Rozkład $LU$ jest procedurą rozkładu macierzy $A \in \mathbb{R}^{n \times n}$ do iloczynu:
+    $$
+        A = LU
+    $$
+    gdzie: $L \in \mathbb{R}^{n \times n}$ - macierz trójkątna dolna, $U \in \mathbb{R}^{n \times n}$ - macierz trójkątna górna.
+
+    Dekompozycji $LU$ można dokonać metodą Doolittle'a - zakładając, że przekątna macierzy $L$ wypoełniona jest jedynkami,zatem:
+    $$
+        \begin{bmatrix}\begin{array}{rrr} a_{11} & \cdots & a_{1n}\\ \vdots & \cdots & \vdots \\ a_{n1} & \cdots & a_{nn} \end{array}\end{bmatrix}
+        =
+        \begin{bmatrix}\begin{array}{rrrr} 1 & 0 & \cdots & 0\\ l_{21} & 1 & \vdots \\ \vdots & \cdots & \cdots & \vdots \\ l_{n1} & l_{n2} & \cdots & 1 \end{array}\end{bmatrix}
+        \begin{bmatrix}\begin{array}{rrrr} u_{11} & u_{12} & \cdots & u_{1n}\\ 0 & u_{22} & \vdots & u_{2n}\\ \vdots & \cdots & \cdots & \vdots \\ 0 & \cdots & 0 & u_{nn} \end{array}\end{bmatrix}
+    $$
+    Wówczas dla $i \in \{ 1, 2, \cdots, n \}$:
+    \begin{itemize}
+        \item $u_{ij} = a_{ij} - \sum_{k=1}^{i-1}{l_{ik}u_{kj}}, j\in {i, i+1, \cdots, n}$,
+        \item $l_{ji} = \frac{1}{u_{ii}}(a_{ji} - \sum_{k=1}^{i-1}{l_{jk}u_{ki}}), j\in {i+1, i+2, \cdots, n}$
+    \end{itemize}
+
+\end{enumerate}
+    
+
+\newpage
+\textbf{Odpowiedzi:}
+\begin{description}
+    \item [1:] a) $U = \begin{bmatrix}\begin{array}{ccc} -\frac{\sqrt(2)}{2} & 0 & -\frac{\sqrt(2)}{2}\\ -\frac{\sqrt(2)}{2} & 0 & \frac{\sqrt(2)}{2}\\ 0 & 1 & 0 \end{array}\end{bmatrix}$, $\Sigma = \begin{bmatrix}\begin{array}{ccc} 3 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1 \end{array}\end{bmatrix}$, $V = \begin{bmatrix}\begin{array}{ccc} -\frac{\sqrt(2)}{2} & 0 & \frac{\sqrt(2)}{2}\\ -\frac{\sqrt(2)}{2} & 0 & -\frac{\sqrt(2)}{2}\\ 0 & 1 & 0 \end{array}\end{bmatrix}$,
+    b) $U = \begin{bmatrix}\begin{array}{cc} \frac{1}{\sqrt(5)} & \frac{2}{\sqrt(5)}\\ \frac{2}{\sqrt(5)} & -\frac{1}{\sqrt(5)} \end{array}\end{bmatrix}$, $\Sigma = \begin{bmatrix}\begin{array}{ccc} 3 & 0 & 0\\ 0 & 2 & 0 \end{array}\end{bmatrix}$, $V = \begin{bmatrix}\begin{array}{rrr} \frac{5}{3\sqrt(5)} & 0 & -\frac{2}{3}\\ \frac{2}{3\sqrt(5)} & \frac{2}{\sqrt(5)} & \frac{1}{3}\\ \frac{4}{3\sqrt(5)} & -\frac{1}{\sqrt(5)} & \frac{2}{3} \end{array}\end{bmatrix}$
+
+    \item [2:] a)  $L = \begin{bmatrix}\begin{array}{cc} \sqrt(2) & \frac{\sqrt(2)}{2}\\ 0 & \frac{\sqrt(2)}{2}\\ \end{array}\end{bmatrix}$
+    b) $L = \begin{bmatrix}\begin{array}{ccc} \sqrt(2) & \frac{\sqrt(2)}{2} & 0\\ 0 & \frac{\sqrt(2)}{2} & 0\\ 0 & 0 & 1 \end{array}\end{bmatrix}$,
+    b) $L = \begin{bmatrix}\begin{array}{ccc} 3 & 0 & 0\\ 0 & 2 & 1\\ 0 & 0 & 1 \end{array}\end{bmatrix}$
+     
+
+    \item [3:] a) $L = \begin{bmatrix}\begin{array}{rr} 1 & 0\\ \frac{1}{2} & 1\\ \end{array}\end{bmatrix}$, $U = \begin{bmatrix}\begin{array}{rr} 2 & 1\\ 0 & \frac{1}{2} \end{array}\end{bmatrix}$,
+    b) $L = \begin{bmatrix}\begin{array}{rrr} 1 & 0 & 0\\ \frac{1}{2} & 1 & 0\\ 0 & 0 & 1 \end{array}\end{bmatrix}$, $U = \begin{bmatrix}\begin{array}{rrr} 2 & 1 & 0\\ 0 & \frac{3}{2} & 0\\ 0 & 0 & 1 \end{array}\end{bmatrix}$,
+    c) $L = \begin{bmatrix}\begin{array}{rrr} 5 & 0 & 0\\ \frac{1}{5} & 1 & 0\\ \frac{3}{5} & -\frac{9}{7} & 1 \end{array}\end{bmatrix}$, $U = \begin{bmatrix}\begin{array}{rrr} 5 & 3 & 2\\ 0 & \frac{7}{5} & -\frac{2}{5}\\ 0 & 0 & \frac{16}{7} \end{array}\end{bmatrix}$,
+    d) $L = \begin{bmatrix}\begin{array}{rrr} 1 & 0 & 0\\ \frac{1}{2} & 1 & 0\\ 0 & 0 & 1 \end{array}\end{bmatrix}$, $U = \begin{bmatrix}\begin{array}{rrr} 2 & 1 & 1\\ 0 & \frac{1}{2} & \frac{1}{2}\\ 0 & 0 & 4 \end{array}\end{bmatrix}$,
+\end{description}
+
+\end{document}
