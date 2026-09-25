@@ -105,6 +105,9 @@ W grupie $(X, *)$ potrafimy rozwiązywać równania (szukamy $x$):
     \item $x * a = b \implies x = b * \tilde{a}$.
 \end{itemize}
 
+\subsection{Intuicja}
+Grupa to zestaw elementów, które potrafimy dodawać i odejmować.
+
 \subsection{Przykłady}
 \begin{itemize}
     \item $(\{-1, 1\}, \cdot)$ - multiplikatywna grupa abelowa
@@ -113,6 +116,99 @@ W grupie $(X, *)$ potrafimy rozwiązywać równania (szukamy $x$):
     \item $(\mathbb{R} - \{0\}, \cdot)$ - multiplikatywna grupa abelowa
     \item $(\{0, 1, 2, 3\}, \bigoplus)$, gdzie $a \bigoplus b = mod_{4}(a + b)$ - addytywna grupa abelowa
 \end{itemize}
+
+\subsection{Przykład (prawie)praktyczny - kodowanie danych}
+Weźmy alfabet 26-literowy i ponumerujmy litery:
+\[
+    A=0,\ B=1,\ldots,Z=25.
+\]
+Zbiór:
+\[
+    \mathbb Z_{26}=\{0,1,\ldots,25\}
+\]
+z dodawaniem modulo 26 tworzy grupę:
+\[
+    (\mathbb Z_{26},+_{26}).
+\]
+
+\subsubsection{Szyfrowanie}
+Ustalmy klucz szyfrujący:
+\[
+    k=3.
+\]
+Szyfrowanie polega na:
+\[
+    E_k(x)=x+_{26}k.
+\]
+Czyli:
+\[
+    A\rightarrow D,\quad
+    B\rightarrow E,\quad
+    C\rightarrow F,\ldots
+\]
+Przykładowo: $KOT$ zamieniamy na
+\[
+    10,\ 14,\ 19
+\]
+i dodajemy 3:
+\[
+    13,\ 17,\ 22
+\]
+czyli: $NRW$
+
+\subsubsection{Odszyfrowanie}
+Potrzebujemy elementu odwrotnego $-k$:
+\[
+    D_k(y)=y+_{26}(-k).
+\]
+W języku teorii grup:
+\[
+    -k=23\pmod{26}.
+\]
+Czyli klucz szyfrujący to element grupy
+\[
+    3\in\mathbb Z_{26},
+\]
+a jego element odwrotny to
+\[
+    3^{-1}_{\text{grupowo}}=-3=23\pmod{26}.
+\]
+Nie chodzi tutaj o odwrotność multiplikatywną, tylko o element odwrotny w~grupie
+$(\mathbb Z_{26},+_{26})$. 
+Mamy więc:
+\[
+    E_3(x)=x+_{26}3
+\]
+oraz
+\[
+    E_{-3}(x)=x+_{26}(-3).
+\]
+A następnie:
+\[
+    E_{-3}(E_3(x)) = (x+_{26}3)+_{26}(-3) = x.
+\]
+To dokładnie jest wykorzystanie elementu odwrotnego w grupie.
+
+Co się stanie, jeśli najpierw przesuniemy litery o 3, a potem o 7?
+Otrzymujemy:
+\[
+    (x+_{26}3)+_{26}7=x+_{26}10.
+\]
+Czyli dwa szyfrowania możemy połączyć w jedno:
+\[
+    E_7\circ E_3=E_{10}.
+\]
+A to jest właśnie działanie grupowe:
+\[
+    \boxed{
+    \text{klucz }3
+    \quad+\quad
+    \text{klucz }7
+    \quad=\quad
+    \text{klucz }10
+}
+\]
+wszystko modulo 26.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Ciało}
@@ -151,5 +247,51 @@ Intuicyjnie można powiedzieć, że ciało jest zbiorem, na którym potrafimy "d
     \item $(\mathbb{W}, +, \cdot)$ - przemienne ciało liczb wymiernych,
     \item $(\mathbb{R}, +, \cdot)$ - przemienne ciało liczb rzeczywistych.
 \end{itemize}
+
+\subsection{Przykład (prawie)praktyczny - interpolacja wielomianowa w \(\mathbb Z_7\)}
+Mamy trzy punkty:
+$$ (1,2),\qquad(2,4),\qquad(4,1) $$
+i szukamy wielomianu stopnia co najwyżej 2:
+$$ f(x)=ax^2+bx+c $$
+takiego, że:
+$$ f(1)=2,\qquad f(2)=4,\qquad f(4)=1 $$
+Wszystkie rachunki wykonujemy modulo 7.
+
+\begin{enumerate}
+    \item Układ równań
+    Podstawiamy punkty:
+    $$ a+b+c=2 $$ $$ 4a+2b+c=4 $$ $$ 16a+4b+c=1. $$
+    Redukujemy modulo 7:
+    $$ \begin{cases} a+b+c=2\\ 4a+2b+c=4\\ 2a+4b+c=1 \end{cases} $$
+    Odejmujemy pierwsze równanie od drugiego:
+    $$ 3a+b=2. $$
+    Od trzeciego odejmujemy pierwsze:
+    $$ a+3b=-1\equiv6. $$
+    Mamy więc:
+    $$ \begin{cases} 3a+b=2\\ a+3b=6 \end{cases} $$
+
+    \item Wykorzystujemy odwrotność w ciele
+    Z pierwszego:
+    $$ b=2-3a. $$
+    Podstawiamy:
+    $$ a+3(2-3a)=6. $$ $$ a+6-9a=6. $$
+    Modulo 7:
+    $$ -8a=0. $$
+    Ponieważ:
+    $$ -8\equiv6\pmod7, $$
+    mamy:
+    $$ 6a=0, $$
+    czyli:
+    $$ a=0. $$
+    Stąd:
+    $$ b=2. $$
+    A z pierwszego równania:
+    $$ c=0. $$
+    Otrzymujemy:
+    $$ \boxed{f(x)=2x\pmod7}. $$
+    Sprawdzenie:
+    $$ f(1)=2, $$ $$ f(2)=4, $$ $$ f(4)=8\equiv1\pmod7. $$
+    Działa.
+\end{enumerate}
 
 \end{document}

@@ -1,0 +1,127 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{polski}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{tikz}
+
+\usepackage{listings}
+\lstset{
+    language=SQL,
+    inputencoding=utf8x,
+    extendedchars=\true,
+    literate={ą}{{\k{a}}}1
+             {Ą}{{\k{A}}}1
+             {ę}{{\k{e}}}1
+             {Ę}{{\k{E}}}1
+             {ó}{{\'o}}1
+             {Ó}{{\'O}}1
+             {ś}{{\'s}}1
+             {Ś}{{\'S}}1
+             {ł}{{\l{}}}1
+             {Ł}{{\L{}}}1
+             {ż}{{\.z}}1
+             {Ż}{{\.Z}}1
+             {ź}{{\'z}}1
+             {Ź}{{\'Z}}1
+             {ć}{{\'c}}1
+             {Ć}{{\'C}}1
+             {ń}{{\'n}}1
+             {Ń}{{\'N}}1
+}
+
+\newcommand\tikzmark[1]{%
+\tikz[remember picture,baseline] \node[inner sep=0,outer sep=0] (#1){\rule{0em}{1.75em}};%
+}
+
+\newcommand\Overline[3][line width=1pt]{%
+    \begin{tikzpicture}[remember picture,overlay]
+      \draw[#1] (#2.north east) -- (#3.north west);
+    \end{tikzpicture}
+    }
+
+\title{Grupy i Ciała}
+\date{2026}
+% \author{Maciej Różewicz}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+    \item Dla każdego przypadku określ, czy podany zbiór z operacją tworzy
+    grupę.
+    Jeśli nie — wskaż konkretny aksjomat, który nie jest spełniony.
+    \begin{enumerate}
+        \item $(\mathbb Z,+)$,
+        \item $(\mathbb N,+)$,
+        \item $(\mathbb Z_5,+_5)$,
+        \item $(\mathbb Z_5,\cdot_5)$,
+        \item $(\mathbb Z_5\setminus\{0\},\cdot_5)$,
+        \item $(\mathbb Z_6\setminus\{0\},\cdot_6)$.
+    \end{enumerate}
+
+    \item Znajdź element odwrotny dla każdego elementu grupy:
+    \begin{enumerate}
+        \item $(\mathbb Z_7,+_7)$,
+        \item $(\mathbb Z_7^*,\cdot_7)$.
+    \end{enumerate}
+
+    \item Szyfr Cezara jako grupa - niech:
+    \[ G=(\mathbb Z_{26},+_{26}). \]
+    Szyfrowanie polega na:
+    \[ E_k(x)=x+_{26}k. \]
+
+    Zaszyfruj:
+    \[ \text{ALGEBRA} \]
+    kluczem:
+    $$k=3.$$
+    Następnie znajdź operację odszyfrowującą i odszyfruj wiadomość $JHRPHWULD$.
+
+    Pytanie dodatkowe:
+    Jakim jednym kluczem można zastąpić kolejno wykonane szyfrowania:
+    $E_7$ oraz $E_{12}$?
+
+
+    \item Dla każdej z poniższych struktur określ, czy jest ciałem. Uzasadnij odpowiedź.
+    \begin{enumerate}
+        \item $(\mathbb Z_5,+_5,\cdot_5)$
+        \item $(\mathbb Z_6,+_6,\cdot_6)$
+        \item $(\mathbb Z_7,+_7,\cdot_7)$
+    \end{enumerate}
+
+    \item Rozwiąż równanie:
+    $$3x+2=5\pmod 7.$$
+
+    \item Pracujemy w ciele:
+    $$\mathbb Z_{11}.$$
+    Niech:
+    $$ a=7,\qquad b=8. $$
+    Oblicz:
+    $$ a\cdot b\pmod{11}. $$
+    Znajdź element odwrotny do \(a=7\), czyli \(7^{-1}\).
+
+    Wykorzystaj go do rozwiązania równania:
+    $$ 7x=8\pmod{11}. $$
+    Sprawdź, że wynik spełnia równanie.
+
+    Dodatkowe pytanie:
+    Dlaczego podobne operacje są możliwe w \(\mathbb Z_{11}\), ale nie możemy ich wykonywać w ten sam sposób w \(\mathbb Z_{12}\)?
+\end{enumerate}
+
+\newpage
+\textbf{Odpowiedzi:}
+\begin{description}
+    \item [1:] a)tak, b)nie, c)tak, d)nie, e)tak, f) nie,
+    \item [2:] a)$0 \rightarrow 0$, $1 \rightarrow 6$, $2 \rightarrow 5$, $3 \rightarrow 4$, $4 \rightarrow 3$, $5 \rightarrow 2$, $6 \rightarrow 1$,
+    b)$1 \rightarrow 1$, $2 \rightarrow 4$, $3 \rightarrow 5$, $4 \rightarrow 2$, $5 \rightarrow 3$, $6 \rightarrow 6$,
+    \item [3:] $DOJHEUD$, $GEOMETRIA$
+    \item [4:] a)tak, b)nie, c)tak,
+    \item [5:] $x=1$,
+    \item [6:] $a\cdot b=1$, $7^{-1} = 8$
+\end{description}
+
+\end{document}
