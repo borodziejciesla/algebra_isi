@@ -41,7 +41,7 @@
 \begin{document}
 \maketitle
 
-Rozważamy przestrzeń $(\mathbb{K}^{n}, \mathbb{K}, +, \dot)$.% gdzie $\mathbb{X} = \mathbb{K}^{n}$
+Rozważamy przestrzeń $(\mathbb{X}^{n}, \mathbb{X}, +, \dot)$.% gdzie $\mathbb{X} = \mathbb{K}^{n}$
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Podprzestrzeń niezmiennicza względem macierzy $A$}
@@ -386,8 +386,8 @@ Algorytm jej wyznaczania jest następujący:
                 \item zatem $e^{C_{n_k}(\lambda_{k})t}  = e^{C_{n_k}(\lambda_k)t} = I_{n_k} + C_{n_k}(\lambda_k)t + C_{n_k}(\lambda_k)^{2}t^2 + \cdots + C_{n_k}(\lambda_k)^{n_k -1}t^{n_k -1}$ - ponieważ macierz ściśle trójkątna w $n$-tej potędze się "zeruje",
                 \item ostatecznie otrzymujemy $e^{J_{n_k}(\lambda_{k})t} = 
                 \begin{bmatrix}
-                    e^{\lambda_{k}} & \frac{te^{\lambda_{k}}}{1!} & \frac{t^2e^{\lambda_{k}}}{2!} & \cdots & \frac{t^{n-1}e^{\lambda_{k}}}{(n-1)!}\\
-                    0                 & e^{\lambda_{k}} & \frac{te^{\lambda_{k}}}{1!} & \cdots & \frac{t^{n-2}e^{\lambda_{k}}}{(n-2)!}\\
+                    e^{\lambda_{k}t} & \frac{te^{\lambda_{k}t}}{1!} & \frac{t^2e^{\lambda_{k}t}}{2!} & \cdots & \frac{t^{n-1}e^{\lambda_{k}t}}{(n-1)!}\\
+                    0                 & e^{\lambda_{k}t} & \frac{te^{\lambda_{k}t}}{1!} & \cdots & \frac{t^{n-2}e^{\lambda_{k}t}}{(n-2)!}\\
                     \vdots & \vdots & \vdots & \ddots & \vdots\\
                     0 & 0 & 0 & \cdots & e^{\lambda_{k}}
                 \end{bmatrix}

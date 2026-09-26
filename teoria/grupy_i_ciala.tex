@@ -60,10 +60,9 @@ Niech $*$ będzie działaniem wewnętrznym na zbiorze $X$.
 \begin{description}
     \item[Działanie przemienne] - działanie $*$ nazywamy działaniem przemiennym, gdy zachodzi $\forall_{x,y \in X} x * y = y * x$.
     \item[Działanie łączne] - działanie $*$ nazywamy działaniem łącznym, gdy zachodzi $\forall_{x,y,z \in X} x * (y * z) = (x * y) * z$.
-    \item[Działanie neutralny] - element $e \in X$ nazywamy elementem neutralnym działania $*$ jeśli $\forall_{x \in X} x * e = e * x = x$. Jeżeli działanie posiada element neutralny, to jest on jedyny.
-    \item[Działanie przeciwny (odwrotny, symetryczny)] - - element $\tilde{x} \in X$ nazywamy elementem przeciwnym dla elementu $x \in X$ jeśli $x * \tilde{x} = \tilde{x} * x = e$.
-Jeżeli działanie posiada element neutralny, to element przeciwny do dane-
-go elementu jest wyznaczony jednoznacznie.
+    \item[Element neutralny] - element $e \in X$ nazywamy elementem neutralnym działania $*$ jeśli $\forall_{x \in X} x * e = e * x = x$. Jeżeli działanie posiada element neutralny, to jest on jedyny.
+    \item[Element przeciwny (odwrotny, symetryczny)] - element $\tilde{x} \in X$ nazywamy elementem przeciwnym dla elementu $x \in X$ jeśli $x * \tilde{x} = \tilde{x} * x = e$.
+Jeżeli działanie posiada element neutralny, to element przeciwny do danego elementu jest wyznaczony jednoznacznie.
 \end{description}
 
 \subsection{Działanie addytywne i multiplikatywne}
@@ -71,7 +70,7 @@ go elementu jest wyznaczony jednoznacznie.
     \item Jeżeli działanie $*$ ma właściwości podobne do dodawania, to nazywamy je addytywnym i zwykle używamy symbolu $+$ lub $\bigoplus$.
     Jego element neutralny $e$ nazywamy "zerem" i oznaczamy $\textbf{0}$, natomiast element przeciwny do $x$ oznaczamy $-x$.
     \item Jeżeli działanie $*$ ma właściwości podobne do mnożenia, to działanie nazywamy multiplikatywnym i oznaczamy zwykle $\cdot$ lub $\bigotimes$.
-    Element neutralny $e$ takiego działania nazywamy "jedynką" i osaczamy $\textbf{1}$, natomiast element odwrotny $\tilde{x}$ do elementu $x$ oznaczamy $x^{-1}$.
+    Element neutralny $e$ takiego działania nazywamy "jedynką" i oznaczamy $\textbf{1}$, natomiast element odwrotny $\tilde{x}$ do elementu $x$ oznaczamy $x^{-1}$.
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -218,7 +217,7 @@ Trójka $(X, \bigoplus, \bigotimes)$, gdzie $X \neq \emptyset$, a $\bigoplus$ i 
     \item $\forall_{x, y, z \in X} (x \bigoplus y) \bigoplus z = x \bigoplus (y \bigoplus z)$,
     \item $\exists_{\textbf{0} \in X} \forall_{x \in X} x \bigoplus \textbf{0} = \textbf{0} \bigoplus x = x$,
     \item $\forall_{x \in X} \exists_{-x \in X} x \bigoplus (-x) = (-x) \bigoplus x = \textbf{0}$,
-    \item $\forall_{x,y \in X} x \bigoplus y = y *\bigoplus x$,
+    \item $\forall_{x,y \in X} x \bigoplus y = y \bigoplus x$,
 \end{enumerate}
 (postulaty 1-5 można zapisać krótko jako: $(X, \bigoplus)$ jest grupą abelową)
 \begin{enumerate}

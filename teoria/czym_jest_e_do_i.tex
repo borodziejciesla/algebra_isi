@@ -2,38 +2,9 @@
 
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{xcolor}
-\usepackage{tikz}
-
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-
 \usepackage[polish]{babel}
-
-\usepackage{listings}
-\lstset{
-    language=SQL,
-    inputencoding=utf8x,
-    extendedchars=\true,
-    literate={ą}{{\k{a}}}1
-             {Ą}{{\k{A}}}1
-             {ę}{{\k{e}}}1
-             {Ę}{{\k{E}}}1
-             {ó}{{\'o}}1
-             {Ó}{{\'O}}1
-             {ś}{{\'s}}1
-             {Ś}{{\'S}}1
-             {ł}{{\l{}}}1
-             {Ł}{{\L{}}}1
-             {ż}{{\.z}}1
-             {Ż}{{\.Z}}1
-             {ź}{{\'z}}1
-             {Ź}{{\'Z}}1
-             {ć}{{\'c}}1
-             {Ć}{{\'C}}1
-             {ń}{{\'n}}1
-             {Ń}{{\'N}}1
-}
 
 \title{Czym jest $e^{i\phi}$?}
 \date{\today}
@@ -43,59 +14,80 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Intuicja geometryczna}
-Mnożenie przez liczbę zespoloną $1 + i\frac{\phi}{n}$, gdzie $n \rightarrow \infty$,
-jest interpretowane jako obrót wektora o nieskończenie mały kąt $\frac{\phi}{n}$.
+Niech $\phi \in \mathbb{R}$ i $n$ będzie dodatnią liczbą całkowitą.
+Gdy $n$ jest duże, liczba $1+i\frac{\phi}{n}$ ma argument
+$\arctan(\phi/n)\approx\phi/n$ i moduł
+$\sqrt{1+\phi^2/n^2}\approx 1$. Mnożenie przez tę liczbę można więc
+intuicyjnie traktować jako obrót o bardzo mały kąt, w przybliżeniu
+$\phi/n$, z pomijalnie małą zmianą długości wektora.
 
-Jeśli wykonamy $n \rightarrow \infty$ takich obrotów, to ostatecznie
-obrócimy wektor o kąt $\phi$, czyli przemnożymy przez liczbę
-zespoloną $\cos{\phi} + i \sin{\phi}$.
+Po wykonaniu $n$ takich mnożeń kąty się dodają, a łączny kąt obrotu
+dąży do $\phi$. Dokładniej, liczbę $1+i\frac{\phi}{n}$ można zapisać
+w postaci biegunowej:
+\[
+    1+i\frac{\phi}{n}
+    =
+    \sqrt{1+\frac{\phi^2}{n^2}}
+    \left(
+        \cos\left(\arctan\frac{\phi}{n}\right)
+        + i\sin\left(\arctan\frac{\phi}{n}\right)
+    \right).
+\]
+Jej moduł jest nieco większy od $1$, więc mnożenie przez tę liczbę nie
+jest dokładnie samym obrotem. Po podniesieniu do potęgi $n$ otrzymujemy:
+\[
+    \left(1+i\frac{\phi}{n}\right)^n
+    =
+    \left(1+\frac{\phi^2}{n^2}\right)^{n/2}
+    \left(
+        \cos\left(n\arctan\frac{\phi}{n}\right)
+        +i\sin\left(n\arctan\frac{\phi}{n}\right)
+    \right).
+\]
+Gdy $n\to\infty$, moduł dąży do $1$, a kąt $n\arctan(\phi/n)$ dąży do
+$\phi$. Zatem, korzystając z granicznej definicji funkcji wykładniczej,
+\[
+    e^{i\phi}
+    =
+    \lim_{n\to\infty}\left(1+i\frac{\phi}{n}\right)^n
+    =
+    \cos\phi+i\sin\phi.
+\]
 
-Wiemy zatem, że granica ciągu $\left( 1 + i\frac{\phi}{n} \right)^{n}$
-jest równa $\cos{\phi} + i \sin{\phi}$. A więc liczymy granicę:
+Otrzymujemy wzór Eulera:
 \[
-    \lim_{n \rightarrow \infty} \left( 1 + i\frac{\phi}{n} \right)^{n} = a_{n}
-    \implies
-    \log a_{n} = n\log \left( 1 + i\frac{\phi}{n} \right)
-\]
-Korzystamy z własności:
-\[
-    \log(1 + i\frac{\phi}{n}) = \frac{i\phi}{n} - \frac{(i\phi)^2}{2n^2} + \frac{(i\phi)^3}{3n^3} + \cdots
-\]
-Wówczas:
-\[
-    \lim_{n \rightarrow \infty}\log a_{n} = \lim_{n \rightarrow \infty} n\left( \frac{i\phi}{n} - \frac{(i\phi)^2}{2n^2} + \frac{(i\phi)^3}{3n^3} + \cdots \right) = i\phi
-\]
-Pozbywając się logarytmu otrzymujemy:
-\[
-    \lim_{n \rightarrow \infty} a_{n} = \lim_{n \rightarrow \infty} \left( 1 + i\frac{\phi}{n} \right)^{n}  = e^{i\phi}
-\]
-
-Zatem mamy równość:
-\[
-    e^{i\phi} = \cos{\phi} + i \sin{\phi}
+    e^{i\phi} = \cos\phi + i\sin\phi.
 \]
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Rozwinięcie w szereg Taylora}
-Rozwinięcie eksponenty w szereg Taylora ma postać:
+\section{Rozwinięcie funkcji wykładniczej w szereg Taylora}
+Rozwinięcie funkcji wykładniczej w szereg Taylora ma postać:
 \[
-    e^{t} = \sum_{k=0}^{\infty}{\frac{t^k}{k!}}.
+    e^t = \sum_{k=0}^{\infty}\frac{t^k}{k!}.
 \]
-W przypadku $e^{i\phi}$ mamy:
-\[
-    \begin{array}{l}
-    e^{i\phi} = \sum_{k=0}^{\infty}{\frac{(i\phi)^n}{k!}} 
-    =
-    1 + i\phi - \frac{\phi^2}{2!} - \frac{i\phi^3}{3!} + \frac{\phi^4}{4!} + \cdots =
-    \\
-    \underbrace{1 - \frac{\phi^2}{2!} + \frac{\phi^4}{4!} + \cdots}_{\cos{\phi}}
-    + i \left( \underbrace{\phi - \frac{\phi^3}{3!} + \frac{\phi^5}{5!}}_{\sin{\phi} + \cdots} \right) =
-    \cos{\phi} + i\sin{\phi}
-    \end{array}
-\]
-Można zauważyć, że części rzeczywiste i urojone grupują się w
-szeregi Taylora odpowiednio dla $\cos{\phi}$ i $\sin{\phi}$.
+Podstawiając $t=i\phi$, dostajemy:
+\begin{align*}
+    e^{i\phi}
+    &= 1+i\phi+\frac{(i\phi)^2}{2!}
+       +\frac{(i\phi)^3}{3!}+\frac{(i\phi)^4}{4!}
+       +\frac{(i\phi)^5}{5!}+\frac{(i\phi)^6}{6!}
+       +\frac{(i\phi)^7}{7!}+\cdots \\
+    &= 1+i\phi-\frac{\phi^2}{2!}-i\frac{\phi^3}{3!}
+       +\frac{\phi^4}{4!}+i\frac{\phi^5}{5!}
+       -\frac{\phi^6}{6!}-i\frac{\phi^7}{7!}+\cdots \\
+    &= \left(1-\frac{\phi^2}{2!}+\frac{\phi^4}{4!}
+       -\frac{\phi^6}{6!}+\cdots\right)
+       +i\left(\phi-\frac{\phi^3}{3!}+\frac{\phi^5}{5!}
+       -\frac{\phi^7}{7!}+\cdots\right) \\
+    &= \sum_{m=0}^{\infty}\frac{(-1)^m\phi^{2m}}{(2m)!}
+       +i\sum_{m=0}^{\infty}\frac{(-1)^m\phi^{2m+1}}{(2m+1)!} \\
+    &= \cos\phi+i\sin\phi.
+\end{align*}
+Potęgi $i$ powtarzają się cyklicznie: $i, -1, -i, 1$. Dlatego wyrazy
+o parzystych potęgach $\phi$ tworzą część rzeczywistą, a o nieparzystych
+potęgach — część urojoną. Są to odpowiednio szeregi Taylora funkcji
+cosinus i sinus.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \section{Równanie różniczkowe}

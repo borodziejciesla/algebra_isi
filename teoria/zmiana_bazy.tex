@@ -45,7 +45,7 @@
     }
 
 \title{Zmiana bazy w przestrzeni $\mathbb{K}^{n}$}
-\date{\today}
+\date{2026}
 % \author{Maciej Różewicz}
 
 \begin{document}
@@ -58,8 +58,8 @@ W przestrzeni tej dane są dwie bazy:
     \item $B_{2} = \{ \mathbf{e}'_{1}, \mathbf{e}'_{2}, \cdots, \mathbf{e}'_{n} \}$ ("nowa" baza) - wówczas wektor należący do przestrzeni $\mathbf{x}' \in \mathbf{X}$ ma składowe $x_{1}', x_{2}', \cdots, x_{n}'$ i może być przedstawiony jako suma $\mathbf{x}' = \sum_{i=1}^{n}{x_{i}'\mathbf{e}'_{i}}$.
 \end{itemize}
 
-Każdy wektor "nowej" może być przedstawiony jako kombinacja liniowa wektorów "starej" bazy
-$$\mathbf{v}_{j} = \sum_{i=1}^{n}{p_{ji}\mathbf{e}_{i}} = \begin{bmatrix} \mathbf{e}_{1} & \mathbf{e}_{2} & \cdots & \mathbf{e}_{n} \end{bmatrix} \begin{bmatrix} p_{11} \\ p_{21} \\ \vdots \\ p_{n1} \end{bmatrix}$$.
+Każdy wektor "nowej" bazy może być przedstawiony jako kombinacja liniowa wektorów "starej" bazy:
+$$\mathbf{e}'_{j} = \sum_{i=1}^{n}{p_{ji}\mathbf{e}_{i}} = \begin{bmatrix} \mathbf{e}_{1} & \mathbf{e}_{2} & \cdots & \mathbf{e}_{n} \end{bmatrix} \begin{bmatrix} p_{11} \\ p_{21} \\ \vdots \\ p_{n1} \end{bmatrix}$$.
 
 Dowolny wektor $v = \sum_{i=1}^{n}{x_{i}\mathbf{e}_{i}} = \sum_{j=1}^{n}{x'_{j}\mathbf{e}'_{j}} = \sum_{j=1}^{n}{x'_{j} \left\{ \sum_{i=1}^{n}{p_{ij}\mathbf{e}_{i}}\right\}} = \sum_{i=1}^{n} \left\{ \sum_{j=1}^{n}{p_{ij}x'_{j}} \right\} \mathbf{e}_{i}$.
 Co oznacza, że współrzędna wektora "starej" bazy jest kombinacją liniową współrzędnych wektora "nowej" bazy: $x_{i} = \sum_{j=1}^{n}{p_{ij}x'_{j}}$.
