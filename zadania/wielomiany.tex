@@ -1,0 +1,74 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{polski}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{listings}
+\lstset{
+    language=SQL,
+    inputencoding=utf8x,
+    extendedchars=\true,
+    literate={ą}{{\k{a}}}1
+             {Ą}{{\k{A}}}1
+             {ę}{{\k{e}}}1
+             {Ę}{{\k{E}}}1
+             {ó}{{\'o}}1
+             {Ó}{{\'O}}1
+             {ś}{{\'s}}1
+             {Ś}{{\'S}}1
+             {ł}{{\l{}}}1
+             {Ł}{{\L{}}}1
+             {ż}{{\.z}}1
+             {Ż}{{\.Z}}1
+             {ź}{{\'z}}1
+             {Ź}{{\'Z}}1
+             {ć}{{\'c}}1
+             {Ć}{{\'C}}1
+             {ń}{{\'n}}1
+             {Ń}{{\'N}}1
+}
+
+\title{Wielomiany}
+\date{2026}
+% \author{Maciej Różewicz}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+    \item Wykonać dodawanie $(P+Q)(z) = P(z) + Q(z)$, odejmowanie $(P-Q)(z) = P(z) - Q(z)$ i~mnożenie $(P \cdot Q)(z) = P(z) \cdot Q(z)$ wielomianów:
+    \begin{enumerate}
+        \item $P(z) = 1 - z^{2}, Q(z) = -1 - 5z + z^{2}$,
+        \item $P(z) = 2z^{5} - 3z^{2} + z, Q(z) = 2z^{2} + 2z + 3$,
+        \item $P(z) = z^{2} + i, Q(z) = (1-i)z^{3} + iz + 3 - 2i$,
+    \end{enumerate}
+
+    \item Znaleźć pierwiastki wielomianów:
+    \begin{enumerate}
+        \item $P(z) = z^{2}+2iz+3$,
+        \item $P(z) = z^{2}-(2+i)z-1+7i$,
+        \item $P(z) = z^{4} - 30z^{2} + 289$,
+    \end{enumerate} 
+
+    \item Znaleźć pozostałe pierwiastki wielomianu znajac niektóre spośród ich pierwiastków:
+    \begin{enumerate}
+        \item $P(z) = z^{4}+2z^{3}+5z^{2}+6z+6, z_{1}=-1+i$,
+        \item $P(z) = z^{5}-5z^{4}+18z^{3}-18z^{2}+17z-13, z_{1}=2-3i, z_{2}=i$,
+    \end{enumerate} 
+\end{enumerate}
+
+\newpage
+\textbf{Odpowiedzi:}
+\begin{description}
+    \item [1:] a)$(P+Q)(z)=-5z, (P-Q)(z)=-2z^{2}-5z+2,(P \cdot Q)(z)=-z^{4} + 5z^{3} + 2z^{2} - 5z - 1$,
+    b)$(P+Q)(z)=2z^{5}-z^{2}+3z+3, (P-Q)(z)=2z^{5}-5z^{2}-z-3, (P \cdot Q)(z)=4z^{7}+4z^{6}+6z^{5}-6z^{4}-4z^{3}-7z^{2}+3z$, 
+    c)$(P+Q)(z)=(1-i)z^{3}+z^{2}+iz+3-i, (P-Q)(z)=-(1-i)z^{3}+z^{2}-iz+3-3i, (P \cdot Q)(z)=(1-i)z^{5}+(1+2i)z^{3}+(3-2i)z^{2}-z+2+3i$
+    \item [2]: a)$\{ i, -3i \}$, b)$\{ -1 +2i, 3-i \}$, c)$\{ 4-i, -4+i, 4+i, -4-i \}$
+    \item [3:] a)$z_{2}=-1-i, z_{3}=i\sqrt{3}, z_{4}=-i\sqrt{3}$, b)$z_{3}=2+3i, x_{4}=-i, x_{5}=1$
+\end{description}
+
+\end{document}

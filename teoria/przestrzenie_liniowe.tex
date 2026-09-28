@@ -1,0 +1,196 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{xcolor}
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% \usepackage[polish]{babel}
+
+\usepackage{listings}
+\lstset{
+    language=SQL,
+    inputencoding=utf8x,
+    extendedchars=\true,
+    literate={ą}{{\k{a}}}1
+             {Ą}{{\k{A}}}1
+             {ę}{{\k{e}}}1
+             {Ę}{{\k{E}}}1
+             {ó}{{\'o}}1
+             {Ó}{{\'O}}1
+             {ś}{{\'s}}1
+             {Ś}{{\'S}}1
+             {ł}{{\l{}}}1
+             {Ł}{{\L{}}}1
+             {ż}{{\.z}}1
+             {Ż}{{\.Z}}1
+             {ź}{{\'z}}1
+             {Ź}{{\'Z}}1
+             {ć}{{\'c}}1
+             {Ć}{{\'C}}1
+             {ń}{{\'n}}1
+             {Ń}{{\'N}}1
+}
+
+\newcommand\hlight[1]{\tikz[overlay, remember picture,baseline=-\the\dimexpr\fontdimen22\textfont2\relax]\node[rectangle,fill=blue!50,rounded corners,fill opacity = 0.2,draw,thick,text opacity =1] {$#1$};}
+
+\title{Przestrzenie liniowe}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Przestrzenie liniowe (wektorowe)}
+%===============================================================
+\subsection{Definicja}
+Niech $(K,+,\cdot)$ będzie ciałem przemiennym a $V$ pewnym niepustym zbiorem, którego elementy nazywamy wektorami.
+Niech dane będą dwa działania:
+\begin{itemize}
+    \item $\bigoplus : V \times V \rightarrow V$ (działanie wewnętrzne w zbiorze $V$),
+    \item $\bigotimes : K \times V \rightarrow V$ (działanie zewnętrzne w zbiorze $V$ nad ciałem $K$).
+\end{itemize}
+Przestrzenią liniową (lub wektorową) $V$ nad ciałem $K$ nazywamy czwórkę $\left( V, (K,+,\cdot), \bigoplus, \bigotimes \right)$, jeżeli spełnione są postulaty:
+\begin{enumerate}
+    \item $(V, \bigoplus)$ jest grupą abelową,
+    \item $\forall_{\mathbf{x},\mathbf{y} \in V}\,\forall_{\alpha \in K}\, \alpha\bigotimes(\mathbf{x}\bigoplus\mathbf{y}) = (\alpha\bigotimes\mathbf{x})\bigoplus(\alpha\bigotimes\mathbf{x})$,
+    \item $\forall_{\mathbf{x} \in V}\,\forall_{\alpha, \beta \in K}\, (\alpha+\beta)\bigotimes\mathbf{x} = (\alpha\bigotimes\mathbf{x})\bigoplus(\beta\bigotimes\mathbf{x})$,
+    \item $\forall_{\mathbf{x} \in V}\,\forall_{\alpha, \beta \in K}\, (\alpha\cdot\beta)\bigotimes\mathbf{x} = \alpha\bigotimes(\beta\bigotimes\mathbf{x})$,
+    \item $\forall_{\mathbf{x} \in V} 1\bigotimes\mathbf{x}=\mathbf{x}$.
+\end{enumerate}
+
+Elementy zbioru $V$ nazywamy wektorami, natomiast elementy zbioru $K$ nazywamy skalarami.
+Działanie $\bigoplus$ nazywamy dodawaniem wektorów, natomiast $\bigotimes$ nazywamy mnożeniem wektora przez skalar.
+
+%===============================================================
+\subsection{Własności}
+\begin{itemize}
+    \item $\forall_{\mathbf{v}\in V}\, 0\bigotimes\mathbf{v} = \mathbf{0}$
+    \item $\forall_{\alpha\in K}\, \alpha\bigotimes\mathbf{0} = \mathbf{0}$
+    \item $\alpha\bigotimes\mathbf{v}\,\implies\, \alpha = 0 \lor \mathbf{v} = \mathbf{0}$
+    \item $\forall_{\mathbf{v}\in V}\,\forall_{\alpha \in K}\, -(\alpha)\mathbf{v}=(-\alpha)\mathbf{v}$
+\end{itemize}
+
+%===============================================================
+\subsection{Przykłady}
+\begin{itemize}
+    \item Ciało $(\mathbb{R}, +, \cdot)$, zbiór $V=\mathbb{R}^{n}$ zatem mają postać $\mathbf{x} = \begin{bmatrix} x_{1} \\ x_{2} \\ \vdots \\ x_{n} \end{bmatrix}$, działania zdefiniowane są następująco:
+        \begin{itemize}
+            \item $\mathbf{x}\bigoplus\mathbf{y} = \begin{bmatrix} x_{1} \\ x_{2} \\ \vdots \\ x_{n} \end{bmatrix} + \begin{bmatrix} y_{1} \\ y_{2} \\ \vdots \\ y_{n} \end{bmatrix} = \begin{bmatrix} x_{1} + y_{1} \\ x_{2} + y_{2} \\ \vdots \\ x_{n} + y_{n} \end{bmatrix}$,
+            \item $\alpha\bigotimes\mathbf{x} = \alpha \begin{bmatrix} x_{1} \\ x_{2} \\ \vdots \\ x_{n} \end{bmatrix} = \begin{bmatrix}  \alpha x_{1} \\  \alpha x_{2} \\ \vdots \\  \alpha x_{n} \end{bmatrix}$.
+        \end{itemize}
+
+    \item Niech $(K,+,\cdot)$ będzie ciałem liczb rzeczywistych lub zespolonych a~$V=W_{[n]}$ będzie zbiorem wielomianów (rzeczywistych lub zespolonych) stopnia co najwyżej $n$.
+        Dodawanie $\bigoplus$ wielomianów i mnożenie wielomianu przez liczby $\bigotimes$ definiujemy w zwykły sposób.
+        Struktura $(W_{[n]},(K,+,\cdot), \bigoplus,\bigotimes)$ jest przestrzenią liniową.
+
+    \item Niech $(K,+,\cdot)$ będzie ciałem liczb rzeczywistych lub zespolonych a~$V=W$ będzie zbiorem wielomianów (rzeczywistych lub zespolonych) bez ograniczenia na stopień.
+        Struktura $(W,(K,+,\cdot), \bigoplus, \bigotimes)$ jest przestrzenią liniową.
+
+    \item Niech $(K,+,\cdot)$ będzie ciałem liczb rzeczywistych lub zespolonych a~$V=\mathcal{F}$ będzie zbiorem funkcji odpowiednio rzeczywistych lub zespolonych określonych na tej samej dziedzinie $D$.
+        Dodawanie funkcji i mnożenie funkcji przez liczbę określamy wzorami:
+        \begin{itemize}
+            \item $\forall_{f,g \in \mathcal{F}}\,(f \bigoplus g)(x) = f(x) + g(x)$,
+            \item $\forall_{\alpha \in K}\,\forall_{f \in \mathcal{F}}\,(\alpha \bigotimes f)(x) = \alpha f(x)$.
+        \end{itemize}
+        Struktura $(\mathcal{F} ,(K,+,\cdot), \bigoplus, \bigotimes)$ jest przestrzenią liniową.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Podprzestrzeń liniowa}
+Dla uproszczenia notacji będziemy używać oznaczeń $+$ i~$\cdot$ również jako oznaczeń działań na wektorach.
+Chyba że miałoby to powodować niejednoznaczność.
+
+%===============================================================
+\subsection{Definicja}
+Niech $(V, K, +, \cdot)$ będzie przestrzenią liniową a $U \subset V$ będzie niepustym podzbiorem zbioru $V$.
+Jeżeli struktura $(U, K, +, \cdot)$ jest przestrzenią liniową, to $U$ nazywamy podprzestrzenią liniową przestrzeni liniowej $V$.
+
+\subsection{Jak sprawdzić?}
+$U \subset V$ jest podprzestrzenią przestrzeni liniowej $V$ wtedy i~tylko wtedy gdy zachodzą warunki $\forall_{\mathbf{x},\mathbf{y} \in U}\, \mathbf{x}+\mathbf{y} \in U$ oraz $\forall_{\alpha \in K}\, \forall_{\mathbf{x}\in V}\,\alpha \mathbf{x} \in U$.
+
+Powyższe dwa warunki gwarantują że dzianie ($+$) jest wewnętrzne w~$U$ a~działanie ($\cdot$) jest działaniem zewnętrznym w~$U$ nad zbiorem $K$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Liniowa kombinacja wektorów}
+%===============================================================
+\subsection{Definicja}
+Niech $(V, K, +, \cdot)$ będzie przestrzenią liniową.
+Wektor $\sum_{i=1}^{n}\alpha_{i}\mathbf{v}_{i}$ gdzie $\alpha_{i} \in K$, $\mathbf{v}_{i} \in V$, $i=1, 2, \dots, n$ nazywamy liniową kombinacją wektorów $\mathbf{v}_{1}$, $\mathbf{v}_{2}$, $\dots$, $\mathbf{v}_{n}$ o współczynnikach $\alpha_{1}$, $\alpha_{2}$, $\dots$, $\alpha_{n}$.
+
+%===============================================================
+\subsection{Przykłady}
+\begin{itemize}
+    \item W przestrzeni $(\mathbb{R}^{3}, \mathbb{R}, +, \cdot)$ wektor $\begin{bmatrix} 3 \\ 2\\ 9 \end{bmatrix}$jest kombinacją wektorów $\begin{bmatrix} 1 \\ 0\\ 0 \end{bmatrix}$, $\begin{bmatrix} 0 \\ 1\\ 0 \end{bmatrix}$ i $\begin{bmatrix} 0 \\ 0\\ 1 \end{bmatrix}$ ze współczynnikami $3$, $2$ i $9$.
+    \item W przestrzeni wielomianów 3. stopnia $(W_{[3]},\mathbf{R}, +,\cdot)$ wielomian $3x^{3} + 4x^{2} + 5x + 6$ jest kombinacją liniową elementów $x^{3}$, $x^{2}$, $x$ i $1$ ze współczynnikami odpowiednio $3$, $4$, $5$ i $6$.
+    \item W przestrzeni funkcji rzeczywistych zmiennej rzeczywistej $(\mathcal{F}, \mathbf{R} , +,\cdot)$ funkcja $f(t) = 3e^{t} + 4\log(t^2)$ jest kombinacją liniową elementów $e^{t}$ i~$\log(t^2)$ ze współczynnikami $3$ i~$4$.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Liniowa niezależność wektorów}
+%===============================================================
+\subsection{Definicja}
+Wektory $\mathbf{v}_1, \dots, \mathbf{v}_n$ nazywamy liniowo niezależnymi, gdy prawdziwa jest implikacja
+$$
+    \sum_{i=1}^{n}{\alpha_{i}\mathbf{v}_{i}} = \mathbf{0} \implies \forall_{i = 1, 2, \dots, n}\alpha_{i} = 0,
+$$
+tzn. z zerowania się liniowej kombinacji wynika zerowanie się wszystkich jej współczynników.
+Jeżeli wektory $\mathbf{v}_1, \dots, \mathbf{v}_n$ nie są liniowo niezależne, to są one liniowo zależne.
+%===============================================================
+\subsection{Wnioski}
+\begin{itemize}
+    \item Dowolny niezerowy wektor jest liniowo niezależny (wniosek z faktu $\alpha \mathbf{v} = \mathbf{0} \implies \alpha = 0 \lor \mathbf{v} = \mathbf{0}$).
+    \item Wektory $\mathbf{v}_1, \dots, \mathbf{v}_n$ są liniowo zależne wtedy i tylko wtedy, gdy jeden z~nich jest liniową kombinacją pozostałych wektorów.
+    Rzeczywiście z definicji liniowej zależności wynika, że $\sum_{i=1}^{n}{\alpha_{i}\mathbf{v}_{i}} = \mathbf{0}$ i~co najmniej jeden ze współczynników $\alpha_{i}$ jest niezerowy (powiedzmy $\alpha_{1} \neq 0$).
+    Stąd $v_{1} = \sum_{i=2}^{n} \left( \frac{\alpha_{i}}{\alpha_{1}}\right)\mathbf{v}_{i}$
+    \item Skończony zbiór wektorów $A = \{ \mathbf{v}_1, \dots, \mathbf{v}_n \}$ nazywamy liniowo niezależnym jeżeli wektory $\mathbf{v}_1, \dots, \mathbf{v}_n$ są liniowo niezależne.
+    Nieskończony zbiór $B$ wektorów nazywamy liniowo niezależnym, jeżeli każdy jego skończony podzbiór $A$ jest liniowo niezależny.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Powłoka liniowa}
+%===============================================================
+\subsection{Definicja}
+Powłoką liniową zbioru $A \subset V$ nazywamy zbiór wszystkich kombinacji liniowych wektorów ze zbioru $A$, który oznaczamy: $span\,A$ lub $lin\,A$.
+%===============================================================
+\subsection{Wnioski}
+Powłoka liniowa $U=span\,A$ jest podprzestrzenią przestrzeni $V$ (zwaną podprzestrzenią generowaną przez zbiór wektorów $A$).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Baza i wymiar przestrzeni}
+%===============================================================
+\subsection{Definicja}
+Mówimy, że zbiór $B \subset V$ wektorów jest bazą przestrzeni liniowej $V$ jeżeli
+\begin{itemize}
+    \item $B$ jest zbiorem liniowo niezależnym,
+    \item $span\,B=V$.
+\end{itemize}
+Wymiarem bazy nazywamy ilość elementów zbioru $B$.
+
+
+Jeżeli przestrzeń $V$ ma bazę skończoną $B = \{ \mathbf{v}_1, \dots, \mathbf{v}_n \}$ , to mówimy, że jest to przestrzeń skończenie wymiarowa o wymiarze $n$ i piszemy $dim\,V=n$.
+W tym przypadku bazę traktujemy jako zbiór uporządkowany $B = ( \mathbf{v}_1, \dots, \mathbf{v}_n )$.
+Jeżeli nie istnieje baza skończona, to przestrzeń nazywamy nieskończenie wymiarową.
+Wymiar przestrzeni składającej się tylko z wektora zerowego jest równy $0$.
+
+
+Jeżeli $B = \{ \mathbf{v}_1, \dots, \mathbf{v}_n \}$ jest uporządkowaną bazą skończenie wymiarowej przestrzeni $V$, to każdy wektor tej przestrzeni da się jednoznacznie przedstawić w postaci liniowej kombinacji wektorów bazy.
+
+
+Jednoznacznie wyznaczone współczynniki kombinacji liniowej nazywamy współrzędnymi wektora $\mathbf{v}$ w bazie $B = \{ \mathbf{v}_1, \dots, \mathbf{v}_n \}$.
+
+%===============================================================
+\subsection{Przykłady}
+\begin{itemize}
+    \item $(\mathbb{R}^{n}, \mathbf{R}, +, \cdot)$ jest przestrzenią $n$ wymiarową.
+        Bazą jest uporządkowany zbiór wektorów $B=(\mathbf{e}_1,\dots,\mathbf{e}_n)$, gdzie $\mathbf{e}_{j} = (0, \dots, 1, \dots ,0)$.
+        Bazę tą nazywamy bazą kanoniczną przestrzeni $(\mathbb{R}^{n}, \mathbf{R}, +, \cdot)$.
+    \item $(W_{[n]}, \mathbf{R},+,\cdot)$ - ($W_{[n]}$ zbiór wielomianów rzeczywistych stopnia co najwyżej $n$) jest przestrzenią $n+1$ wymiarową z kanoniczną bazą jednomianów $B = (1,x,x^2,\dots,x^n)$.
+    \item $(W, \mathbf{R},+,\cdot)$ - ($W$ zbiór wielomianów rzeczywistych) jest przestrzenią nieskończenie wymiarową z przeliczalną, lecz nieskończoną bazą jednomianów $B = (1,x,x^2,\dots)$.
+\end{itemize}
+\end{document}
