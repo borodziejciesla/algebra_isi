@@ -1,0 +1,150 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+
+\title{Wielomiany}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\section{Definicja i stopień}
+Niech $K$ będzie ciałem. Wielomianem jednej zmiennej $x$ o współczynnikach
+w~$K$ nazywamy wyrażenie postaci
+\[
+    P(x)=a_0+a_1x+a_2x^2+\cdots+a_nx^n,
+    \qquad a_0,\ldots,a_n\in K.
+\]
+Wielomian zerowy oznaczamy przez $0$ i przyjmujemy, że jego stopień nie jest
+określony (czasami zapisuje się $\deg 0=-\infty$). Jeżeli $P\neq 0$ oraz
+$a_n\neq 0$, to liczbę $n$ nazywamy stopniem wielomianu $P$ i oznaczamy
+przez $\deg P$. Współczynnik $a_n$ nazywa się współczynnikiem wiodącym,
+a $a_0$ wyrazem wolnym.
+
+Wielomian można traktować zarówno jako formalne wyrażenie, jak i funkcję
+$K\to K$ daną wzorem $x\mapsto P(x)$. Dla ciał nieskończonych, na przykład
+$\mathbb{R}$ lub $\mathbb{C}$, dwa wielomiany są równe wtedy i tylko wtedy,
+gdy mają te same współczynniki. Nad ciałem skończonym różne wielomiany mogą
+wyznaczać tę samą funkcję.
+
+Zbiór wszystkich wielomianów o współczynnikach w $K$ oznaczamy przez
+$K[x]$. Zbiór wielomianów stopnia co najwyżej $n$ oznaczamy przez
+\[
+    K_{[n]}[x]=\{0\}\cup\{P\in K[x]\colon 1\leq\deg P\leq n\}.
+\]
+Dla $K=\mathbb{R}$ często piszemy krótko $W_{[n]}$.
+
+\section{Działania na wielomianach}
+Jeżeli
+\[
+    P(x)=\sum_{k=0}^{m}a_kx^k,\qquad
+    Q(x)=\sum_{k=0}^{n}b_kx^k,
+\]
+to dodawanie i mnożenie przez skalar definiujemy współczynnikowo:
+\[
+    (P+Q)(x)=\sum_{k\geq 0}(a_k+b_k)x^k,\qquad
+    (\alpha P)(x)=\sum_{k=0}^{m}(\alpha a_k)x^k,
+\]
+przy czym brakujące współczynniki traktujemy jako równe zero. Iloczyn
+wielomianów ma postać
+\[
+    (PQ)(x)=\sum_{k=0}^{m+n}c_kx^k,
+    \qquad c_k=\sum_{j=0}^{k}a_jb_{k-j}.
+\]
+W szczególności, dla niezerowych wielomianów:
+\[
+    \deg(P+Q)\leq\max\{\deg P,\deg Q\},\qquad
+    \deg(PQ)=\deg P+\deg Q.
+\]
+Pierwsza nierówność może być ostra, gdy wyrazy najwyższego stopnia się
+skasują.
+
+\section{Dzielenie z resztą}
+Jeżeli $A,B\in K[x]$ oraz $B\neq 0$, to istnieją jednoznacznie wyznaczone
+wielomiany $Q,R\in K[x]$ takie, że
+\[
+    A=BQ+R,\qquad R=0\ \text{lub}\ \deg R<\deg B.
+\]
+Wielomian $Q$ nazywamy ilorazem, a $R$ resztą z dzielenia $A$ przez $B$.
+Jeżeli $R=0$, mówimy, że $B$ dzieli $A$ i zapisujemy $B\mid A$.
+
+Szczególnym przypadkiem jest dzielenie przez $x-a$. Wtedy
+\[
+    P(x)=(x-a)Q(x)+P(a).
+\]
+Jest to twierdzenie o reszcie z dzielenia.
+
+\section{Pierwiastki i czynniki liniowe}
+Element $a\in K$ nazywamy pierwiastkiem wielomianu $P$ wtedy i tylko wtedy,
+gdy $P(a)=0$. Z twierdzenia o reszcie otrzymujemy twierdzenie Bézouta:
+\[
+    P(a)=0\quad\Longleftrightarrow\quad (x-a)\mid P(x).
+\]
+Jeżeli $a$ jest pierwiastkiem wielomianu $P$, to możemy więc zapisać
+\[
+    P(x)=(x-a)Q(x).
+\]
+Jeżeli
+\[
+    P(x)=(x-a)^rQ(x),\qquad Q(a)\neq 0,
+\]
+to mówimy, że $a$ jest pierwiastkiem krotności $r$. Pierwiastek krotności
+co najmniej $2$ nazywamy pierwiastkiem wielokrotnym.
+
+Jeżeli $P$ ma stopień $n$ i rozkłada się nad $K$ na czynniki liniowe, to
+\[
+    P(x)=a_n(x-a_1)(x-a_2)\cdots(x-a_n),
+\]
+gdzie pierwiastki są uwzględnione wraz z krotnościami. W szczególności
+niezerowy wielomian stopnia $n$ ma co najwyżej $n$ różnych pierwiastków.
+
+\subsection{Sprzężone pierwiastki}
+Jeżeli $P\in\mathbb{R}[x]$ oraz $z\in\mathbb{C}$ jest jego pierwiastkiem,
+to liczba sprzężona $\overline{z}$ również jest pierwiastkiem. Wynika to z
+równości
+\[
+    P(\overline{z})=\overline{P(z)}.
+\]
+Zatem
+\[
+    P(z)=0\quad\Longrightarrow\quad P(\overline{z})=0.
+\]
+Pierwiastki zespolone niebędące rzeczywistymi występują więc w parach
+$z,\overline{z}$. Co więcej, oba pierwiastki mają taką samą krotność.
+
+\section{Twierdzenie zasadnicze algebry}
+Każdy niezerowy wielomian stopnia $n\geq 1$ o współczynnikach zespolonych ma
+co najmniej jeden pierwiastek zespolony. W konsekwencji każdy wielomian
+$P\in\mathbb{C}[x]$ stopnia $n$ rozkłada się jednoznacznie z dokładnością do
+kolejności czynników w postaci
+\[
+    P(x)=a_n\prod_{j=1}^{n}(x-a_j).
+\]
+Dla wielomianów rzeczywistych rozkład na czynniki liniowe może nie istnieć
+w $\mathbb{R}[x]$, ale każdy taki wielomian rozkłada się na iloczyn
+czynników liniowych i nierozkładalnych czynników kwadratowych.
+
+\section{Wielomiany jako przestrzeń liniowa}
+Zbiór $K_{[n]}[x]$ z naturalnym dodawaniem wielomianów i mnożeniem przez
+skalary jest przestrzenią liniową nad $K$. Jego bazą kanoniczną jest
+\[
+    \mathcal{B}=(1,x,x^2,\ldots,x^n),
+\]
+a wymiar wynosi
+\[
+    \dim K_{[n]}[x]=n+1.
+\]
+Współrzędne wielomianu
+$P(x)=a_0+a_1x+\cdots+a_nx^n$ w tej bazie są równe
+\[
+    [P]_{\mathcal{B}}=
+    \begin{bmatrix}a_0\\a_1\\\vdots\\a_n\end{bmatrix}.
+\]
+Przestrzeń $K[x]$ wszystkich wielomianów ma bazę
+$(1,x,x^2,\ldots)$ i jest nieskończenie wymiarowa.
+
+\end{document}
