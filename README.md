@@ -35,7 +35,7 @@ Zestawy zadań są dostępne w katalogu [`zadania/`](./zadania/):
 
 ### Przykłady
 
-Notatniki Jupyter i skrypt ilustrujący zmianę bazy znajdują się w katalogu
+Przykłady w postaci notatników Jupyter znajdują się w katalogu
 [`przyklady/`](./przyklady/). Zależności Pythona są opisane w `pyproject.toml`
 i zarządzane przez [uv](https://docs.astral.sh/uv/).
 
@@ -54,19 +54,11 @@ i zarządzane przez [uv](https://docs.astral.sh/uv/).
    w `uv.lock`. Nie trzeba aktywować środowiska ręcznie — `uv run` wybiera je
    automatycznie.
 
-3. Uruchom skrypt demonstracyjny:
+3. Uruchom JupyterLab:
 
    ```sh
-   uv run python przyklady/zmiana_bazy.py
+   uv run --group notebooks jupyter lab
    ```
-
-Skrypt wypisuje współrzędne tego samego wektora w dwóch bazach i zapisuje
-rysunek do `zmiana_bazy.svg`. Ścieżkę pliku można zmienić opcją `--output`.
-Notatniki można uruchomić poleceniem:
-
-```sh
-uv run --group notebooks jupyter lab
-```
 
 W edytorze wybierz interpreter `.venv` utworzony przez `uv sync` jako
 środowisko projektu lub jądro notatnika.
