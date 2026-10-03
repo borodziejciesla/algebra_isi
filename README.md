@@ -1,7 +1,6 @@
 # Algebra z Geometrią Analityczną
 
-Materiały do algebry liniowej: notatki teoretyczne, zestawy zadań i przykłady
-obliczeń.
+Są to materiały przygotowane na kurs „Algebra Liniowa i Geometria Analityczna” na kierunku Informatyka i Systemy Inteligentne na AGH.
 
 ## Zawartość
 
