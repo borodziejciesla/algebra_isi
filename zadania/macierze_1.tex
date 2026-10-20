@@ -1,0 +1,166 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% \usepackage[polish]{babel}
+
+\usepackage{listings}
+\lstset{
+    language=SQL,
+    inputencoding=utf8x,
+    extendedchars=\true,
+    literate={ą}{{\k{a}}}1
+             {Ą}{{\k{A}}}1
+             {ę}{{\k{e}}}1
+             {Ę}{{\k{E}}}1
+             {ó}{{\'o}}1
+             {Ó}{{\'O}}1
+             {ś}{{\'s}}1
+             {Ś}{{\'S}}1
+             {ł}{{\l{}}}1
+             {Ł}{{\L{}}}1
+             {ż}{{\.z}}1
+             {Ż}{{\.Z}}1
+             {ź}{{\'z}}1
+             {Ź}{{\'Z}}1
+             {ć}{{\'c}}1
+             {Ć}{{\'C}}1
+             {ń}{{\'n}}1
+             {Ń}{{\'N}}1
+}
+
+\newcommand\hlight[1]{\tikz[overlay, remember picture,baseline=-\the\dimexpr\fontdimen22\textfont2\relax]\node[rectangle,fill=blue!50,rounded corners,fill opacity = 0.2,draw,thick,text opacity =1] {$#1$};}
+
+\title{Macierze - zestaw I}
+\date{2026}
+% \author{Maciej Różewicz}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\textbf{Umiejętności ćwiczone:} działania na macierzach.
+\end{center}
+
+\begin{enumerate}
+    \item Wykonać działania $A+B$, $C \cdot D$ oraz $D \cdot C$:
+    \begin{enumerate}
+        \item $A = \begin{bmatrix} 3 & -6 & -3\\  -4 & -11 & 2\\ -1 & 5 & 1 \end{bmatrix}$, $B = \begin{bmatrix} 0 & -2 & 7\\  -5 & -6 & 0\\ -5 & -5 & -6 \end{bmatrix}$, \\ $C = \begin{bmatrix} -2 & 5 & 0\\  -1 & 1 & 2\\ -1 & 8 & 2 \end{bmatrix}$, $D = \begin{bmatrix} 3 & 6 & 2\\  3 & -1 & 5\\ 1 & 5 & 1 \end{bmatrix}$,
+        \item $A = \begin{bmatrix} 2 & 5 & 4\\  7 & 8 & 9\\ -1 & -5 & 4 \end{bmatrix}$, $B = \begin{bmatrix} 1 & 6 & 1\\  5 & 6 & 0\\ 5 & -1 & -7 \end{bmatrix}$, \\ $C = \begin{bmatrix} 1 & 2 & 3\\  4 & 5 & 6\\ 7 & 8 & 9 \end{bmatrix}$, $D = \begin{bmatrix} 1\\ 2\\ 3 \end{bmatrix}$,
+        \item $A = \begin{bmatrix} 3 & -6 & -3\\  -4 & -11 & 2\\ -1 & 5 & 1 \end{bmatrix}$, $B = \begin{bmatrix} 0 & -2 & 7\\  -5 & -6 & 0\\ -5 & -5 & -6 \end{bmatrix}$, \\ $C = \begin{bmatrix} -2 & 5 & 0\\  -1 & 1 & 2\\ -1 & 8 & 2 \end{bmatrix}$, $D = \begin{bmatrix} 3 & 6 & 2 \end{bmatrix}$.
+    \end{enumerate}
+
+    \item Niech $\mathbb{R}^{n \times m}$ oznacza zbiór macierzy o~$n$ wierszach i~$m$ kolumnach oraz elementach należących do zbioru $\mathbb{R}$. Sprawdzić czy:
+    \begin{enumerate}
+    \item $( \mathbb{R}^{n \times m}, + )$ jest grupą abelową (przemienną), gdzie $+$ oznacza dodawanie macierzy,
+    \item $( \mathbb{R}^{n \times n}, \cdot )$ jest grupą abelową (przemienną), gdzie $\cdot$ oznacza mnożenie macierzy.
+    \end{enumerate}
+    
+    \item Wyznaczyć wzór na $A^{n}$ gdy:
+    \begin{enumerate}
+        \item $A = \begin{bmatrix} \cos(\alpha) & -\sin(\alpha)\\  \sin(\alpha) & \cos(\alpha) \end{bmatrix}$,
+        \item $A = \begin{bmatrix} i & 0\\  0 & -i \end{bmatrix}$,
+        \item $A = \begin{bmatrix} 0 & 9 & 5 & 1\\  0 & 0 & 1 & 3\\ 0 & 0 & 0 & 5\\ 0 & 0 & 0 & 0 \end{bmatrix}$.
+    \end{enumerate}
+
+    \item Rozwiązać równanie:
+    \begin{enumerate}
+        \item $XX = \begin{bmatrix} 1 & 4\\  0 & 1 \end{bmatrix}$,
+        \item $X \cdot \begin{bmatrix} 1 & 0\\  1 & 1 \end{bmatrix} = \begin{bmatrix} 1 & 1\\  0 & 1 \end{bmatrix} \cdot X^{T}$,
+        \item $\left\{ \begin{array}{r} X + Y = \begin{bmatrix} 0 & 1\\  0 & 1 \end{bmatrix} \\ \\ 2X + 3Y = \begin{bmatrix} 1 & 0\\  0 & 1 \end{bmatrix} \end{array}\right.$,
+        \item $AX(A^{T})^{2} = -I$, gdzie $A$ jest macierzą ortogonalną (tzn. $AA^{T} = A^{T}A = I$).
+    \end{enumerate}
+
+    \item Sprawdzić czy dla $A, B \in \mathbb{R}^{n \times n}$ prawdziwe są zależności:
+    \begin{enumerate}
+        \item $AB = 0 \Rightarrow (A = 0 \lor B = 0)$,
+        \item $(A+B)^2 = A^{2} + 2AB + B^{2}$,
+        \item $AB = BA \Rightarrow (A+B)^{3} = A^{3} + 3A^{2}B + 3AB^{2} + B^{3}$.
+        \item $AB = BA \Rightarrow (A+B)(A-B) = A^{2} - B^{2}$.
+    \end{enumerate}
+
+    \item Udowodnić, że iloczyn macierzy:
+    \begin{enumerate}
+        \item diagonalnych jest macierzą diagonalną,
+        \item trójkątnych górnych/dolnych jest macierzą trójkątna górną/dolną.
+    \end{enumerate}
+
+    \item Policzyć wyznaczniki:
+    \begin{enumerate}
+        \item $\begin{vmatrix} 2 & -1 & 0\\ 1 & 4 & 2\\ -3 & 2 &  5 \end{vmatrix}$,
+        \item $\begin{vmatrix} 1 & x & x^{2}\\ 1 & y & y^{2}\\ 1 & z & z^{2} \end{vmatrix}$,
+        \item $\begin{vmatrix} 1 & -1 & 2 & 0\\ 0 & 1 & 0 & -3\\ 3 & 2 & -2 & 4\\ 2 & 3 & 1 & 1 \end{vmatrix}$,
+        \item $\begin{vmatrix} 1 & 0 & 0\\ 0 & \cos(\alpha) & -\sin(\alpha)\\ 0 & \sin{\alpha} &  \cos(\alpha) \end{vmatrix}$,
+        \item $\begin{vmatrix} 1 & 0 & 0 & 0\\ 0 & 0 & 1 & 0\\ 0 & 1 & 0 & 0\\ 0 & 0 & 0 & 1 \end{vmatrix}$.
+    \end{enumerate}
+
+    \item Wyznaczyć wartości wyznaczników macierzy $A$ spełniającej równość:
+    \begin{enumerate}
+        \item $A^{2} = A^{T}$,
+        \item $A^{T} - A^{-1} = 0$,
+        \item $A^{2} + A^{-1} = 0$,
+        \item $A^{2} - 2A = 0$.
+    \end{enumerate}
+
+    \item Wyznaczyć rozwiązanie równania bez obliczania wyznaczników:
+    \begin{enumerate}
+        \item $\begin{vmatrix} 1+x & 1 & 1 & 1\\ 2 & 2 & 2 & 2\\ 4 & 6-x & 4 & 4\\ 6 & 6 & 6 & x \end{vmatrix} = 0$,
+        \item $\begin{vmatrix} x^{2} & 4 & 9 & 3\\ -1 & 1-x^{2} & -9 & -3\\ 1 & 4 & 9 & 3\\ 1 & 4 & x^{2} & 3 \end{vmatrix} = 0$.
+    \end{enumerate}
+
+    \item Wyznaczyć dopełnienie algebraiczne zaznaczonych elementów:
+    \begin{enumerate}
+        \item $\begin{bmatrix} 1 & -3\\ \hlight{4} & 2 \end{bmatrix}$,
+        \item $\begin{bmatrix} 0 & 1 & 2\\ 3 & \hlight{2} & 1\\ -5 & 4 & -1 \end{bmatrix}$,
+        \item $\begin{bmatrix} 1 & 2 & 3 & 4\\ 0 & -1 & \hlight{5} & 1\\ -2 & 3 & 0 & 2\\ 4 & 2 & 3 & -1 \end{bmatrix}$.
+    \end{enumerate}
+
+    \item Wyznaczyć macierz odwrotną:
+    \begin{enumerate}
+        \item $\begin{bmatrix} a & b\\ c & d \end{bmatrix}$,
+        \item $\begin{bmatrix} 2 & 1\\ 4 & 1 \end{bmatrix}$,
+        \item $\begin{bmatrix} 1 & 0 & 1\\ 2 & 1 & 1\\ 1 & 0 & 2 \end{bmatrix}$,
+        \item $\begin{bmatrix} a & 0 & 0\\ 0 & b & 0\\ 0 & 0 & c \end{bmatrix}$,
+        \item $\begin{bmatrix} 1 & 0 & 0\\ 0 & \cos(\alpha) & -\sin(\alpha)\\ 0 & \sin{\alpha} &  \cos(\alpha) \end{bmatrix}$.
+    \end{enumerate}
+
+\end{enumerate}
+
+\newpage
+\textbf{Odpowiedzi:}
+\begin{description}
+    \item [1:] a) $A+B = \begin{bmatrix} 3 & -8 & 4\\  -9 & -17 & 2\\ -6 & 0 & -5 \end{bmatrix}$,
+                  $CD = \begin{bmatrix} 9 & -17 & 21\\  -2 & 3 & 1\\ 23 & -4 & 40 \end{bmatrix}$,
+                  $DC = \begin{bmatrix} -14 & 37 & 16\\  -10 & 54 & 8\\ 8 & 18 & 12s \end{bmatrix}$,
+               b) $A+B = \begin{bmatrix} 3 & 11 & 5\\  12 & 14 & 9\\ 4 & -6 & -3 \end{bmatrix}$,
+                  $CD = \begin{bmatrix} 14\\  32\\ 50 \end{bmatrix}$,
+                  $DC$ - nie istnieje,
+               c) $A+B = \begin{bmatrix} 0 & -2 & 7\\  -5 & -6 & 0\\ -5 & -5 & -6 \end{bmatrix}$,
+                  $CD$ - nie istnieje,
+                  $DC = \begin{bmatrix} -14 &  37 & 16 \end{bmatrix}$,
+    \item [3:] a) $A = \begin{bmatrix} \cos(n\alpha) & -\sin(n\alpha)\\ \sin(n\alpha) & \cos(n\alpha) \end{bmatrix}$
+               b) $A = \begin{bmatrix} i^{n} & 0\\ 0 & (-i)^{n}) \end{bmatrix}$
+               c) Dla $n=0$: $A^{0} = I$, Dla $n=1$: $A^{1} = A$, Dla $n=2$: $A^{2} = \begin{bmatrix} 0 & 0 & 9 & 52\\ 0 & 0 & 0 & 5\\ 0 & 0 & 0 & 0\\ 0 & 0 & 0 & 0 \end{bmatrix}$, Dla $n=3$: $A^{3} = \begin{bmatrix} 0 & 0 & 0 & 45\\ 0 & 0 & 0 & 0\\ 0 & 0 & 0 & 0\\ 0 & 0 & 0 & 0 \end{bmatrix}$, Dla $n=4, 5, ...$: $A^{n} = 0$
+    \item [4:] a) $X \in \{ \begin{bmatrix} 1 & 2\\ 0 & 1 \end{bmatrix}, \begin{bmatrix} -1 & -2\\ 0 & -1 \end{bmatrix} \}$,
+               b) $X \in \{ \begin{bmatrix} a & b\\ c & d \end{bmatrix}: b = c+d \}$,
+               c) $X = \begin{bmatrix} -1 & 3\\ 0 & 2 \end{bmatrix} $, $Y = \begin{bmatrix} 1 & -2\\ 0 & -1 \end{bmatrix} $,
+               d) $X = -A$
+    \item [5:] a) nie, b) nie, c) tak d) tak
+    \item [7:] a) $43$, b) $(x-y)(z-x)(z-y)$, c) $-71$, d) $1$, e) $-1$
+    \item [8:] a) $det(A) \in \{ 0, 1 \}$, b) $det(A) \in \{ -1, 1 \}$, c) dla $n$ parzystego $det(A) = 1$, dla $n$ nieparzystego $det(A) = -1$, d) $\det(A) \in \{ 0, 2^{n} \}$
+    \item [9:] a) $x \in \{ 0, 2, 6 \}$, b) $x \in \{ -3, -\sqrt{5}, -1, 1, \sqrt{5}, 3 \}$
+    \item [10:] a) $3$, b) $10$, c) $59$
+    \item [11:] a) $\begin{bmatrix} \frac{d}{ad-bc} & \frac{-c}{ad-bc}\\ \frac{-b}{ad-bc} & \frac{a}{ad-bc} \end{bmatrix} $,
+               b) $\begin{bmatrix} -\frac{1}{2} & \frac{1}{2}\\ 2 & -1 \end{bmatrix} $,
+               c) $\begin{bmatrix} 2 & 0 & -1\\ -3 & 1 & 1\\ -1 & 0 & 1 \end{bmatrix} $,
+               d) $\begin{bmatrix} \frac{1}{a} & 0 & 0\\ 0 & \frac{1}{b} & 0\\ 0 & 0 & \frac{1}{c} \end{bmatrix} $,
+               e) $\begin{bmatrix} 1 & 0 & 0\\ 0 & \cos(\alpha) & \sin(\alpha)\\ 0 & -\sin(\alpha) & \cos(\alpha) \end{bmatrix} $,
+\end{description}
+
+\end{document}
