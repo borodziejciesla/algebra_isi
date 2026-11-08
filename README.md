@@ -38,6 +38,11 @@ Przykłady w postaci notatników Jupyter znajdują się w katalogu
 [`przyklady/`](./przyklady/). Zależności Pythona są opisane w `pyproject.toml`
 i zarządzane przez [uv](https://docs.astral.sh/uv/).
 
+- [Działania na macierzach w SymPy i NumPy](./przyklady/dzialanie_na_macierzach.ipynb)
+- [Liczby zespolone](./przyklady/liczby_zespolone.ipynb)
+- [Postać kanoniczna Jordana](./przyklady/postac_jordana.ipynb)
+- [Zmiana bazy](./przyklady/zmiana_bazy.ipynb)
+
 #### Konfiguracja środowiska
 
 1. Zainstaluj `uv`, postępując zgodnie z
