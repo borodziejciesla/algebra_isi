@@ -1,0 +1,208 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{xcolor}
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% \usepackage[polish]{babel}
+
+\usepackage{listings}
+\lstset{
+    language=SQL,
+    inputencoding=utf8x,
+    extendedchars=\true,
+    literate={ą}{{\k{a}}}1
+             {Ą}{{\k{A}}}1
+             {ę}{{\k{e}}}1
+             {Ę}{{\k{E}}}1
+             {ó}{{\'o}}1
+             {Ó}{{\'O}}1
+             {ś}{{\'s}}1
+             {Ś}{{\'S}}1
+             {ł}{{\l{}}}1
+             {Ł}{{\L{}}}1
+             {ż}{{\.z}}1
+             {Ż}{{\.Z}}1
+             {ź}{{\'z}}1
+             {Ź}{{\'Z}}1
+             {ć}{{\'c}}1
+             {Ć}{{\'C}}1
+             {ń}{{\'n}}1
+             {Ń}{{\'N}}1
+}
+
+\newcommand\hlight[1]{\tikz[overlay, remember picture,baseline=-\the\dimexpr\fontdimen22\textfont2\relax]\node[rectangle,fill=blue!50,rounded corners,fill opacity = 0.2,draw,thick,text opacity =1] {$#1$};}
+
+\title{Rozwiązywanie Układów Równań}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Rząd macierzy}
+%===============================================================
+\subsection{Definicja}
+Maksymalny stopień wyznacznika z macierzy $A = [a_{ij}]_{n \times m}$,
+różnego od zera nazywamy rzędem macierzy i oznaczamy $rk(A)$.
+
+Dodatkowo przyjmujemy, że rząd macierzy zerowej jest równy zero.
+
+%===============================================================
+\subsection{Własności}
+Rząd macierzy $A = [a_{ij}]_{n \times m}$ nie ulega zmianie w wyniku
+następujących przekształceń:
+\begin{itemize}
+    \item transpozycji $rk(A) = rk(A^{T})$,
+    \item pomnożenie dowolnego wiersza/kolumny macierzy przez 
+        liczbę różną od zera,
+    \item przestawienia wierszy/kolumn,
+    \item dodania do wiersza/kolumny przemnożonego innego wiersza/kolumny,
+    \item skreślenia lub dodania wiersza/kolumny skladajacego się 
+        z samych zer.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Równanie liniowe}
+%===============================================================
+\subsection{Definicja}
+Ogólna postać układu równań liniowych:
+$$
+    \left\{
+    \begin{array}{l}
+        a_{11}x_{1} + a_{12}x_{2} + \dots + a_{1n}x_{n} = b_{1}\\
+        a_{21}x_{1} + a_{22}x_{2} + \dots + a_{2n}x_{n} = b_{2}\\
+        \vdots\\
+        a_{m1}x_{1} + a_{m2}x_{2} + \dots + a_{mn}x_{n} = b_{m}\\
+    \end{array}
+    \right.
+$$
+Który można zapisać w zwartej postaci jako:
+$$
+    Ax = b
+$$
+gdzie:
+\begin{itemize}
+    \item 
+    $
+        \left[
+        \begin{array}{cccc}
+            a_{11}  &   a_{12}  &   \cdots  &   a_{1n}\\
+            a_{21}  &   a_{22}  &   \cdots  &   a_{2n}\\
+            \vdots  &   \vdots  &   \ddots  &   \vdots\\
+            a_{m1}  &   a_{m2}  &   \cdots  &   a_{mn}\\
+        \end{array}
+        \right]
+    $ - macierz współczynników,
+    \item
+    $
+    \left[
+        \begin{array}{c}
+            b_{1}\\
+            b_{2}\\
+            \vdots\\
+            b_{m}\\
+        \end{array}
+        \right]
+    $ - wektor wyrazów wolnych,
+    \item
+    $
+        \left[
+        \begin{array}{c}
+            x_{1}\\
+            x_{2}\\
+            \vdots\\
+            x_{n}\\
+        \end{array}
+        \right]
+    $ - wektor niewiadomych,
+\end{itemize}
+
+Przypadek gdy wektor wyrazów wolnych utworzony jest z samych zer,
+tzn. $Ax = \mathbf{0}$, nazywamy układem jednorodnym.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Twierdzenie Cramera}
+%===============================================================
+Jeżeli w układzie $Ax = b$, gdzie $A \in \mathbf{R}^{n \times n}$,
+$x \in \mathbf{R}^{n}$ oraz $b \in \mathbf{R}^{n}$, a macierz 
+współczynników ma niezerowy wyznacznik $|A| \neq 0$, to układ ma 
+dokładnie jedno rozwiązanie, które dane jest wzorem Cramera:
+$$
+    x_{i} = \frac{W_{i}}{|A|}
+$$
+dla $i = 1, 2, \dots, n$.
+
+Gdzie $W_{i}$ oznacza wyznacznik macierzy powstałej z podstawienia
+za $i$-tą kolumnę wektora wyrazów wolnych $b$:
+$$
+    W_{i}
+    =
+    \left|
+    \begin{array}{cccccc}
+        a_{11}  &   a_{12}  &   \cdots  &   b_{1}   &   \cdots  &   a_{1n}\\
+        a_{21}  &   a_{22}  &   \cdots  &   b_{2}   &   \cdots  &   a_{2n}\\
+        \vdots  &   \vdots  &   \ddots  &   \vdots  &   \ddots  &   \vdots \\
+        a_{n1}  &   a_{n2}  &   \cdots  &   b_{n}   &   \cdots  &   a_{nn}\\
+    \end{array}
+    \right|.
+$$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Twierdzenie Kroneckera-Capelliego}
+Układ równań $Ax = b$ posiada rozwiązanie wtedy i tylko wtedy,
+gdy rząd macierzy $A$ jest równy rzędowi macierzy uzupełnionej
+$B = [A|b]$.
+Przy czym, układ ten ma:
+\begin{itemize}
+    \item dokładnie jedno rozwiązanie, gdy $rk(A) = rk(B) = n$
+        ($n$ - liczba niewiadomych),
+    \item nieskończenie wiele rozwiązań zależnych od $n-r$
+        parametrów, gdy $rk(A) = rk(B) = r < n$.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Metoda Eliminacji Gaussa}
+\begin{itemize}
+    \item Załóżmy, że $a_{11} \neq 0$ - jeśli $a_{11} = 0$, to
+        to zmieniamy numerację zmiennych.
+    \item Dla $i$-tego wiersza przemnażamy pierwsze równanie przez
+        $\frac{a_{i1}}{a_{11}}$ i odejmujemy od $i$-tego wiersza.
+    \item Otrzymujemy wówczas:
+    $$
+        \left\{
+        \begin{array}{ccccccccc}
+            a_{11}x_{1} &   +   &   a_{12}x_{2}     &   +   &   \dots   &   +   &   a_{1n}x_{n}     &   =   &   b_{1}\\
+                        &       &   a_{22}^{1}x_{2} &   +   &   \dots   &   +   &   a_{2n}^{1}x_{n} &   =   &   b_{2}^{1}\\
+            \vdots      &       &   \vdots          &       &   \vdots  &       &   \vdots          &       &   \vdots\\
+                        &       &   a_{m2}^{1}x_{2} &   +   &   \dots   &   +   &   a_{mn}^{1}x_{n} &   =   &   b_{m}^{1}\\
+        \end{array}
+        \right.
+    $$
+    gdzie:
+    \begin{itemize}
+        \item $a_{ij}^{1} = a_{ij} - \frac{a_{i1}}{a_{11}}a_{1j}$,
+        \item $b_{i}^{1} = b_{i} - \frac{a_{i1}}{a_{11}}b_{1}$.
+    \end{itemize}
+    \item Postępujemy analogicznie dla kolejnych wierszy,
+        aż otrzymamy układ w postaci:
+    $$
+        \left\{
+        \begin{array}{cccccccccc}
+            a_{11}x_{1} &   +   &   a_{12}x_{2}     &   +   &   a_{13}x_{3}     &   \dots   &   +   &   a_{1n}x_{n}         &   =   &   b_{1}\\
+                        &       &   a_{22}^{1}x_{2} &   +   &   a_{23}^{1}x_{3} &   \dots   &   +   &   a_{2n}^{1}x_{n}     &   =   &   b_{2}^{1}\\
+                        &       &                   &       &   a_{33}^{2}x_{3} &   \dots   &   +   &   a_{3n}^{2}x_{n}     &   =   &   b_{3}^{2}\\
+                        &       &                   &       &                   &           &       &   \vdots              &       &   \vdots\\
+                            &           &       &   a_{mn}^{(r-1)}x_{r}     &   +   & \cdots &  +   &   a_{rn}^{(r-1)}x_{n} &   =   &   b_{r}^{(r-1)}\\
+        \end{array}
+        \right.
+    $$
+\end{itemize}
+
+\end{document}
