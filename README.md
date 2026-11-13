@@ -10,10 +10,13 @@ Pliki źródłowe LaTeX (`.tex`) i odpowiadające im dokumenty PDF znajdują si�
 w katalogu [`teoria/`](./teoria/):
 
 - [Czym jest \(e^{i}\)](./teoria/czym_jest_e_do_i.pdf)
+- [Działania na macierzach)](./teoria/dzialania_na_macierzach.pdf)
 - [Grupy i ciała](./teoria/grupy_i_ciala.pdf)
 - [Postać Jordana](./teoria/postac_jordana.pdf)
 - [Przykład wyznaczania postaci Jordana](./teoria/postac_jordana_przyklad.pdf)
 - [Postać kanoniczna formy kwadratowej](./teoria/postac_kanniczna_formy_kwadratowej.pdf)
+- [Rozwiązywanie układow równań](./teoria/rownania_metody.pdf)
+- [Wielomiany](./teoria/wielomiany.pdf)
 - [Zmiana bazy](./teoria/zmiana_bazy.pdf)
 
 ### Zadania
@@ -24,7 +27,9 @@ Zestawy zadań są dostępne w katalogu [`zadania/`](./zadania/):
 - [Formy kwadratowe](./zadania/formy_kwadratowe.pdf)
 - [Geometria analityczna](./zadania/geometria_analityczna.pdf)
 - [Grupy i ciała](./zadania/grupy_i_ciala.pdf)
+- [Liczby zespolone I](./zadania/liczby_zespolone_1.pdf)
 - [Liczby zespolone II](./zadania/liczby_zespolone_2.pdf)
+- [Macierze I](./zadania/macierze_1.pdf)
 - [Macierze II](./zadania/macierze_2.pdf)
 - [Optymalne rozwiązania przybliżone](./zadania/optymalne_rozwiazania_przyblizone.pdf)
 - [Przestrzenie wektorowe I](./zadania/przestrzenie_wektorowe_1.pdf)
