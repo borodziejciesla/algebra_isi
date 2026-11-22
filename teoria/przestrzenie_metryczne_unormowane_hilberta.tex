@@ -1,0 +1,367 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage[polish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\title{Przestrzenie metryczne, unormowane i Hilberta}
+\date{\today}
+
+\newtheorem{definicja}{Definicja}
+\newtheorem{twierdzenie}{Twierdzenie}
+\newtheorem{przyklad}{Przykład}
+
+\begin{document}
+\maketitle
+
+\section{Przestrzeń metryczna}
+
+\begin{definicja}
+Niech $X$ będzie niepustym zbiorem. Metryką na zbiorze $X$ nazywamy funkcję
+\[
+d:X\times X\rightarrow[0,\infty),
+\]
+która dla wszystkich $x,y,z\in X$ spełnia warunki:
+\begin{enumerate}[label=(M\arabic*)]
+    \item $d(x,y)=0 \iff x=y$,
+    \item $d(x,y)=d(y,x)$,
+    \item $d(x,z)\leq d(x,y)+d(y,z)$ -- nierówność trójkąta.
+\end{enumerate}
+Parę $(X,d)$ nazywamy przestrzenią metryczną.
+\end{definicja}
+
+Z warunków metryki wynika, że odległość dowolnych dwóch punktów jest zawsze liczbą nieujemną. Przestrzeń metryczną tworzy więc zbiór wraz z~pojęciem odległości.
+
+\subsection{Kula i kule otwarte}
+Dla $x_0\in X$ i $r>0$ definiujemy:
+\[
+K(x_0,r)=\{x\in X:d(x,x_0)<r\}
+\]
+-- kulę otwartą o środku $x_0$ i promieniu $r$, oraz
+\[
+\overline{K}(x_0,r)=\{x\in X:d(x,x_0)\leq r\}
+\]
+-- kulę domkniętą.
+
+Kule są podstawą definicji zbieżności i ciągłości w przestrzeniach metrycznych.
+
+\subsection{Przykłady metryk}
+\begin{przyklad}
+Na $\mathbb R^n$ można określić metrykę euklidesową:
+\[
+d_2(x,y)=\sqrt{\sum_{i=1}^{n}(x_i-y_i)^2}.
+\]
+\end{przyklad}
+
+\begin{przyklad}
+Dla $x,y\in\mathbb R^n$ ważne są także metryki:
+\[
+d_1(x,y)=\sum_{i=1}^{n}|x_i-y_i|,
+\qquad
+d_\infty(x,y)=\max_{1\leq i\leq n}|x_i-y_i|.
+\]
+\end{przyklad}
+
+\begin{przyklad}
+Na dowolnym niepustym zbiorze $X$ metrykę można określić wzorem
+\[
+d(x,y)=
+\begin{cases}
+0,&x=y,\\
+1,&x\neq y.
+\end{cases}
+\]
+Nazywa się ją metryką dyskretną.
+\end{przyklad}
+
+\begin{przyklad}
+W przestrzeni funkcji ciągłych $C[a,b]$ jedną z metryk jest
+\[
+d_\infty(f,g)=\max_{t\in[a,b]}|f(t)-g(t)|.
+\]
+\end{przyklad}
+
+\subsection{Zbieżność i ciąg Cauchy'ego}
+Mówimy, że ciąg $(x_n)\subset X$ jest zbieżny do $x\in X$, gdy
+\[
+\forall_{\varepsilon>0}\exists_{N}\forall_{n\geq N}\ d(x_n,x)<\varepsilon.
+\]
+
+Ciąg $(x_n)$ nazywamy ciągiem Cauchy'ego, jeżeli
+\[
+\forall_{\varepsilon>0}\exists_{N}\forall_{m,n\geq N}\ d(x_m,x_n)<\varepsilon.
+\]
+
+Każdy ciąg zbieżny jest ciągiem Cauchy'ego, natomiast odwrotna implikacja nie musi zachodzić.
+
+\begin{definicja}
+Przestrzeń metryczną $(X,d)$ nazywamy zupełną, jeżeli każdy ciąg Cauchy'ego elementów tej przestrzeni jest zbieżny do pewnego elementu należącego do $X$.
+\end{definicja}
+
+\begin{przyklad}
+Przestrzenie $\mathbb R^n$ i $\mathbb C^n$ z metryką euklidesową są zupełne.
+Natomiast przedział $(0,1)$ z metryką zwykłą nie jest zupełny, ponieważ ciąg $x_n=1/n$ jest ciągiem Cauchy'ego, ale nie ma granicy należącej do $(0,1)$.
+\end{przyklad}
+
+\section{Przestrzeń unormowana}
+
+\begin{definicja}
+Niech $V$ będzie przestrzenią liniową nad ciałem $\mathbb R$ albo $\mathbb C$. Normą nazywamy funkcję
+\[
+\|\cdot\|:V\rightarrow[0,\infty),
+\]
+która dla wszystkich $x,y\in V$ i wszystkich skalarów $\alpha$ spełnia:
+\begin{enumerate}[label=(N\arabic*)]
+    \item $\|x\|=0 \iff x=0$,
+    \item $\|\alpha x\|=|\alpha|\|x\|$,
+    \item $\|x+y\|\leq\|x\|+\|y\|$ -- nierówność trójkąta.
+\end{enumerate}
+Parę $(V,\|\cdot\|)$ nazywamy przestrzenią unormowaną.
+\end{definicja}
+
+Każda norma wyznacza metrykę wzorem
+\[
+d(x,y)=\|x-y\|.
+\]
+Odległość taka nazywa się metryką indukowaną przez normę. Nie każda metryka pochodzi od normy -- na przykład metryka dyskretna na przestrzeni liniowej nie jest indukowana przez normę.
+
+\subsection{Przykłady norm}
+
+\begin{przyklad}
+Na $\mathbb R^n$ lub $\mathbb C^n$ mamy normy
+\[
+\|x\|_1=\sum_{i=1}^n|x_i|,
+\qquad
+\|x\|_2=\sqrt{\sum_{i=1}^n|x_i|^2},
+\qquad
+\|x\|_\infty=\max_{1\leq i\leq n}|x_i|.
+\]
+\end{przyklad}
+
+\begin{przyklad}
+W przestrzeni $C[a,b]$ wzór
+\[
+\|f\|_\infty=\max_{t\in[a,b]}|f(t)|
+\]
+określa normę. Odpowiadająca jej metryka to
+\[
+d_\infty(f,g)=\|f-g\|_\infty=\max_{t\in[a,b]}|f(t)-g(t)|.
+\]
+\end{przyklad}
+
+\begin{przyklad}
+Dla ciągu $x=(x_n)$ przestrzeń $\ell^2$ składa się z ciągów spełniających
+\[
+\sum_{n=1}^{\infty}|x_n|^2<\infty.
+\]
+Normą jest
+\[
+\|x\|_2=\left(\sum_{n=1}^{\infty}|x_n|^2\right)^{1/2}.
+\]
+\end{przyklad}
+
+\subsection{Przestrzeń Banacha}
+\begin{definicja}
+Przestrzeń unormowaną zupełną względem metryki indukowanej przez normę nazywamy przestrzenią Banacha.
+\end{definicja}
+
+Przykłady przestrzeni Banacha:
+\begin{itemize}
+    \item $\mathbb R^n$ i $\mathbb C^n$ z dowolną z norm $\|\cdot\|_1$, $\|\cdot\|_2$ lub $\|\cdot\|_\infty$,
+    \item $C[a,b]$ z normą $\|\cdot\|_\infty$,
+    \item $\ell^2$ z normą $\|\cdot\|_2$,
+    \item przestrzenie $L^p$, $1\leq p<\infty$, z normą
+    \[
+    \|f\|_p=\left(\int |f|^p\,d\mu\right)^{1/p}.
+    \]
+\end{itemize}
+
+Przestrzeń $C[a,b]$ z normą
+\[
+\|f\|_1=\int_a^b|f(t)|\,dt
+\]
+nie jest zupełna.
+
+\section{Iloczyn skalarny}
+
+\begin{definicja}
+Niech $V$ będzie rzeczywistą lub zespoloną przestrzenią liniową. Iloczynem skalarnym nazywamy funkcję
+\[
+\langle\cdot,\cdot\rangle:V\times V\rightarrow\mathbb K,\qquad \mathbb K=\mathbb R\ \text{lub}\ \mathbb C,
+\]
+spełniającą następujące warunki:
+\begin{enumerate}[label=(I\arabic*)]
+    \item liniowość względem pierwszego argumentu:
+    \[
+    \langle\alpha x+\beta y,z\rangle=\alpha\langle x,z\rangle+\beta\langle y,z\rangle,
+    \]
+    \item symetrię sprzężoną:
+    \[
+    \langle x,y\rangle=\overline{\langle y,x\rangle},
+    \]
+    \item dodatnią określoność:
+    \[
+    \langle x,x\rangle\geq 0
+    \quad\text{oraz}\quad
+    \langle x,x\rangle=0\iff x=0.
+    \]
+\end{enumerate}
+\end{definicja}
+
+Dla rzeczywistego iloczynu skalarnego warunek symetrii sprzężonej sprowadza się do
+\[
+\langle x,y\rangle=\langle y,x\rangle.
+\]
+
+\subsection{Norma indukowana przez iloczyn skalarny}
+Każdy iloczyn skalarny wyznacza normę:
+\[
+\|x\|=\sqrt{\langle x,x\rangle}.
+\]
+Kieruje to nas przez następujący ciąg:
+\[
+\boxed{\text{iloczyn skalarny}\Longrightarrow\text{norma}\Longrightarrow\text{metryka}.}
+\]
+
+\begin{twierdzenie}[Nierówność Cauchy'ego--Schwarza]
+Dla wszystkich $x,y\in V$ zachodzi
+\[
+|\langle x,y\rangle|\leq\|x\|\|y\|.
+\]
+Równość zachodzi wtedy i tylko wtedy, gdy $x$ i $y$ są liniowo zależne.
+\end{twierdzenie}
+
+\subsection{Przykłady iloczynów skalarnych}
+\begin{przyklad}
+W $\mathbb R^n$:
+\[
+\langle x,y\rangle=\sum_{i=1}^n x_i y_i.
+\]
+Wtedy
+\[
+\|x\|=\sqrt{\sum_{i=1}^n x_i^2}.
+\]
+\end{przyklad}
+
+\begin{przyklad}
+W $\mathbb C^n$, przy przyjętej liniowości względem pierwszego argumentu:
+\[
+\langle x,y\rangle=\sum_{i=1}^n x_i\overline{y_i}.
+\]
+\end{przyklad}
+
+\begin{przyklad}
+W przestrzeni $\ell^2$:
+\[
+\langle x,y\rangle=\sum_{n=1}^{\infty}x_n\overline{y_n}.
+\]
+\end{przyklad}
+
+\begin{przyklad}
+W przestrzeni funkcji, na przykład w $L^2[a,b]$:
+\[
+\langle f,g\rangle=\int_a^b f(t)\overline{g(t)}\,dt.
+\]
+\end{przyklad}
+
+\subsection{Ortogonalność i twierdzenie Pitagorasa}
+Wektory $x,y$ nazywamy ortogonalnymi, jeśli
+\[
+\langle x,y\rangle=0.
+\]
+Piszemy wtedy $x\perp y$.
+
+Jeżeli $x\perp y$, to
+\[
+\|x+y\|^2=\|x\|^2+\|y\|^2.
+\]
+Jest to twierdzenie Pitagorasa dla normy indukowanej przez iloczyn skalarny.
+
+\subsection{Iloczyn skalarny a kąt między elementami}
+W rzeczywistej przestrzeni z iloczynem skalarnym kąt $\varphi\in[0,\pi]$ między niezerowymi elementami $x$ i $y$ określa wzór
+\[
+\cos\varphi
+=\frac{\langle x,y\rangle}{\|x\|\|y\|}.
+\]
+Z nierówności Cauchy'ego--Schwarza wynika, że iloraz po prawej stronie należy do przedziału $[-1,1]$, więc kąt jest poprawnie określony.
+
+Zatem iloczyn skalarny nie tylko mierzy współliniowość elementów, ale także ich wzajemne ułożenie: w~przestrzeni rzeczywistej
+\[
+\langle x,y\rangle=\|x\|\|y\|\cos\varphi.
+\]
+W szczególności $\langle x,y\rangle>0$ oznacza kąt ostry, $\langle x,y\rangle<0$ -- kąt rozwarty, a~$\langle x,y\rangle=0$ -- ortogonalność.
+
+W zespolonej przestrzeni Hilberta iloczyn skalarny może być liczbą zespoloną, dlatego nie można go bezpośrednio potraktować jako iloczynu długości i~kosinusa kąta. Wtedy używa się wzoru
+\[
+\cos\varphi
+=\frac{\operatorname{Re}\langle x,y\rangle}{\|x\|\|y\|},
+\]
+przy czym $\varphi\in[0,\pi]$ jest kątem wyznaczanym przez część rzeczywistą iloczynu skalarnego.
+Wartość $\langle x,y\rangle=0$ nadal oznacza, że elementy są ortogonalne.
+
+\section{Przestrzeń Hilberta}
+
+\begin{definicja}
+Przestrzenią Hilberta nazywamy przestrzeń liniową z iloczynem skalarnym, która jest zupełna względem normy indukowanej przez ten iloczyn skalarny.
+\end{definicja}
+
+Zatem każda przestrzeń Hilberta jest przestrzenią Banacha, ale nie każda przestrzeń Banacha jest przestrzenią Hilberta. Na przykład normy $\|\cdot\|_1$ i $\|\cdot\|_\infty$ nie są indukowane przez iloczyn skalarny.
+
+\subsection{Przykłady przestrzeni Hilberta}
+\begin{itemize}
+    \item $\mathbb R^n$ z iloczynem skalarnym
+    \[
+    \langle x,y\rangle=\sum_{i=1}^n x_i y_i,
+    \]
+    \item $\mathbb C^n$ z iloczynem skalarnym
+    \[
+    \langle x,y\rangle=\sum_{i=1}^n x_i\overline{y_i},
+    \]
+    \item $\ell^2$ z iloczynem skalarnym
+    \[
+    \langle x,y\rangle=\sum_{n=1}^{\infty}x_n\overline{y_n},
+    \]
+    \item $L^2[a,b]$ z iloczynem skalarnym
+    \[
+    \langle f,g\rangle=\int_a^b f(t)\overline{g(t)}\,dt.
+    \]
+\end{itemize}
+
+\subsection{Związek między typami przestrzeni}
+Schemat zależności można zapisać jako:
+\[
+\boxed{
+\begin{gathered}
+\text{przestrzeń Hilberta}
+\subset \text{przestrzeń Banacha}
+\subset \text{przestrzeń unormowana}\\
+\subset \text{przestrzeń metryczna}.
+\end{gathered}
+}
+\]
+Każda przestrzeń Hilberta jest więc jednocześnie przestrzenią Banacha, unormowaną i metryczną. Implikacje odwrotne nie zachodzą na ogół.
+
+\section{Najważniejsze różnice}
+\begin{center}
+\begin{tabular}{|p{0.25\linewidth}|p{0.32\linewidth}|p{0.33\linewidth}|}
+\hline
+\textbf{Typ przestrzeni} & \textbf{Co jest dane?} & \textbf{Dodatkowy warunek} \\
+\hline
+Metryczna & Zbiór i metryka $d$ & Odległość spełnia trzy aksjomaty metryki \\
+\hline
+Unormowana & Przestrzeń liniowa i norma $\|\cdot\|$ & Norma spełnia trzy aksjomaty; metryka dana jest przez $d(x,y)=\|x-y\|$ \\
+\hline
+Banacha & Przestrzeń unormowana & Zupełność względem metryki indukowanej przez normę \\
+\hline
+Przestrzeń z iloczynem skalarnym & Przestrzeń liniowa i iloczyn skalarny & Norma dana przez $\|x\|=\sqrt{\langle x,x\rangle}$ \\
+\hline
+Hilberta & Przestrzeń z iloczynem skalarnym & Zupełność względem normy indukowanej przez iloczyn skalarny \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{document}
