@@ -107,6 +107,17 @@ Przestrzenie $\mathbb R^n$ i $\mathbb C^n$ z metryką euklidesową są zupełne.
 Natomiast przedział $(0,1)$ z metryką zwykłą nie jest zupełny, ponieważ ciąg $x_n=1/n$ jest ciągiem Cauchy'ego, ale nie ma granicy należącej do $(0,1)$.
 \end{przyklad}
 
+\subsection{Praktyczne zastosowania przestrzeni metrycznych}
+Przestrzeń metryczna umożliwia sformalizowanie pojęcia podobieństwa i odległości:
+\begin{itemize}
+    \item w \textbf{uczeniu maszynowym} metryka określa podobieństwo obiektów i jest podstawą metod $k$ najbliższych sąsiadów oraz grupowania,
+    \item w \textbf{robotyce i nawigacji} dystanse Euklidesa, Manhattan lub metryki na grafie opisują odległość i koszt przemieszczania,
+    \item w \textbf{przetwarzaniu obrazów i sygnałów} metryki służą do porównywania wykrytych kształtów, danych pomiarowych i wyników rekonstrukcji,
+    \item w \textbf{analizie numerycznej} zbieżność iteracji i błędu obliczeniowego bada się za pomocą odległości w odpowiednio dobranej metryce,
+    \item zupełność gwarantuje, że ciąg coraz lepszych przybliżeń nie ucieka poza zbiór rozwiązań, co jest istotne przy projektowaniu stabilnych metod iteracyjnych i rozwiązywaniu równań.
+\end{itemize}
+W praktyce dobór metryki może zmienić wynik algorytmu. Na przykład metryka $d_1$ lepiej opisuje sumę odległości wzdłuż osi, natomiast $d_\infty$ ogranicza największą różnicę w pojedynczym wymiarze.
+
 \section{Przestrzeń unormowana}
 
 \begin{definicja}
@@ -185,6 +196,18 @@ Przestrzeń $C[a,b]$ z normą
 \|f\|_1=\int_a^b|f(t)|\,dt
 \]
 nie jest zupełna.
+
+\subsection{Praktyczne zastosowania przestrzeni unormowanych}
+Norma nie tylko mierzy odległość, ale przede wszystkim nadaje długość elementom przestrzeni liniowej:
+\begin{itemize}
+    \item $\|x\|$ określa wielkość sygnału, stanu układu albo wektora parametrów,
+    \item $\|\widehat{x}-x\|$ jest miarą błędu estymacji lub aproksymacji,
+    \item norma residuum $\|Ax-b\|$ ocenia, jak dobrze rozwiązanie spełnia układ równań,
+    \item normy $\|\cdot\|_1$, $\|\cdot\|_2$ i $\|\cdot\|_\infty$ są używane odpowiednio do promowania rzadkości rozwiązania, do typowego błędu średniokwadratowego i do ograniczania największego błędu,
+    \item w \textbf{sterowaniu i analizie układów} normy umożliwiają mierzenie energii sygnału, wzmocnienia układu oraz maksymalnego błędu w czasie,
+    \item w \textbf{optymalizacji} minimalizacja normy daje interpretację kosztu, np. błąd najmniejszych kwadratów dla normy $\|\cdot\|_2$.
+\end{itemize}
+Różne normy prowadzą do różnych rozwiązania. Regularyzacja $L^1$ zwykle daje rozwiązania rzadkie, a $L^2$ rozwiązania o małych współczynnikach i większej gładkości.
 
 \section{Iloczyn skalarny}
 
@@ -344,6 +367,18 @@ Schemat zależności można zapisać jako:
 }
 \]
 Każda przestrzeń Hilberta jest więc jednocześnie przestrzenią Banacha, unormowaną i metryczną. Implikacje odwrotne nie zachodzą na ogół.
+
+\subsection{Praktyczne zastosowania przestrzeni Hilberta}
+Przestrzeń Hilberta łączy możliwość mierzenia długości i odległości z pojęciami kąta i ortogonalności. Dlatego jest szczególnie użyteczna tam, gdzie można wykonywać projekcje na podprzestrzenie:
+\begin{itemize}
+    \item \textbf{metoda najmniejszych kwadratów}: przewidywane rozwiązanie otrzymuje się jako rzutowanie danych na podprzestrzeń generowaną przez model,
+    \item \textbf{przetwarzanie sygnałów}: funkcje i sygnały reprezentuje się w $L^2$; bazy Fouriera lub falkowe pozwalają rozkładać sygnał na składowe ortogonalne,
+    \item \textbf{kompresja i filtracja}: ortogonalne współrzędne umożliwiają usuwanie mało istotnych składowych, np. przy kompresji obrazów i usuwaniu szumu z sygnałów,
+    \item \textbf{mechanika kwantowa i telekomunikacja}: stany lub symbole są reprezentowane przez wektory, a iloczyn skalarny opisuje amplitudy przejścia i korelację,
+    \item \textbf{uczenie maszynowe}: jądrowe metody regresji i klasyfikacji działają w wysokowymiarowych przestrzeniach podobnych do przestrzeni Hilberta,
+    \item \textbf{rozwiązywanie równań i metod symulacyjnych}: aproksymacje Galerkina i metoda elementów skończonych poszukują najlepszego przybliżenia rozwiązania w skończenie wymiarowej podprzestrzeni.
+\end{itemize}
+Zupełność przestrzeni Hilberta pozwala traktować granice ciągów aproksymacyjnych jako poprawnie określone obiekty należące do tej przestrzeni. Dzięki temu metody numeryczne dają matematyczne gwarancje zbieżności przy odpowiednich założeniach.
 
 \section{Najważniejsze różnice}
 \begin{center}
